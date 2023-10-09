@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:00:52 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/06 23:12:53 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/09 15:07:01 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void ft_clear_map(char **map)
 
 void ft_clear_data(t_data *data)
 {
-	ft_clear_map(data->map_lines);
+	ft_clear_map(data->config_lines);
 	free(data);
 	data = NULL;
 }
