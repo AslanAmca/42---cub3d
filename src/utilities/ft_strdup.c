@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/05 12:13:07 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/09 18:39:28 by aaslan           ###   ########.fr       */
+/*   Created: 2023/10/09 18:32:42 by aaslan            #+#    #+#             */
+/*   Updated: 2023/10/09 18:39:42 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int ft_strcmp(char *s1, char *s2)
+char *ft_strdup(char *s)
 {
-	int i;
+	char *copy_string;
+	int s_len;
 
-	i = 0;
-	while (s1[i] != '\0' && s2[i] != '\0')
-	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
-		i++;
-	}
-	return (0);
+	if (s == NULL)
+		return (NULL);
+	s_len = ft_strlen(s);
+	copy_string = (char *)malloc(s_len + 1);
+	if (copy_string == NULL)
+		return (NULL);
+	ft_strlcpy(copy_string, s, s_len + 1);
+	return (copy_string);
 }

@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 10:38:43 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/09 16:40:12 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/09 21:38:30 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,160 @@ void ft_check_map_empty_line(t_data *data)
 	close(fd);
 }
 
+void ft_set_lines(t_data *data)
+{
+	int fd = open(data->config_filename, O_RDONLY);
+	if (fd == -1)
+		ft_print_error(data, "An error occurred while opening the map file.");
+
+	data->config_lines = (char **)malloc(sizeof(char *) * (data->config_full_line_count + 1));
+	if (data->config_lines == NULL)
+		ft_print_error(data, "malloc error");
+	data->config_lines[data->config_full_line_count] = NULL;
+
+	int i = 0;
+	char *line = NULL;
+	while (i < data->config_full_line_count)
+	{
+		line = ft_get_next_line(data, fd);
+
+		if (!ft_is_empty_line(line))
+		{
+			data->config_lines[i] = line;
+			i++;
+		}
+		else
+		{
+			free(line);
+			line = NULL;
+		}
+	}
+	close(fd);
+}
+
+
+static void ft_validate_north_texture(t_data *data, char *line, int space)
+{
+	if (space == 1 && ft_strncmp("NO ", line, 3) == 0)
+	{
+		if (data->north_texture != NULL)
+			ft_print_error(data, "There can't be more than one NO element.");
+		data->north_texture = ft_strtrim(line + 3, " \t");
+		if (data->north_texture[0] == '\0')
+			ft_print_error(data, "North Texture cant' be empty.");
+		if (ft_strcmp(data->north_texture + ft_strlen(data->north_texture) - 4, ".xpm") != 0)
+			ft_print_error(data, "North Texture must end with the .xpm extension.");
+	}
+	if (space == 0 && ft_strncmp("NO", line, 2) == 0 && line[2] != ' ')
+	{
+		ft_print_error(data, "The NO identifier must be followed by a space character.");
+	}
+
+}
+
+static void ft_validate_south_texture(t_data *data, char *line, int space)
+{
+	if (space == 1 && ft_strncmp("SO ", line, 3) == 0)
+	{
+		if (data->south_texture != NULL)
+			ft_print_error(data, "There can't be more than one SO element.");
+		data->south_texture = ft_strtrim(line + 3, " \t");
+		if (data->south_texture[0] == '\0')
+			ft_print_error(data, "South Texture cant' be empty.");
+		if (ft_strcmp(data->south_texture + ft_strlen(data->south_texture) - 4, ".xpm") != 0)
+			ft_print_error(data, "South Texture must end with the .xpm extension.");
+	}
+	if (space == 0 && ft_strncmp("SO", line, 2) == 0 && line[2] != ' ')
+	{
+		ft_print_error(data, "The SO identifier must be followed by a space character.");
+	}
+}
+
+static void ft_validate_west_texture(t_data *data, char *line, int space)
+{
+	if (space == 1 && ft_strncmp("WE ", line, 3) == 0)
+	{
+		if (data->west_texture != NULL)
+			ft_print_error(data, "There can't be more than one WE element.");
+		data->west_texture = ft_strtrim(line + 3, " \t");
+		if (data->west_texture[0] == '\0')
+			ft_print_error(data, "West Texture cant' be empty.");
+		if (ft_strcmp(data->west_texture + ft_strlen(data->west_texture) - 4, ".xpm") != 0)
+			ft_print_error(data, "West Texture must end with the .xpm extension.");
+	}
+	if (space == 0 && ft_strncmp("WE", line, 2) == 0 && line[2] != ' ')
+	{
+		ft_print_error(data, "The WE identifier must be followed by a space character.");
+	}
+}
+
+static void ft_validate_east_texture(t_data *data, char *line, int space)
+{
+	if (space == 1 && ft_strncmp("EA ", line, 3) == 0)
+	{
+		if (data->east_texture != NULL)
+			ft_print_error(data, "There can't be more than one EA element.");
+		data->east_texture = ft_strtrim(line + 3, " \t");
+		if (data->east_texture[0] == '\0')
+			ft_print_error(data, "East Texture cant' be empty.");
+		if (ft_strcmp(data->east_texture + ft_strlen(data->east_texture) - 4, ".xpm") != 0)
+			ft_print_error(data, "East Texture must end with the .xpm extension.");
+	}
+	if (space == 0 && ft_strncmp("EA", line, 2) == 0 && line[2] != ' ')
+	{
+		ft_print_error(data, "The EA identifier must be followed by a space character.");
+	}
+}
+
+void ft_validate_textures(t_data *data)
+{
+	char *line;
+	int i;
+
+	line = NULL;
+	i = 0;
+	while (i < 6)
+	{
+		line = data->config_lines[i];
+		ft_validate_north_texture(data, line, 1);
+		ft_validate_south_texture(data, line, 1);
+		ft_validate_west_texture(data, line, 1);
+		ft_validate_east_texture(data, line, 1);
+		i++;
+	}
+	line = NULL;
+	i = 0;
+	while (i < 6)
+	{
+		line = data->config_lines[i];
+		ft_validate_north_texture(data, line, 0);
+		ft_validate_south_texture(data, line, 0);
+		ft_validate_west_texture(data, line, 0);
+		ft_validate_east_texture(data, line, 0);
+		i++;
+	}
+}
+
+
+
+// void ft_validate_colors(t_data *data)
+// {
+// 	char *line;
+// 	int i;
+
+// 	line = NULL;
+// 	i = 0;
+// 	while (i < 6)
+// 	{
+// 		line = data->config_lines[i];
+// 		ft_validate_north_texture(data, line, 1);
+// 		ft_validate_south_texture(data, line, 1);
+// 		ft_validate_west_texture(data, line, 1);
+// 		ft_validate_east_texture(data, line, 1);
+// 		i++;
+// 	}
+// }
+
 int main(int argc, char **argv)
 {
 	t_data *data;
@@ -129,10 +283,16 @@ int main(int argc, char **argv)
 	ft_validate_argument(data);
 	ft_validate_config_is_empty(data);
 	ft_set_line_count(data);
-	ft_check_map_empty_line(data);
+	ft_set_lines(data);
+	ft_validate_textures(data);
 
-	// buraya kadar hata olmazsa data'yı freeleyen bir şey yok ona göre.
-	free(data);
+	// buna texture ve color sonrasında bakacağız.
+	// ft_check_map_empty_line(data);
+
+
+	// buraya kadar hata olmazsa ft_print_error üzerinden clear_data çalışmıyor.
+	// dolayısıyla memory leak oluyor. şimdilik burada manuel clear yapalım.
+	ft_clear_data(data);
 
 	return 0;
 }

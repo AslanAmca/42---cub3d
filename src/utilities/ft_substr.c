@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/05 12:13:07 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/09 18:39:28 by aaslan           ###   ########.fr       */
+/*   Created: 2023/10/09 18:32:58 by aaslan            #+#    #+#             */
+/*   Updated: 2023/10/09 18:41:05 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int ft_strcmp(char *s1, char *s2)
+char *ft_substr(char *s, int start, int len)
 {
-	int i;
+	char *string;
+	int size;
 
-	i = 0;
-	while (s1[i] != '\0' && s2[i] != '\0')
-	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
-		i++;
-	}
-	return (0);
+	if (s == NULL)
+		return (NULL);
+	if (ft_strlen(s) - 1 < start)
+		return (ft_strdup(""));
+	s = s + start;
+	size = ft_strlen(s);
+	if (size < len)
+		len = size;
+	string = (char *)malloc(sizeof(char) * (len + 1));
+	ft_strlcpy(string, s, len + 1);
+	return (string);
 }
