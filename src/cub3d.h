@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 10:40:21 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/10 10:30:48 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/10 16:59:38 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,11 @@ typedef struct s_texture
 
 typedef struct s_color
 {
-	// char 1 byte yani 8 bit'tir. -127 +127 arasında değer alır.
-	// RGB formatına uygun olması için unsigned olarak kullanacağız.
-	// Böylelikle 0-255 arası değer alacak.
-	unsigned char red;
-	unsigned char green;
-	unsigned char blue;
+	int red;
+	int green;
+	int blue;
 } t_color;
 
-// veri yapıları
 typedef struct s_data
 {
 	t_config *config;
@@ -68,9 +64,13 @@ char *ft_substr(char *s, int start, int len);
 
 // main
 void ft_init_data(t_data *data, char *config_filename);
-void ft_validate_textures(t_data *data);
-void ft_validate_colors(t_data *data);
 
+// config file
+void ft_validate_textures(t_data *data, char *line);
+void ft_validate_colors(t_data *data, char *line);
+void ft_validate_config_elements(t_data *data);
+
+// other
 void ft_print_error(t_data *data, char *message);
 void ft_clear_data(t_data *data);
 void ft_set_line_count(t_data *data);

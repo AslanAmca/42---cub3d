@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 10:05:16 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/10 12:00:18 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/10 16:13:02 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ static void ft_init_colors(t_data *data)
 	data->ceiling_color = (t_color *)malloc(sizeof(t_color));
 	if (data->ceiling_color == NULL)
 		ft_print_error(data, "t_data->ceiling_color is null.");
-	data->floor_color->red = 0;
-	data->floor_color->green = 0;
-	data->floor_color->blue = 0;
-	data->ceiling_color->red = 0;
-	data->ceiling_color->green = 0;
-	data->ceiling_color->blue = 0;
+	data->floor_color->red = -1;
+	data->floor_color->green = -1;
+	data->floor_color->blue = -1;
+	data->ceiling_color->red = -1;
+	data->ceiling_color->green = -1;
+	data->ceiling_color->blue = -1;
 }
 
 static void ft_init_textures(t_data *data)
