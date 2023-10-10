@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 10:40:21 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/09 18:41:05 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/10 10:30:48 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,42 @@
 #include <unistd.h>
 #include <fcntl.h>
 
+typedef struct s_config
+{
+	char *filename;
+	char **lines;
+	int total_line_count;
+	int full_line_count;
+	int empty_line_count;
+} t_config;
+
+typedef struct s_texture
+{
+	char *north;
+	char *south;
+	char *west;
+	char *east;
+} t_texture;
+
+typedef struct s_color
+{
+	// char 1 byte yani 8 bit'tir. -127 +127 arasında değer alır.
+	// RGB formatına uygun olması için unsigned olarak kullanacağız.
+	// Böylelikle 0-255 arası değer alacak.
+	unsigned char red;
+	unsigned char green;
+	unsigned char blue;
+} t_color;
+
 // veri yapıları
 typedef struct s_data
 {
-	int argument_count;
-
-	char *config_filename;
-	char **config_lines;
-	int config_total_line_count;
-	int config_full_line_count;
-	int config_empty_line_count;
+	t_config *config;
+	t_texture *texture;
+	t_color *floor_color;
+	t_color *ceiling_color;
 
 	int map_starting_line;
-
-	char *north_texture;
-	char *south_texture;
-	char *west_texture;
-	char *east_texture;
-	int floor_color;
-	int ceiling_color;
 } t_data;
 
 // utilities
@@ -49,7 +66,11 @@ int ft_strncmp(char *s1, char *s2, int n);
 char *ft_strtrim(char *s1, char *set);
 char *ft_substr(char *s, int start, int len);
 
-// diğerleri
+// main
+void ft_init_data(t_data *data, char *config_filename);
+void ft_validate_textures(t_data *data);
+void ft_validate_colors(t_data *data);
+
 void ft_print_error(t_data *data, char *message);
 void ft_clear_data(t_data *data);
 void ft_set_line_count(t_data *data);
