@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 10:29:58 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/11 20:22:22 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/11 23:13:09 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ F 220,100,0
 C 225, 30, 0
 
 Bakılması gerekenler:
-1 - Daha önce bulundu mu? Burada NULL ile kontrol edemeyiz, red üzerinden - değilse diye bakabiliriz çünkü varsayılan değer -1
 2 - Değeri trimleme işlemini burada da yapalım.
 3 - Değer boş mu diye kontrol edelim.
 4 - Değer virgül ile ayrılmış toplam 3 bölümden oluşmalıdır. Yani 2 virgül olmalıdır. Eğer yoksa 3 bölüm yoktur demektir.
@@ -47,14 +46,10 @@ static void ft_validate_floor_color(t_data *data, char *line)
 	char *value;
 
 	value = NULL;
-	if (line[0] == 'F' && line[1] == ' ')
+	if (line[0] == 'F')
 	{
-		// 1
-		if (data->floor_color->red >= 0)
-			ft_print_error(data, "There can't be more than one F element.");
-
 		// 2
-		value = ft_strtrim(line + 2, " \t");
+		value = ft_strtrim(line + 1, " \t");
 
 		// 3
 		if (*value == '\0')

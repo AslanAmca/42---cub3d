@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 10:38:43 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/11 20:28:28 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/11 22:21:31 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,9 @@ int main(int argc, char **argv)
 
 	ft_set_line_count(data);
 	ft_set_lines(data);
-	ft_validate_config_elements(data);
+
+	ft_set_elements_count(data);
+	ft_validate_elements(data);
 
 	// buna texture ve color sonrasında bakacağız.
 	// ft_check_map_empty_line(data);

@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 10:40:21 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/11 20:28:02 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/11 22:20:38 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@ typedef struct s_texture
 	char *south;
 	char *west;
 	char *east;
+
+	int north_count;
+	int south_count;
+	int west_count;
+	int east_count;
 } t_texture;
 
 typedef struct s_color
@@ -40,6 +45,8 @@ typedef struct s_color
 	int red;
 	int green;
 	int blue;
+
+	int count;
 } t_color;
 
 typedef struct s_data
@@ -73,7 +80,7 @@ void ft_print_error(t_data *data, char *message);
 // validators
 void ft_validate_argument(t_data *data, int argument_count);
 void ft_validate_colors(t_data *data, char *line);
-void ft_validate_config_elements(t_data *data);
+void ft_validate_elements(t_data *data);
 void ft_validate_config_is_empty(t_data *data);
 void ft_validate_textures(t_data *data, char *line);
 
@@ -81,5 +88,6 @@ void ft_validate_textures(t_data *data, char *line);
 void ft_clear_data(t_data *data);
 void ft_init_data(t_data *data, char *config_filename);
 void ft_set_line_count(t_data *data);
+void ft_set_elements_count(t_data *data);
 
 #endif
