@@ -6,11 +6,11 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 16:53:10 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/10 18:07:22 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/11 20:22:30 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 static void ft_validate_identity_space(t_data *data)
 {

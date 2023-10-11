@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 10:40:21 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/11 16:23:48 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/11 20:28:02 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,30 +52,34 @@ typedef struct s_data
 	int map_starting_line;
 } t_data;
 
-// utilities
+// libft
+char **ft_split(char *string, char delimiter);
 char *ft_strchr(char *s, int c);
 int ft_strcmp(char *s1, char *s2);
 char *ft_strdup(char *s);
 int ft_strlcpy(char *dest, char *src, int n);
-char *ft_strncpy(char *dest, char *src, int n);
 int ft_strlen(char *string);
 int ft_strncmp(char *s1, char *s2, int n);
+char *ft_strncpy(char *dest, char *src, int n);
+char *ft_strtrim_start(char *s1, char *set);
 char *ft_strtrim(char *s1, char *set);
 char *ft_substr(char *s, int start, int len);
-char **ft_split(char *string, char delimiter);
 
-// main
-void ft_init_data(t_data *data, char *config_filename);
+// utilities
+char *ft_get_next_line(t_data *data, int fd);
+int ft_is_empty_line(char *line);
+void ft_print_error(t_data *data, char *message);
 
-// config file
-void ft_validate_textures(t_data *data, char *line);
+// validators
+void ft_validate_argument(t_data *data, int argument_count);
 void ft_validate_colors(t_data *data, char *line);
 void ft_validate_config_elements(t_data *data);
+void ft_validate_config_is_empty(t_data *data);
+void ft_validate_textures(t_data *data, char *line);
 
 // other
-void ft_print_error(t_data *data, char *message);
 void ft_clear_data(t_data *data);
+void ft_init_data(t_data *data, char *config_filename);
 void ft_set_line_count(t_data *data);
-int ft_is_empty_line(char *line);
 
 #endif

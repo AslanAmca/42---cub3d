@@ -6,71 +6,11 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 10:38:43 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/10 17:00:22 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/11 20:28:28 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void ft_validate_argument(t_data *data, int argument_count)
-{
-	if (argument_count == 1)
-		ft_print_error(data, "Map name not entered. You must enter the map name for the program to work.");
-	if (argument_count > 2)
-		ft_print_error(data, "Only the map name should be entered as an argument.");
-	if (data->config->filename == NULL || *data->config->filename == '\0')
-		ft_print_error(data, "Map name cannot be null or empty.");
-	if (ft_strcmp(data->config->filename + ft_strlen(data->config->filename) - 4, ".cub") != 0)
-		ft_print_error(data, "Map name does not end with the .cub extension.");
-}
-
-void ft_validate_config_is_empty(t_data *data)
-{
-	char character;
-	int readed_byte;
-	int fd;
-
-	character = '\0';
-	readed_byte = 0;
-	fd = open(data->config->filename, O_RDONLY);
-	if (fd == -1)
-		ft_print_error(data, "An error occurred while opening the map file.");
-	readed_byte = read(fd, &character, 1);
-	if (readed_byte == -1)
-		ft_print_error(data, "An error occurred while reading the map file.");
-	if (readed_byte == 0)
-		ft_print_error(data, "Map file must not be empty.");
-	close(fd);
-}
-
-char *ft_get_next_line(t_data *data, int fd)
-{
-	char *line = malloc(1024);
-	char character;
-	int readed_byte;
-	int i;
-
-	character = '\0';
-	readed_byte = 1;
-	i = 0;
-	if (fd == -1)
-		ft_print_error(data, "An error occurred while opening the map file.");
-	while (1)
-	{
-		readed_byte = read(fd, &character, 1);
-		if (readed_byte == -1)
-			ft_print_error(data,
-						   "An error occurred while reading the map file.");
-		line[i] = character;
-		if (character == '\n' || readed_byte == 0)
-		{
-			line[i] = '\0';
-			break;
-		}
-		i++;
-	}
-	return (line);
-}
 
 void ft_check_map_empty_line(t_data *data)
 {
@@ -130,8 +70,6 @@ void ft_set_lines(t_data *data)
 	close(fd);
 }
 
-
-
 int main(int argc, char **argv)
 {
 	t_data *data;
@@ -142,6 +80,7 @@ int main(int argc, char **argv)
 	ft_init_data(data, argv[1]);
 	ft_validate_argument(data, argc);
 	ft_validate_config_is_empty(data);
+
 	ft_set_line_count(data);
 	ft_set_lines(data);
 	ft_validate_config_elements(data);

@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 12:46:14 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/10 10:23:37 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/11 20:27:41 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,6 @@ static void ft_clear_line(char *line)
 		line[i] = '\0';
 		i++;
 	}
-}
-
-int ft_is_empty_line(char *line)
-{
-	int i;
-
-	i = 0;
-	while (line[i] != '\0')
-	{
-		if (line[i] != ' ' && line[i] != '\t' && line[i] != '\n')
-			return (0);
-		i++;
-	}
-	return (1);
 }
 
 static void ft_handle_line(t_data *data, char *line, int readed_byte, int *i)

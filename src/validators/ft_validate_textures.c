@@ -6,11 +6,11 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 10:26:26 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/10 18:09:04 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/11 20:22:09 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 static void ft_validate_north_texture(t_data *data, char *line)
 {
@@ -21,7 +21,10 @@ static void ft_validate_north_texture(t_data *data, char *line)
 	{
 		if (data->texture->north != NULL)
 			ft_print_error(data, "There can't be more than one NO element.");
-		data->texture->north = ft_strtrim(line + 3, " \t");
+		data->texture->north = ft_strtrim_start(line + 3, " \t");
+
+		printf("nort : %s\n", data->texture->north);
+
 		if (data->texture->north[0] == '\0')
 			ft_print_error(data, "NO element cant' be empty.");
 		if (ft_strcmp(data->texture->north + ft_strlen(data->texture->north) - 4, ".xpm") != 0)

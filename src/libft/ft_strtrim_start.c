@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_error.c                                   :+:      :+:    :+:   */
+/*   ft_strtrim_start.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/06 23:04:48 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/09 15:08:59 by aaslan           ###   ########.fr       */
+/*   Created: 2023/10/11 18:24:20 by aaslan            #+#    #+#             */
+/*   Updated: 2023/10/11 18:24:33 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
-void ft_print_error(t_data *data, char *message)
+char *ft_strtrim_start(char *s1, char *set)
 {
-	printf("Error!\n%s\n", message);
-	ft_clear_data(data);
-	exit(EXIT_FAILURE);
+	if (s1 == NULL || set == NULL)
+		return NULL;
+	while (ft_strchr(set, *s1) && *s1 != '\0')
+		s1++;
+	return ft_strdup(s1);
 }

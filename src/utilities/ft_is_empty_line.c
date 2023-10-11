@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   ft_is_empty_line.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/09 18:33:12 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/11 18:24:28 by aaslan           ###   ########.fr       */
+/*   Created: 2023/10/11 20:27:31 by aaslan            #+#    #+#             */
+/*   Updated: 2023/10/11 20:27:49 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-char *ft_strtrim(char *s1, char *set)
+int ft_is_empty_line(char *line)
 {
-	int size;
+	int i;
 
-	if (s1 == NULL || set == NULL)
-		return (NULL);
-	while (ft_strchr(set, *s1) && *s1 != '\0')
-		s1++;
-	size = ft_strlen(s1);
-	while (ft_strchr(set, s1[size]) && size != 0)
-		size--;
-	return (ft_substr(s1, 0, size + 1));
+	i = 0;
+	while (line[i] != '\0')
+	{
+		if (line[i] != ' ' && line[i] != '\t' && line[i] != '\n')
+			return (0);
+		i++;
+	}
+	return (1);
 }
