@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 10:40:21 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/10 16:59:38 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/11 16:23:48 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,12 @@ char *ft_strchr(char *s, int c);
 int ft_strcmp(char *s1, char *s2);
 char *ft_strdup(char *s);
 int ft_strlcpy(char *dest, char *src, int n);
+char *ft_strncpy(char *dest, char *src, int n);
 int ft_strlen(char *string);
 int ft_strncmp(char *s1, char *s2, int n);
 char *ft_strtrim(char *s1, char *set);
 char *ft_substr(char *s, int start, int len);
+char **ft_split(char *string, char delimiter);
 
 // main
 void ft_init_data(t_data *data, char *config_filename);

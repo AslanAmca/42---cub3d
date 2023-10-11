@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 10:29:58 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/10 18:05:46 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/10 23:03:50 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,20 @@ Tüm bu şartlardan geçiyorsa değerleri set edebiliriz.
 */
 static void ft_validate_floor_color(t_data *data, char *line)
 {
+	char *value;
+
+	value = NULL;
 	if (line[0] == 'F' && line[1] == ' ')
 	{
 		if (data->floor_color->red >= 0)
 			ft_print_error(data, "There can't be more than one F element.");
+
+		value = ft_strtrim(line + 2, " \t");
+
+		if (value == '\0')
+			ft_print_error(data, "F element cant' be empty.");
+
+		
 	}
 }
 

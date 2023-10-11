@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:00:52 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/10 12:13:46 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/11 14:57:32 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ static void ft_clear_config(t_data *data)
 		while (lines[i] != NULL)
 		{
 			free(lines[i]);
+			lines[i] = NULL;
 			i++;
 		}
 		free(lines);
