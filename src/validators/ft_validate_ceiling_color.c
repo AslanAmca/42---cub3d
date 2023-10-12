@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 10:20:46 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/12 15:47:06 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/12 17:03:22 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void ft_validate_ceiling_color(t_data *data, char *line)
 	char **rgb;
 
 	rgb = NULL;
-	if (line[0] == 'F')
+	if (line[0] == 'C')
 	{
 		data->ceiling_color->string = ft_strtrim_start(line + 1, " \t");
 		if (*data->ceiling_color->string == '\0')
