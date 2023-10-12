@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 10:05:16 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/11 22:12:04 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/12 15:04:15 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,18 @@ static void ft_init_colors(t_data *data)
 	data->floor_color->green = -1;
 	data->floor_color->blue = -1;
 	data->floor_color->count = 0;
+	data->floor_color->string = NULL;
+	data->floor_color->red_string = NULL;
+	data->floor_color->green_string = NULL;
+	data->floor_color->blue_string = NULL;
 	data->ceiling_color->red = -1;
 	data->ceiling_color->green = -1;
 	data->ceiling_color->blue = -1;
 	data->ceiling_color->count = 0;
+	data->ceiling_color->string = NULL;
+	data->ceiling_color->red_string = NULL;
+	data->ceiling_color->green_string = NULL;
+	data->ceiling_color->blue_string = NULL;
 }
 
 static void ft_init_textures(t_data *data)

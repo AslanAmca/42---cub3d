@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 10:26:26 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/11 23:12:10 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/12 12:42:13 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void ft_validate_north_texture(t_data *data, char *line)
 	fd = -1;
 	if (ft_strncmp("NO", line, 2) == 0)
 	{
-		data->texture->north = ft_strtrim_start(line + 2, " \t");
+		data->texture->north = ft_strtrim(line + 2, " \t");
 		if (data->texture->north[0] == '\0')
 			ft_print_error(data, "NO element can't be null.");
 		if (ft_strcmp(data->texture->north + ft_strlen(data->texture->north) - 4, ".xpm") != 0)

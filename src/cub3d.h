@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 10:40:21 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/12 09:09:59 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/12 15:18:15 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,11 @@ typedef struct s_color
 	int red;
 	int green;
 	int blue;
-
+	char *red_string;
+	char *green_string;
+	char *blue_string;
 	int count;
+	char *string;
 } t_color;
 
 typedef struct s_data
@@ -78,13 +81,15 @@ char *ft_substr(char *s, int start, int len);
 char *ft_get_next_line(t_data *data, int fd);
 int ft_is_empty_line(char *line);
 void ft_print_error(t_data *data, char *message);
+void ft_clear_double_pointer(char **array);
 
 // validators
 void ft_validate_argument(t_data *data, int argument_count);
-void ft_validate_colors(t_data *data, char *line);
 void ft_validate_elements(t_data *data);
 void ft_validate_config_is_empty(t_data *data);
 void ft_validate_textures(t_data *data, char *line);
+void ft_validate_floor_color(t_data *data, char *line);
+void ft_validate_ceiling_color(t_data *data, char *line);
 
 // other
 void ft_clear_data(t_data *data);

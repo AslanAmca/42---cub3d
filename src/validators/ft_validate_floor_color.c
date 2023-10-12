@@ -6,34 +6,38 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 10:29:58 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/12 10:22:26 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/12 15:46:08 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-static void ft_validate_comma(t_data *data, char *string)
+static void ft_validate_comma(t_data *data)
 {
 	int count;
+	int i;
 
 	count = 0;
-	while (*string != '\0')
+	i = 0;
+	while (data->floor_color->string[i] != '\0')
 	{
-		if (*string == ',')
+		if (data->floor_color->string[i] == ',')
 			count++;
-		string++;
+		i++;
 	}
 	if (count != 2)
 		ft_print_error(data, "F take a value in RGB format. \
-The RGB value consists of 3 parts separated by commas.");
+The RGB value consists of 3 parts separated by 2 commas.");
 }
 
-static void ft_validate_red_color(t_data *data, char *red_string)
+static void ft_validate_red_color(t_data *data)
 {
+	char *red_string;
 	int red;
 	int red_len;
 	int i;
 
+	red_string = data->floor_color->red_string;
 	red_len = ft_strlen(red_string);
 	if (red_len == 0)
 		ft_print_error(data, "Red color of F can't be empty.");
@@ -52,12 +56,14 @@ static void ft_validate_red_color(t_data *data, char *red_string)
 	data->floor_color->red = red;
 }
 
-static void ft_validate_green_color(t_data *data, char *green_string)
+static void ft_validate_green_color(t_data *data)
 {
+	char *green_string;
 	int green;
 	int green_len;
 	int i;
 
+	green_string = data->floor_color->green_string;
 	green_len = ft_strlen(green_string);
 	if (green_len == 0)
 		ft_print_error(data, "Green color of F can't be empty.");
@@ -76,12 +82,14 @@ static void ft_validate_green_color(t_data *data, char *green_string)
 	data->floor_color->green = green;
 }
 
-static void ft_validate_blue_color(t_data *data, char *blue_string)
+static void ft_validate_blue_color(t_data *data)
 {
+	char *blue_string;
 	int blue;
 	int blue_len;
 	int i;
 
+	blue_string = data->floor_color->blue_string;
 	blue_len = ft_strlen(blue_string);
 	if (blue_len == 0)
 		ft_print_error(data, "Blue color of F can't be empty.");
@@ -103,25 +111,21 @@ static void ft_validate_blue_color(t_data *data, char *blue_string)
 void ft_validate_floor_color(t_data *data, char *line)
 {
 	char **rgb;
-	char *value;
 
-	value = NULL;
+	rgb = NULL;
 	if (line[0] == 'F')
 	{
-		value = ft_strtrim_start(line + 1, " \t");
-		if (*value == '\0')
+		data->floor_color->string = ft_strtrim_start(line + 1, " \t");
+		if (*data->floor_color->string == '\0')
 			ft_print_error(data, "F element cant' be empty.");
-		ft_validate_comma(data, value);
-		rgb = ft_split(value, ',');
-		ft_validate_red_color(data, rgb[0]);
-		ft_validate_green_color(data, rgb[1]);
-		ft_validate_blue_color(data, rgb[2]);
+		ft_validate_comma(data);
+		rgb = ft_split(data->floor_color->string, ',');
+		data->floor_color->red_string = ft_strdup(rgb[0]);
+		data->floor_color->green_string = ft_strdup(rgb[1]);
+		data->floor_color->blue_string = ft_strdup(rgb[2]);
+		ft_clear_double_pointer(rgb);
+		ft_validate_red_color(data);
+		ft_validate_green_color(data);
+		ft_validate_blue_color(data);
 	}
-}
-
-// -----> Peki Zemin ve Yerin renkleri birbirinden ayrı olmak zorunda mı? <-----
-void ft_validate_colors(t_data *data, char *line)
-{
-	ft_validate_floor_color(data, line);
-	ft_validate_ceiling_color(data, line);
 }
