@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 16:53:10 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/12 00:39:30 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/12 08:58:15 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void ft_validate_elements(t_data *data)
 	while (i < 6)
 	{
 		line = data->config->lines[i];
-		ft_validate_textures(data, line);
+		//ft_validate_textures(data, line);
 		ft_validate_colors(data, line);
 		i++;
 	}

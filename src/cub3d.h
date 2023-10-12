@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 10:40:21 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/11 22:20:38 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/12 09:09:59 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ typedef struct s_data
 } t_data;
 
 // libft
+int ft_atoi(char *nptr);
+int ft_is_digit(int c);
 char **ft_split(char *string, char delimiter);
 char *ft_strchr(char *s, int c);
 int ft_strcmp(char *s1, char *s2);
