@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 18:09:13 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/14 20:26:46 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/15 01:12:14 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void ft_init_map(t_data *data)
 	data->map->text = NULL;
 	data->map->temp_text = NULL;
 	data->map->starting_line = 0;
+	data->map->row_count = 0;
+	data->map->col_count = 0;
 }
 
 void ft_clear_map(t_data *data)
