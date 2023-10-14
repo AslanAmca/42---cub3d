@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_set_line_count.c                                :+:      :+:    :+:   */
+/*   ft_set_config_line_count.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 12:46:14 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/11 20:27:41 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/14 16:57:38 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 static void ft_clear_line(char *line)
 {
@@ -34,7 +34,7 @@ static void ft_handle_line(t_data *data, char *line, int readed_byte, int *i)
 		{
 			data->config->full_line_count++;
 			if (data->config->full_line_count == 7)
-				data->map_starting_line = data->config->total_line_count;
+				data->map->starting_line = data->config->total_line_count;
 		}
 		else
 			data->config->empty_line_count++;
@@ -43,7 +43,7 @@ static void ft_handle_line(t_data *data, char *line, int readed_byte, int *i)
 	}
 }
 
-void ft_set_line_count(t_data *data)
+void ft_set_config_line_count(t_data *data, char *filename)
 {
 	char line[1024];
 	char character;
@@ -54,7 +54,7 @@ void ft_set_line_count(t_data *data)
 	character = '\0';
 	readed_byte = 1;
 	i = 0;
-	fd = open(data->config->filename, O_RDONLY);
+	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		ft_print_error(data, "An error occurred while opening the map file.");
 	while (readed_byte > 0)
@@ -73,6 +73,6 @@ void ft_set_line_count(t_data *data)
 	// dolayısıyla en az 9 satır olmalıdır.
 	// 9 satırdan az varsa hiç uğraşmadan hata vermek mantıklı mı?
 	if (data->config->full_line_count < 9)
-		ft_print_error(data, "There must be at least 9 lines in the configuration file. \
+		ft_print_error(data, "There must be at least 9 text in the configuration file. \
 (4 texture, 2 color, min 3 for map)");
 }

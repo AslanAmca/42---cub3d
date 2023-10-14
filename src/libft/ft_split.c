@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 16:21:46 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/11 16:24:16 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/14 20:27:11 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static int ft_split_fill(char **result, char *string, char delimiter, int word_c
 		while (*string != delimiter && *string != '\0')
 			string++;
 		word_len = string - word_start;
-		result[i] = (char *)malloc(word_len + 1);
+		result[i] = malloc(word_len + 1);
 		if (result[i] == NULL)
 			return 0;
 		ft_strncpy(result[i], word_start, word_len);
@@ -82,7 +82,7 @@ char **ft_split(char *string, char delimiter)
 	word_count = ft_split_word_count(string, delimiter);
 	if (word_count == 0)
 		return NULL;
-	result = (char **)malloc(sizeof(char *) * (word_count + 1));
+	result = malloc(sizeof(char *) * (word_count + 1));
 	if (result == NULL)
 		return NULL;
 	result[word_count] = NULL;

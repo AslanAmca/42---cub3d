@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 22:18:44 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/14 11:11:58 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/14 20:07:47 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void ft_set_elements_count(t_data *data)
 	i = 0;
 	while (i < 6)
 	{
-		line = data->config->lines[i];
+		line = data->config->text[i];
 		if (ft_strncmp("NO", line, 2) == 0)
 			data->texture->north_count++;
 		if (ft_strncmp("SO", line, 2) == 0)

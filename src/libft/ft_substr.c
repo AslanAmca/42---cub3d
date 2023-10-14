@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 18:32:58 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/09 18:41:05 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/14 20:27:19 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char *ft_substr(char *s, int start, int len)
 	size = ft_strlen(s);
 	if (size < len)
 		len = size;
-	string = (char *)malloc(sizeof(char) * (len + 1));
+	string = malloc(sizeof(char) * (len + 1));
 	ft_strlcpy(string, s, len + 1);
 	return (string);
 }

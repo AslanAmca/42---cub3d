@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_init_clear_player.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/09 18:32:42 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/14 20:27:15 by aaslan           ###   ########.fr       */
+/*   Created: 2023/10/14 18:06:16 by aaslan            #+#    #+#             */
+/*   Updated: 2023/10/14 20:26:51 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-char *ft_strdup(char *s)
+void ft_init_player(t_data *data)
 {
-	char *copy_string;
-	int s_len;
+	data->player = malloc(sizeof(t_color));
+	if (data->player == NULL)
+		ft_print_error(data, "t_data->player is null.");
+	data->player->count = 0;
+	data->player->row = -1;
+	data->player->col = -1;
+}
 
-	if (s == NULL)
-		return (NULL);
-	s_len = ft_strlen(s);
-	copy_string = malloc(s_len + 1);
-	if (copy_string == NULL)
-		return (NULL);
-	ft_strlcpy(copy_string, s, s_len + 1);
-	return (copy_string);
+void ft_clear_player(t_data *data)
+{
+	if (data->player == NULL)
+		return;
+	free(data->player);
 }

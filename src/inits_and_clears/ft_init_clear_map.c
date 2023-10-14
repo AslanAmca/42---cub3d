@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_init_clear_map.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/09 18:32:42 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/14 20:27:15 by aaslan           ###   ########.fr       */
+/*   Created: 2023/10/14 18:09:13 by aaslan            #+#    #+#             */
+/*   Updated: 2023/10/14 20:26:46 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-char *ft_strdup(char *s)
+void ft_init_map(t_data *data)
 {
-	char *copy_string;
-	int s_len;
+	data->map = malloc(sizeof(t_map));
+	if (data->map == NULL)
+		ft_print_error(data, "t_data->map is null.");
+	data->map->text = NULL;
+	data->map->temp_text = NULL;
+	data->map->starting_line = 0;
+}
 
-	if (s == NULL)
-		return (NULL);
-	s_len = ft_strlen(s);
-	copy_string = malloc(s_len + 1);
-	if (copy_string == NULL)
-		return (NULL);
-	ft_strlcpy(copy_string, s, s_len + 1);
-	return (copy_string);
+void ft_clear_map(t_data *data)
+{
+	if (data->map == NULL)
+		return;
+	ft_clear_double_pointer(data->map->text);
+	ft_clear_double_pointer(data->map->temp_text);
+	free(data->map);
 }

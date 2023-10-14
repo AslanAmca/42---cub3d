@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 11:33:22 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/14 12:29:14 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/14 20:32:13 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,25 +34,29 @@ static int ft_character_is_player(char chr)
 
 void ft_validate_map_characters(t_data *data)
 {
-	int player_count;
-	int i;
-	int j;
+	int row;
+	int col;
 
-	player_count = 0;
-	i = 6;
-	while (data->config->lines[i] != NULL)
+	row = 0;
+	while (data->map->text[row] != NULL)
 	{
-		j = 0;
-		while (data->config->lines[i][j] != '\0')
+		col = 0;
+		while (data->map->text[row][col] != '\0')
 		{
-			if (!ft_character_is_valid(data->config->lines[i][j]))
-				ft_print_error(data, "Haritada sadece 0,1,N,S,W,E veya Space olabilir");
-			if (ft_character_is_player(data->config->lines[i][j]))
-				player_count++;
-			if (player_count > 1)
-				ft_print_error(data, "Harita da sadece 1 player olabilir.");
-			j++;
+			if (!ft_character_is_valid(data->map->text[row][col]))
+				ft_print_error(data, "There can only be 0,1,N,S,W,E or Space on the map.");
+			if (ft_character_is_player(data->map->text[row][col]))
+			{
+				data->player->count++;
+				data->player->row = row;
+				data->player->col = col;
+			}
+			col++;
 		}
-		i++;
+		row++;
 	}
+	if (data->player->count < 1)
+		ft_print_error(data, "There is no Player on the map. (N,S,W,E)");
+	if (data->player->count > 1)
+		ft_print_error(data, "There can only be 1 Player on the map. (N,S,W,E)");
 }

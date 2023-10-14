@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 10:40:21 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/14 12:25:58 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/14 20:37:16 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@
 
 typedef struct s_config
 {
-	char *filename;
-	char **lines;
+	char **text;
 	int total_line_count;
 	int full_line_count;
 	int empty_line_count;
@@ -42,15 +41,29 @@ typedef struct s_texture
 
 typedef struct s_color
 {
-	int red;
-	int green;
-	int blue;
 	char *red_string;
 	char *green_string;
 	char *blue_string;
-	int count;
 	char *string;
+	int count;
+	int red;
+	int green;
+	int blue;
 } t_color;
+
+typedef struct s_map
+{
+	char **text;
+	char **temp_text;
+	int starting_line;
+} t_map;
+
+typedef struct s_player
+{
+	int count;
+	int row;
+	int col;
+} t_player;
 
 typedef struct s_data
 {
@@ -58,8 +71,8 @@ typedef struct s_data
 	t_texture *texture;
 	t_color *floor_color;
 	t_color *ceiling_color;
-
-	int map_starting_line;
+	t_map *map;
+	t_player *player;
 } t_data;
 
 // libft
@@ -81,7 +94,21 @@ char *ft_substr(char *s, int start, int len);
 char *ft_get_next_line(t_data *data, int fd);
 int ft_is_empty_line(char *line);
 void ft_print_error(t_data *data, char *message);
-void ft_clear_double_pointer(char **array);
+void ft_clear_double_pointer(char **pointer);
+
+// init_and_clears
+void ft_init_colors(t_data *data);
+void ft_clear_colors(t_data *data);
+void ft_init_config(t_data *data);
+void ft_clear_config(t_data *data);
+t_data *ft_init_data(void);
+void ft_clear_data(t_data *data);
+void ft_init_map(t_data *data);
+void ft_clear_map(t_data *data);
+void ft_init_player(t_data *data);
+void ft_clear_player(t_data *data);
+void ft_init_textures(t_data *data);
+void ft_clear_textures(t_data *data);
 
 // elements
 void ft_set_elements_count(t_data *data);
@@ -91,13 +118,14 @@ void ft_validate_floor_color(t_data *data, char *line);
 void ft_validate_ceiling_color(t_data *data, char *line);
 
 // map
-void ft_check_map_empty_line(t_data *data);
+void ft_set_map_text(t_data *data);
+void ft_check_map_empty_line(t_data *data, char *filename);
 void ft_validate_map_characters(t_data *data);
+void ft_validate_map_walls(t_data *data);
 
-// other
-void ft_clear_data(t_data *data);
-void ft_init_data(t_data *data, char *config_filename);
-void ft_set_line_count(t_data *data);
-void ft_set_lines(t_data *data);
+// config
+void ft_validate_config_is_non_empty(char *filename);
+void ft_set_config_line_count(t_data *data, char *filename);
+void ft_set_config_text(t_data *data, char *filename);
 
 #endif

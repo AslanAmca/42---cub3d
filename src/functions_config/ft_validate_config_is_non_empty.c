@@ -1,38 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_map_empty_line.c                          :+:      :+:    :+:   */
+/*   ft_validate_config_is_non_empty.c                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/14 10:42:06 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/14 18:32:03 by aaslan           ###   ########.fr       */
+/*   Created: 2023/10/14 18:29:29 by aaslan            #+#    #+#             */
+/*   Updated: 2023/10/14 18:29:41 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void ft_check_map_empty_line(t_data *data, char *filename)
+void ft_validate_config_is_non_empty(char *filename)
 {
-	char *line;
-	int i;
+	char character;
+	int readed_byte;
 	int fd;
 
+	character = '\0';
+	readed_byte = 0;
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-		ft_print_error(data, "An error occurred while opening the map file.");
-	line = NULL;
-	i = 1;
-	while (i <= data->config->total_line_count)
 	{
-		line = ft_get_next_line(data, fd);
-		if (ft_is_empty_line(line) && i > data->map->starting_line)
-		{
-			free(line);
-			ft_print_error(data, "There can't be empty line within or after the map.");
-		}
-		free(line);
-		i++;
+		printf("An error occurred while opening the map file.\n");
+		exit(EXIT_FAILURE);
+	}
+	readed_byte = read(fd, &character, 1);
+	if (readed_byte == -1)
+	{
+		printf("An error occurred while reading the map file.\n");
+		exit(EXIT_FAILURE);
+	}
+	if (readed_byte == 0)
+	{
+		printf("Map file must not be empty.\n");
+		exit(EXIT_FAILURE);
 	}
 	close(fd);
 }

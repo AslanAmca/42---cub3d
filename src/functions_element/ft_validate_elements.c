@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 16:53:10 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/12 17:03:47 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/14 20:07:20 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ static void ft_check_unknown_element_type(t_data *data)
 	i = 0;
 	while (i < 6)
 	{
-		line = data->config->lines[i];
+		line = data->config->text[i];
 
 		if (ft_strncmp("NO", line, 2) != 0 && ft_strncmp("SO", line, 2) != 0 && ft_strncmp("WE", line, 2) != 0 && ft_strncmp("EA", line, 2) != 0 && ft_strncmp("F", line, 1) != 0 && ft_strncmp("C", line, 1) != 0)
 		{
-			ft_print_error(data, "Only NO, SO, WE, EA, F and C element types can be in the first 6 filled lines.");
+			ft_print_error(data, "Only NO, SO, WE, EA, F and C element types can be in the first 6 filled text.");
 		}
 		i++;
 	}
@@ -90,13 +90,14 @@ void ft_validate_elements(t_data *data)
 	char *line;
 	int i;
 
+	ft_set_elements_count(data);
 	ft_check_unknown_element_type(data);
 	ft_check_multiple_element_type(data);
 	line = NULL;
 	i = 0;
 	while (i < 6)
 	{
-		line = data->config->lines[i];
+		line = data->config->text[i];
 		ft_validate_textures(data, line);
 		ft_validate_floor_color(data, line);
 		ft_validate_ceiling_color(data, line);
