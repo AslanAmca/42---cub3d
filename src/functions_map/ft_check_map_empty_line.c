@@ -1,32 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_validate_config_is_empty.c                      :+:      :+:    :+:   */
+/*   ft_check_map_empty_line.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/11 20:19:26 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/11 20:19:42 by aaslan           ###   ########.fr       */
+/*   Created: 2023/10/14 10:42:06 by aaslan            #+#    #+#             */
+/*   Updated: 2023/10/14 10:42:50 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void ft_validate_config_is_empty(t_data *data)
+void ft_check_map_empty_line(t_data *data)
 {
-	char character;
-	int readed_byte;
+	char *line;
+	int i;
 	int fd;
 
-	character = '\0';
-	readed_byte = 0;
 	fd = open(data->config->filename, O_RDONLY);
 	if (fd == -1)
 		ft_print_error(data, "An error occurred while opening the map file.");
-	readed_byte = read(fd, &character, 1);
-	if (readed_byte == -1)
-		ft_print_error(data, "An error occurred while reading the map file.");
-	if (readed_byte == 0)
-		ft_print_error(data, "Map file must not be empty.");
+	line = NULL;
+	i = 1;
+	while (i <= data->config->total_line_count)
+	{
+		line = ft_get_next_line(data, fd);
+		if (ft_is_empty_line(line) && i > data->map_starting_line)
+		{
+			free(line);
+			ft_print_error(data, "There can't be empty line within or after the map.");
+		}
+		free(line);
+		i++;
+	}
 	close(fd);
 }

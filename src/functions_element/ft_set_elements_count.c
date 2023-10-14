@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ft_set_elements_count.c                         :+:      :+:    :+:   */
+/*   ft_set_elements_count.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 22:18:44 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/11 22:19:04 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/14 11:11:58 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 void ft_set_elements_count(t_data *data)
 {

@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 10:40:21 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/12 15:18:15 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/14 12:25:58 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,18 +83,21 @@ int ft_is_empty_line(char *line);
 void ft_print_error(t_data *data, char *message);
 void ft_clear_double_pointer(char **array);
 
-// validators
-void ft_validate_argument(t_data *data, int argument_count);
+// elements
+void ft_set_elements_count(t_data *data);
 void ft_validate_elements(t_data *data);
-void ft_validate_config_is_empty(t_data *data);
 void ft_validate_textures(t_data *data, char *line);
 void ft_validate_floor_color(t_data *data, char *line);
 void ft_validate_ceiling_color(t_data *data, char *line);
+
+// map
+void ft_check_map_empty_line(t_data *data);
+void ft_validate_map_characters(t_data *data);
 
 // other
 void ft_clear_data(t_data *data);
 void ft_init_data(t_data *data, char *config_filename);
 void ft_set_line_count(t_data *data);
-void ft_set_elements_count(t_data *data);
+void ft_set_lines(t_data *data);
 
 #endif
