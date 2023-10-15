@@ -6,77 +6,18 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 10:40:21 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/15 17:37:36 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/16 00:07:04 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 #define CUB3D_H
 
+#include "structs.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
-
-typedef struct s_config
-{
-	char **text;
-	int total_line_count;
-	int full_line_count;
-	int empty_line_count;
-} t_config;
-
-typedef struct s_texture
-{
-	char *north;
-	char *south;
-	char *west;
-	char *east;
-
-	int north_count;
-	int south_count;
-	int west_count;
-	int east_count;
-} t_texture;
-
-typedef struct s_color
-{
-	char *red_string;
-	char *green_string;
-	char *blue_string;
-	char *string;
-	int count;
-	int red;
-	int green;
-	int blue;
-} t_color;
-
-typedef struct s_map
-{
-	char **text;
-	char **temp_text;
-	char **temp_text2;
-	int starting_line;
-	int row_count;
-	int col_count;
-} t_map;
-
-typedef struct s_player
-{
-	int count;
-	int row;
-	int col;
-} t_player;
-
-typedef struct s_data
-{
-	t_config *config;
-	t_texture *texture;
-	t_color *floor_color;
-	t_color *ceiling_color;
-	t_map *map;
-	t_player *player;
-} t_data;
 
 // libft
 int ft_atoi(char *nptr);
@@ -123,8 +64,11 @@ void ft_validate_ceiling_color(t_data *data, char *line);
 // map
 void ft_set_map_text(t_data *data);
 void ft_check_map_empty_line(t_data *data, char *filename);
+char **ft_create_map_temp_text(t_data *data);
 void ft_validate_map_characters(t_data *data);
 void ft_validate_map_walls(t_data *data);
+void ft_validate_map_spaces(t_data *data);
+void ft_validate_map(t_data *data, char *filename);
 
 // config
 void ft_validate_config_is_non_empty(char *filename);

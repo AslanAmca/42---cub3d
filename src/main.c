@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 10:38:43 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/15 13:47:37 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/16 00:00:39 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,7 @@ int main(int argc, char **argv)
 	ft_set_config_line_count(data, filename);
 	ft_set_config_text(data, filename);
 	ft_validate_elements(data);
-
-	// map validation
-	ft_set_map_text(data);
-	ft_check_map_empty_line(data, filename);
-	ft_validate_map_characters(data);
-	ft_validate_map_walls(data);
+	ft_validate_map(data, filename);
 
 	// buraya kadar hata olmazsa ft_print_error üzerinden clear_data çalışmıyor.
 	// dolayısıyla memory leak oluyor. şimdilik burada manuel clear yapalım.
