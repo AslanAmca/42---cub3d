@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 11:33:22 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/14 20:32:13 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/15 15:03:22 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,22 @@ static int ft_character_is_player(char chr)
 	return 0;
 }
 
+static void ft_validate_player_position(t_data *data)
+{
+	if (data->player->count < 1)
+		ft_print_error(data, "There is no Player on the map. (N,S,W,E)");
+	if (data->player->count > 1)
+		ft_print_error(data, "There can only be 1 Player on the map. (N,S,W,E)");
+	if (data->player->row == 0)
+		ft_print_error(data, "Player can't be on the first row. (N,S,W,E)");
+	if (data->player->row == data->map->row_count - 1)
+		ft_print_error(data, "Player can't be on the last row. (N,S,W,E)");
+	if (data->player->col == 0)
+		ft_print_error(data, "Player can't be on the first column. (N,S,W,E)");
+	if (data->player->col == data->map->col_count - 1)
+		ft_print_error(data, "Player can't be on the last column. (N,S,W,E)");
+}
+
 void ft_validate_map_characters(t_data *data)
 {
 	int row;
@@ -55,8 +71,5 @@ void ft_validate_map_characters(t_data *data)
 		}
 		row++;
 	}
-	if (data->player->count < 1)
-		ft_print_error(data, "There is no Player on the map. (N,S,W,E)");
-	if (data->player->count > 1)
-		ft_print_error(data, "There can only be 1 Player on the map. (N,S,W,E)");
+	ft_validate_player_position(data);
 }
