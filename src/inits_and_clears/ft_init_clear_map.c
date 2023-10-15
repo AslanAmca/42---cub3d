@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 18:09:13 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/15 01:12:14 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/15 16:01:31 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void ft_init_map(t_data *data)
 		ft_print_error(data, "t_data->map is null.");
 	data->map->text = NULL;
 	data->map->temp_text = NULL;
+	data->map->temp_text2 = NULL;
 	data->map->starting_line = 0;
 	data->map->row_count = 0;
 	data->map->col_count = 0;
@@ -30,5 +31,6 @@ void ft_clear_map(t_data *data)
 		return;
 	ft_clear_double_pointer(data->map->text);
 	ft_clear_double_pointer(data->map->temp_text);
+	ft_clear_double_pointer(data->map->temp_text2);
 	free(data->map);
 }

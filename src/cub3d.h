@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 10:40:21 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/15 01:11:42 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/15 17:37:36 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_map
 {
 	char **text;
 	char **temp_text;
+	char **temp_text2;
 	int starting_line;
 	int row_count;
 	int col_count;
