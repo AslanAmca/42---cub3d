@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_create_map_temp_text.c                          :+:      :+:    :+:   */
+/*   ft_create_map_same_row_len.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/15 23:57:27 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/15 23:57:43 by aaslan           ###   ########.fr       */
+/*   Created: 2023/10/16 23:50:27 by aaslan            #+#    #+#             */
+/*   Updated: 2023/10/16 23:51:21 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-char **ft_create_map_temp_text(t_data *data)
+char **ft_create_map_same_row_len(t_data *data)
 {
 	char **map;
 	int i;
 
 	map = malloc(sizeof(char *) * (data->map->row_count + 1));
 	if (map == NULL)
-		ft_print_error(data, "ft_create_map_temp_text malloc error.");
+		ft_print_error(data, "ft_create_map_same_row_len malloc error.");
 	i = 0;
 	while (data->map->text[i] != NULL)
 	{
@@ -27,7 +27,7 @@ char **ft_create_map_temp_text(t_data *data)
 		if (map[i] == NULL)
 		{
 			ft_clear_double_pointer(map);
-			ft_print_error(data, "ft_create_map_temp_text malloc error.");
+			ft_print_error(data, "ft_create_map_same_row_len[i] malloc error.");
 		}
 		ft_strncpy(map[i], data->map->text[i], data->map->col_count);
 		i++;

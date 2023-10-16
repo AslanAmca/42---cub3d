@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 18:03:12 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/16 00:18:11 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/16 23:55:02 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,41 +18,26 @@ static void ft_print_error_and_free(t_data *data, char *line)
 	ft_print_error(data, "The map must be closed/surrounded by walls. (1)");
 }
 
-static void ft_dfs_algorithm(t_data *data, int row, int col)
-{
-	char **map;
-
-	map = data->map->temp_text;
-	if (row < 0 || row >= data->map->row_count ||
-		col < 0 || col >= data->map->col_count)
-	{
-		ft_print_error(data, "The map must be closed/surrounded by walls. (1)");
-	}
-	if (map[row][col] == '1' || map[row][col] == '.')
-		return;
-	map[row][col] = '.';
-	ft_dfs_algorithm(data, row, col + 1);
-	ft_dfs_algorithm(data, row, col - 1);
-	ft_dfs_algorithm(data, row + 1, col);
-	ft_dfs_algorithm(data, row - 1, col);
-}
-
 static void ft_validate_map_border(t_data *data)
 {
 	char *line;
+	int last_row_index;
+	int last_col_index;
 	int row;
 	int col;
 
+	last_row_index = data->map->row_count - 1;
 	row = 0;
 	while (data->map->text[row] != NULL)
 	{
 		line = ft_strtrim(data->map->text[row], " ");
+		last_col_index = ft_strlen(line) - 1;
 		col = 0;
 		while (line[col] != '\0')
 		{
-			if ((row == 0 || row == data->map->row_count - 1) && line[col] == '0')
+			if ((row == 0 || row == last_row_index) && line[col] == '0')
 				ft_print_error_and_free(data, line);
-			else if (line[0] == '0' || line[ft_strlen(line) - 1] == '0')
+			else if (line[0] == '0' || line[last_col_index] == '0')
 				ft_print_error_and_free(data, line);
 			col++;
 		}
@@ -61,9 +46,29 @@ static void ft_validate_map_border(t_data *data)
 	}
 }
 
+static void ft_dfs_algorithm(t_data *data, char **map, int row, int col)
+{
+	if (row < 0 || row >= data->map->row_count ||
+		col < 0 || col >= data->map->col_count)
+	{
+		ft_clear_double_pointer(map);
+		ft_print_error(data, "The map must be closed/surrounded by walls. (1)");
+	}
+	if (map[row][col] == '1' || map[row][col] == '.')
+		return;
+	map[row][col] = '.';
+	ft_dfs_algorithm(data, map, row, col + 1);
+	ft_dfs_algorithm(data, map, row, col - 1);
+	ft_dfs_algorithm(data, map, row + 1, col);
+	ft_dfs_algorithm(data, map, row - 1, col);
+}
+
 void ft_validate_map_walls(t_data *data)
 {
-	data->map->temp_text = ft_create_map_temp_text(data);
-	ft_dfs_algorithm(data, data->player->row, data->player->col);
+	char **map;
+
+	map = ft_create_map_same_row_len(data);
+	ft_dfs_algorithm(data, map, data->player->row, data->player->col);
+	ft_clear_double_pointer(map);
 	ft_validate_map_border(data);
 }

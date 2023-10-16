@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 10:40:21 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/16 00:07:04 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/16 23:51:36 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ void ft_validate_ceiling_color(t_data *data, char *line);
 
 // map
 void ft_set_map_text(t_data *data);
+char **ft_create_map_same_row_len(t_data *data);
 void ft_check_map_empty_line(t_data *data, char *filename);
-char **ft_create_map_temp_text(t_data *data);
 void ft_validate_map_characters(t_data *data);
 void ft_validate_map_walls(t_data *data);
 void ft_validate_map_spaces(t_data *data);

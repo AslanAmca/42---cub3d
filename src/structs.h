@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 00:02:57 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/16 00:04:43 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/16 23:48:50 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ typedef struct s_color
 typedef struct s_map
 {
 	char **text;
-	char **temp_text;
-	char **temp_text2;
 	int starting_line;
 	int row_count;
 	int col_count;
