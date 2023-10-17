@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_error.c                                   :+:      :+:    :+:   */
+/*   print_error.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,9 +12,9 @@
 
 #include "../cub3d.h"
 
-void ft_print_error(t_data *data, char *message)
+void print_error(t_data *data, char *message)
 {
 	printf("Error!\n%s\n", message);
-	ft_clear_data(data);
+	clear_data(data);
 	exit(EXIT_FAILURE);
 }

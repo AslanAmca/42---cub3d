@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_validate_map_spaces.c                           :+:      :+:    :+:   */
+/*   validate_map_spaces.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,10 +12,10 @@
 
 #include "../cub3d.h"
 
-static void	ft_print_error_and_free(t_data *data, char **map)
+static void	print_error_and_free(t_data *data, char **map)
 {
-	ft_clear_double_pointer(map);
-	ft_print_error(data, "There is Space on the map \
+	clear_double_pointer(map);
+	print_error(data, "There is Space on the map \
 that is not surrounded by walls. (1)");
 }
 
@@ -28,7 +28,7 @@ static int	valid_char(char chr)
 	return (0);
 }
 
-static void	ft_validate_row_spaces(t_data *data, char **map, int last_row_index)
+static void	validate_row_spaces(t_data *data, char **map, int last_row_index)
 {
 	int	row;
 	int	col;
@@ -42,13 +42,13 @@ static void	ft_validate_row_spaces(t_data *data, char **map, int last_row_index)
 			if (map[row][col] == ' ')
 			{
 				if (row == 0 && !valid_char(map[row + 1][col]))
-					ft_print_error_and_free(data, map);
+					print_error_and_free(data, map);
 				if (row == last_row_index && !valid_char(map[row - 1][col]))
-					ft_print_error_and_free(data, map);
+					print_error_and_free(data, map);
 				if (row > 0 && row < last_row_index
 					&& (!valid_char(map[row - 1][col])
 					|| !valid_char(map[row + 1][col])))
-					ft_print_error_and_free(data, map);
+					print_error_and_free(data, map);
 			}
 			col++;
 		}
@@ -56,7 +56,7 @@ static void	ft_validate_row_spaces(t_data *data, char **map, int last_row_index)
 	}
 }
 
-static void	ft_validate_col_spaces(t_data *data, char **map, int last_col_index)
+static void	validate_col_spaces(t_data *data, char **map, int last_col_index)
 {
 	int	row;
 	int	col;
@@ -70,13 +70,13 @@ static void	ft_validate_col_spaces(t_data *data, char **map, int last_col_index)
 			if (map[row][col] == ' ')
 			{
 				if (col == 0 && !valid_char(map[row][col + 1]))
-					ft_print_error_and_free(data, map);
+					print_error_and_free(data, map);
 				if (col == last_col_index && !valid_char(map[row][col - 1]))
-					ft_print_error_and_free(data, map);
+					print_error_and_free(data, map);
 				if (col > 0 && col < last_col_index
 					&& (!valid_char(map[row][col - 1])
 					|| !valid_char(map[row][col + 1])))
-					ft_print_error_and_free(data, map);
+					print_error_and_free(data, map);
 			}
 			col++;
 		}
@@ -84,16 +84,16 @@ static void	ft_validate_col_spaces(t_data *data, char **map, int last_col_index)
 	}
 }
 
-void	ft_validate_map_spaces(t_data *data)
+void	validate_map_spaces(t_data *data)
 {
 	char	**map;
 	int		last_row_index;
 	int		last_col_index;
 
-	map = ft_create_map_same_row_len(data);
+	map = create_map_same_row_len(data);
 	last_row_index = data->map->row_count - 1;
 	last_col_index = data->map->col_count - 1;
-	ft_validate_row_spaces(data, map, last_row_index);
-	ft_validate_col_spaces(data, map, last_col_index);
-	ft_clear_double_pointer(map);
+	validate_row_spaces(data, map, last_row_index);
+	validate_col_spaces(data, map, last_col_index);
+	clear_double_pointer(map);
 }

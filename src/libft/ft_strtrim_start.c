@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim_start.c                                 :+:      :+:    :+:   */
+/*   ft_ft_strtrim_start.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 18:24:20 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/11 18:24:33 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/17 13:11:25 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-char *ft_strtrim_start(char *s1, char *set)
+char *ft_ft_strtrim_start(char *s1, char *set)
 {
 	if (s1 == NULL || set == NULL)
 		return NULL;

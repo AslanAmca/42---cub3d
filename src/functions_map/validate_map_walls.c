@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_validate_map_walls.c                            :+:      :+:    :+:   */
+/*   validate_map_walls.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,13 +12,13 @@
 
 #include "../cub3d.h"
 
-static void ft_print_error_and_free(t_data *data, char *line)
+static void print_error_and_free(t_data *data, char *line)
 {
 	free(line);
-	ft_print_error(data, "The map must be closed/surrounded by walls. (1)");
+	print_error(data, "The map must be closed/surrounded by walls. (1)");
 }
 
-static void ft_validate_map_border(t_data *data)
+static void validate_map_border(t_data *data)
 {
 	char *line;
 	int last_row_index;
@@ -36,9 +36,9 @@ static void ft_validate_map_border(t_data *data)
 		while (line[col] != '\0')
 		{
 			if ((row == 0 || row == last_row_index) && line[col] == '0')
-				ft_print_error_and_free(data, line);
+				print_error_and_free(data, line);
 			else if (line[0] == '0' || line[last_col_index] == '0')
-				ft_print_error_and_free(data, line);
+				print_error_and_free(data, line);
 			col++;
 		}
 		free(line);
@@ -46,29 +46,29 @@ static void ft_validate_map_border(t_data *data)
 	}
 }
 
-static void ft_dfs_algorithm(t_data *data, char **map, int row, int col)
+static void dfs_algorithm(t_data *data, char **map, int row, int col)
 {
 	if (row < 0 || row >= data->map->row_count ||
 		col < 0 || col >= data->map->col_count)
 	{
-		ft_clear_double_pointer(map);
-		ft_print_error(data, "The map must be closed/surrounded by walls. (1)");
+		clear_double_pointer(map);
+		print_error(data, "The map must be closed/surrounded by walls. (1)");
 	}
 	if (map[row][col] == '1' || map[row][col] == '.')
 		return;
 	map[row][col] = '.';
-	ft_dfs_algorithm(data, map, row, col + 1);
-	ft_dfs_algorithm(data, map, row, col - 1);
-	ft_dfs_algorithm(data, map, row + 1, col);
-	ft_dfs_algorithm(data, map, row - 1, col);
+	dfs_algorithm(data, map, row, col + 1);
+	dfs_algorithm(data, map, row, col - 1);
+	dfs_algorithm(data, map, row + 1, col);
+	dfs_algorithm(data, map, row - 1, col);
 }
 
-void ft_validate_map_walls(t_data *data)
+void validate_map_walls(t_data *data)
 {
 	char **map;
 
-	map = ft_create_map_same_row_len(data);
-	ft_dfs_algorithm(data, map, data->player->row, data->player->col);
-	ft_clear_double_pointer(map);
-	ft_validate_map_border(data);
+	map = create_map_same_row_len(data);
+	dfs_algorithm(data, map, data->player->row, data->player->col);
+	clear_double_pointer(map);
+	validate_map_border(data);
 }

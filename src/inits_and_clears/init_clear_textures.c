@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init_clear_textures.c                           :+:      :+:    :+:   */
+/*   init_clear_textures.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,11 +12,11 @@
 
 #include "../cub3d.h"
 
-void ft_init_textures(t_data *data)
+void init_textures(t_data *data)
 {
 	data->texture = malloc(sizeof(t_texture));
 	if (data->texture == NULL)
-		ft_print_error(data, "t_data->texture is null.");
+		print_error(data, "t_data->texture is null.");
 	data->texture->north = NULL;
 	data->texture->south = NULL;
 	data->texture->west = NULL;
@@ -27,7 +27,7 @@ void ft_init_textures(t_data *data)
 	data->texture->east_count = 0;
 }
 
-void ft_clear_textures(t_data *data)
+void clear_textures(t_data *data)
 {
 	if (data->texture == NULL)
 		return;

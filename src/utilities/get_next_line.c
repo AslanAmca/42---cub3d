@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_next_line.c                                 :+:      :+:    :+:   */
+/*   get_next_line.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "../cub3d.h"
 
-char *ft_get_next_line(t_data *data, int fd)
+char *get_next_line(t_data *data, int fd)
 {
 	char *line = malloc(1024);
 	char character;
@@ -23,12 +23,12 @@ char *ft_get_next_line(t_data *data, int fd)
 	readed_byte = 1;
 	i = 0;
 	if (fd == -1)
-		ft_print_error(data, "An error occurred while opening the map file.");
+		print_error(data, "An error occurred while opening the map file.");
 	while (1)
 	{
 		readed_byte = read(fd, &character, 1);
 		if (readed_byte == -1)
-			ft_print_error(data,
+			print_error(data,
 						   "An error occurred while reading the map file.");
 		line[i] = character;
 		if (character == '\n' || readed_byte == 0)

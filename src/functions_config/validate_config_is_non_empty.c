@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_validate_config_is_non_empty.c                  :+:      :+:    :+:   */
+/*   validate_config_is_non_empty.c                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "../cub3d.h"
 
-void ft_validate_config_is_non_empty(char *filename)
+void validate_config_is_non_empty(char *filename)
 {
 	char character;
 	int readed_byte;

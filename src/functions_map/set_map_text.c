@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_set_map_text.c                                  :+:      :+:    :+:   */
+/*   set_map_text.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "../cub3d.h"
 
-void ft_set_map_text(t_data *data)
+void set_map_text(t_data *data)
 {
 	int map_index;
 	int col_count;
@@ -22,7 +22,7 @@ void ft_set_map_text(t_data *data)
 	data->map->row_count = data->config->full_line_count - map_index;
 	data->map->text = malloc(sizeof(char *) * (data->map->row_count + 1));
 	if (data->map->text == NULL)
-		ft_print_error(data, "data->map->text is null.");
+		print_error(data, "data->map->text is null.");
 	col_count = 0;
 	i = 0;
 	while (data->config->text[map_index] != NULL)

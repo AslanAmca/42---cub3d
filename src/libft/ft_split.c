@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 16:21:46 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/14 20:27:11 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/17 13:11:19 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ char **ft_split(char *string, char delimiter)
 {
 	char **result;
 	int word_count;
-	int success_split;
+	int success_ft_split;
 
 	if (string == NULL)
 		return NULL;
@@ -86,8 +86,8 @@ char **ft_split(char *string, char delimiter)
 	if (result == NULL)
 		return NULL;
 	result[word_count] = NULL;
-	success_split = ft_split_fill(result, string, delimiter, word_count);
-	if (success_split == 0)
+	success_ft_split = ft_split_fill(result, string, delimiter, word_count);
+	if (success_ft_split == 0)
 	{
 		ft_split_clear(result);
 		return NULL;

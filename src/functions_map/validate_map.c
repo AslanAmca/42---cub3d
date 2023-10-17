@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_validate_map.c                                  :+:      :+:    :+:   */
+/*   validate_map.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,11 +12,11 @@
 
 #include "../cub3d.h"
 
-void ft_validate_map(t_data *data, char *filename)
+void validate_map(t_data *data, char *filename)
 {
-	ft_set_map_text(data);
-	ft_check_map_empty_line(data, filename);
-	ft_validate_map_characters(data);
-	ft_validate_map_walls(data);
-	ft_validate_map_spaces(data);
+	set_map_text(data);
+	check_map_empty_line(data, filename);
+	validate_map_characters(data);
+	validate_map_walls(data);
+	validate_map_spaces(data);
 }

@@ -6,13 +6,13 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 10:38:43 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/16 00:00:39 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/17 13:11:04 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void ft_validate_argument(int argument_count, char *filename)
+void validate_argument(int argument_count, char *filename)
 {
 	if (argument_count == 1)
 	{
@@ -42,17 +42,17 @@ int main(int argc, char **argv)
 	char *filename;
 
 	filename = argv[1];
-	ft_validate_argument(argc, filename);
-	ft_validate_config_is_non_empty(filename);
-	data = ft_init_data();
-	ft_set_config_line_count(data, filename);
-	ft_set_config_text(data, filename);
-	ft_validate_elements(data);
-	ft_validate_map(data, filename);
+	validate_argument(argc, filename);
+	validate_config_is_non_empty(filename);
+	data = init_data();
+	set_config_line_count(data, filename);
+	set_config_text(data, filename);
+	validate_elements(data);
+	validate_map(data, filename);
 
-	// buraya kadar hata olmazsa ft_print_error üzerinden clear_data çalışmıyor.
+	// buraya kadar hata olmazsa print_error üzerinden clear_data çalışmıyor.
 	// dolayısıyla memory leak oluyor. şimdilik burada manuel clear yapalım.
-	ft_clear_data(data);
+	clear_data(data);
 
 	return 0;
 }

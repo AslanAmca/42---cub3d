@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init_clear_colors.c                             :+:      :+:    :+:   */
+/*   init_clear_colors.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,14 +12,14 @@
 
 #include "../cub3d.h"
 
-void ft_init_colors(t_data *data)
+void init_colors(t_data *data)
 {
 	data->floor_color = malloc(sizeof(t_color));
 	if (data->floor_color == NULL)
-		ft_print_error(data, "t_data->floor_color is null.");
+		print_error(data, "t_data->floor_color is null.");
 	data->ceiling_color = malloc(sizeof(t_color));
 	if (data->ceiling_color == NULL)
-		ft_print_error(data, "t_data->ceiling_color is null.");
+		print_error(data, "t_data->ceiling_color is null.");
 	data->floor_color->red = -1;
 	data->floor_color->green = -1;
 	data->floor_color->blue = -1;
@@ -38,7 +38,7 @@ void ft_init_colors(t_data *data)
 	data->ceiling_color->blue_string = NULL;
 }
 
-void ft_clear_colors(t_data *data)
+void clear_colors(t_data *data)
 {
 	if (data->floor_color != NULL)
 	{
