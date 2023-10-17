@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 10:38:43 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/17 16:53:33 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/17 17:32:29 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,10 @@ int main(int argc, char **argv)
 	validate_elements(data);
 	validate_map(data, filename);
 
+
+	// mlx
 	void *mlx = mlx_init();
-	void *mlx_window = mlx_new_window(mlx, 500, 500, "Window Name");
+	void *mlx_window = mlx_new_window(mlx, 500, 500, "Cub3D");
 	mlx_loop(mlx);
 	printf("mlx : %p", mlx_window);
 
