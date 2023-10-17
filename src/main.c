@@ -6,11 +6,19 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 10:38:43 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/17 13:11:04 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/17 16:53:33 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+#ifdef __linux__
+#include "../mlx_linux/mlx.h"
+#endif
+
+#ifdef __APPLE__
+#include "../mlx_macos/mlx.h"
+#endif
 
 void validate_argument(int argument_count, char *filename)
 {
@@ -49,6 +57,11 @@ int main(int argc, char **argv)
 	set_config_text(data, filename);
 	validate_elements(data);
 	validate_map(data, filename);
+
+	void *mlx = mlx_init();
+	void *mlx_window = mlx_new_window(mlx, 500, 500, "Window Name");
+	mlx_loop(mlx);
+	printf("mlx : %p", mlx_window);
 
 	// buraya kadar hata olmazsa print_error üzerinden clear_data çalışmıyor.
 	// dolayısıyla memory leak oluyor. şimdilik burada manuel clear yapalım.
