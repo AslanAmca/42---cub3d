@@ -10,13 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../headers/cub3d.h"
 
 void init_config(t_data *data)
 {
 	data->config = malloc(sizeof(t_config));
 	if (data->config == NULL)
-		print_error(data, "t_data->config is null.");
+		print_error(data, "t_data->config malloc error.");
 	data->config->text = NULL;
 	data->config->total_line_count = 0;
 	data->config->full_line_count = 0;

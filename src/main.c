@@ -6,43 +6,19 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 10:38:43 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/17 17:32:29 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/18 21:04:36 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "headers/cub3d.h"
 
-#ifdef __linux__
-#include "../mlx_linux/mlx.h"
-#endif
-
-#ifdef __APPLE__
-#include "../mlx_macos/mlx.h"
-#endif
-
-void validate_argument(int argument_count, char *filename)
+int on_destroy_handler(t_data *data)
 {
-	if (argument_count == 1)
-	{
-		printf("Map name not entered. You must enter the map name for the program to work.\n");
-		exit(EXIT_FAILURE);
-	}
-	if (argument_count > 2)
-	{
-		printf("Only the map name should be entered as an argument.\n");
-		exit(EXIT_FAILURE);
-	}
-	if (filename == NULL || *filename == '\0')
-	{
-		printf("Map name cannot be null or empty.\n");
-		exit(EXIT_FAILURE);
-	}
-	if (ft_strcmp(filename + ft_strlen(filename) - 4, ".cub") != 0)
-	{
-		printf("Map name does not end with the .cub extension.\n");
-		exit(EXIT_FAILURE);
-	}
+	clear_data(data);
+	exit(EXIT_SUCCESS);
+	return (EXIT_SUCCESS);
 }
+
 
 int main(int argc, char **argv)
 {
@@ -58,16 +34,17 @@ int main(int argc, char **argv)
 	validate_elements(data);
 	validate_map(data, filename);
 
-
 	// mlx
-	void *mlx = mlx_init();
-	void *mlx_window = mlx_new_window(mlx, 500, 500, "Cub3D");
-	mlx_loop(mlx);
-	printf("mlx : %p", mlx_window);
+	data->game->mlx = mlx_init();
+	if (data->game->mlx == NULL)
+		print_error(data, "data->game->mlx malloc error.");
 
-	// buraya kadar hata olmazsa print_error üzerinden clear_data çalışmıyor.
-	// dolayısıyla memory leak oluyor. şimdilik burada manuel clear yapalım.
-	clear_data(data);
+	data->game->mlx_window = mlx_new_window(data->game->mlx, 500, 500, "Cub3D");
+	if (data->game->mlx_window == NULL)
+		print_error(data, "data->game->mlx_window malloc error.");
+
+	mlx_hook(data->game->mlx_window, ON_DESTROY, 0, on_destroy_handler, data);
+	mlx_loop(data->game->mlx);
 
 	return 0;
 }

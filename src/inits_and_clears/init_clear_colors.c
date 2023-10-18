@@ -10,16 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../headers/cub3d.h"
 
 void init_colors(t_data *data)
 {
 	data->floor_color = malloc(sizeof(t_color));
 	if (data->floor_color == NULL)
-		print_error(data, "t_data->floor_color is null.");
+		print_error(data, "t_data->floor_color malloc error.");
 	data->ceiling_color = malloc(sizeof(t_color));
 	if (data->ceiling_color == NULL)
-		print_error(data, "t_data->ceiling_color is null.");
+		print_error(data, "t_data->ceiling_color malloc error.");
 	data->floor_color->red = -1;
 	data->floor_color->green = -1;
 	data->floor_color->blue = -1;

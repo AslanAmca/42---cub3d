@@ -10,13 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../headers/cub3d.h"
 
 void init_map(t_data *data)
 {
 	data->map = malloc(sizeof(t_map));
 	if (data->map == NULL)
-		print_error(data, "t_data->map is null.");
+		print_error(data, "t_data->map malloc error.");
 	data->map->text = NULL;
 	data->map->starting_line = 0;
 	data->map->row_count = 0;

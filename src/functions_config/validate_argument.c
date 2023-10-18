@@ -1,41 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validate_config_is_non_empty.c                  :+:      :+:    :+:   */
+/*   validate_argument.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/14 18:29:29 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/14 18:29:41 by aaslan           ###   ########.fr       */
+/*   Created: 2023/10/18 21:04:21 by aaslan            #+#    #+#             */
+/*   Updated: 2023/10/18 21:04:40 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/cub3d.h"
 
-void validate_config_is_non_empty(char *filename)
+void validate_argument(int argument_count, char *filename)
 {
-	char character;
-	int readed_byte;
-	int fd;
-
-	character = '\0';
-	readed_byte = 0;
-	fd = open(filename, O_RDONLY);
-	if (fd == -1)
+	if (argument_count == 1)
 	{
-		printf("An error occurred while opening the map file.\n");
+		printf("Map name not entered. You must enter the map name for the program to work.\n");
 		exit(EXIT_FAILURE);
 	}
-	readed_byte = read(fd, &character, 1);
-	if (readed_byte == -1)
+	if (argument_count > 2)
 	{
-		printf("An error occurred while reading the map file.\n");
+		printf("Only the map name should be entered as an argument.\n");
 		exit(EXIT_FAILURE);
 	}
-	if (readed_byte == 0)
+	if (filename == NULL || *filename == '\0')
 	{
-		printf("Map file must not be empty.\n");
+		printf("Map name cannot be null or empty.\n");
 		exit(EXIT_FAILURE);
 	}
-	close(fd);
+	if (ft_strcmp(filename + ft_strlen(filename) - 4, ".cub") != 0)
+	{
+		printf("Map name does not end with the .cub extension.\n");
+		exit(EXIT_FAILURE);
+	}
 }

@@ -10,13 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../headers/cub3d.h"
 
 void init_player(t_data *data)
 {
 	data->player = malloc(sizeof(t_color));
 	if (data->player == NULL)
-		print_error(data, "t_data->player is null.");
+		print_error(data, "t_data->player malloc error.");
 	data->player->count = 0;
 	data->player->row = -1;
 	data->player->col = -1;

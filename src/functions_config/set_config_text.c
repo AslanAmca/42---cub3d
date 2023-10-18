@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../headers/cub3d.h"
 
 void set_config_text(t_data *data, char *filename)
 {
@@ -22,9 +22,9 @@ void set_config_text(t_data *data, char *filename)
 	if (fd == -1)
 		print_error(data, "An error occurred while opening the map file.");
 	data->config->text = malloc(
-			sizeof(char *) * (data->config->full_line_count + 1));
+		sizeof(char *) * (data->config->full_line_count + 1));
 	if (data->config->text == NULL)
-		print_error(data, "data->config->text is null.");
+		print_error(data, "data->config->text malloc error.");
 	data->config->text[data->config->full_line_count] = NULL;
 	i = 0;
 	while (i < data->config->full_line_count)

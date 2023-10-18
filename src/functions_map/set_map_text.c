@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../headers/cub3d.h"
 
 void set_map_text(t_data *data)
 {
@@ -22,7 +22,7 @@ void set_map_text(t_data *data)
 	data->map->row_count = data->config->full_line_count - map_index;
 	data->map->text = malloc(sizeof(char *) * (data->map->row_count + 1));
 	if (data->map->text == NULL)
-		print_error(data, "data->map->text is null.");
+		print_error(data, "data->map->text malloc error.");
 	col_count = 0;
 	i = 0;
 	while (data->config->text[map_index] != NULL)

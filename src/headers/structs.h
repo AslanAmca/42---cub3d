@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 00:02:57 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/16 23:48:50 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/18 20:09:49 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,12 @@ typedef struct s_player
 	int col;
 } t_player;
 
+typedef struct s_game
+{
+	void *mlx;
+	void *mlx_window;
+} t_game;
+
 typedef struct s_data
 {
 	t_config *config;
@@ -69,6 +75,7 @@ typedef struct s_data
 	t_color *ceiling_color;
 	t_map *map;
 	t_player *player;
+	t_game *game;
 } t_data;
 
 #endif

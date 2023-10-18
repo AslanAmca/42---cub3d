@@ -10,13 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../headers/cub3d.h"
 
 void init_textures(t_data *data)
 {
 	data->texture = malloc(sizeof(t_texture));
 	if (data->texture == NULL)
-		print_error(data, "t_data->texture is null.");
+		print_error(data, "t_data->texture malloc error.");
 	data->texture->north = NULL;
 	data->texture->south = NULL;
 	data->texture->west = NULL;

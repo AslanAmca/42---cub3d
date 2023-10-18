@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../headers/cub3d.h"
 
 t_data *init_data(void)
 {
@@ -18,12 +18,13 @@ t_data *init_data(void)
 
 	data = malloc(sizeof(t_data));
 	if (data == NULL)
-		print_error(data, "t_data is null.");
+		print_error(data, "t_data malloc error.");
 	init_config(data);
 	init_textures(data);
 	init_colors(data);
 	init_map(data);
 	init_player(data);
+	init_game(data);
 	return data;
 }
 
@@ -34,5 +35,6 @@ void clear_data(t_data *data)
 	clear_colors(data);
 	clear_map(data);
 	clear_player(data);
+	clear_game(data);
 	free(data);
 }

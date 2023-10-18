@@ -6,11 +6,11 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 18:32:42 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/17 13:11:04 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/18 14:01:16 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../headers/cub3d.h"
 
 char *ft_strdup(char *s)
 {

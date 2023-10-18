@@ -6,13 +6,13 @@
 #    By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/12 02:37:51 by aaslan            #+#    #+#              #
-#    Updated: 2023/10/17 17:28:34 by aaslan           ###   ########.fr        #
+#    Updated: 2023/10/18 14:41:58 by aaslan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:= cub3D
 CC			:= gcc
-CFLAGS		:= -Wall -Wextra -Werror -g
+CFLAGS		:= -Wall -Wextra -Werror -g 
 SRC			:= $(wildcard src/*.c)
 OTHERS_SRC	:= $(wildcard src/*/*.c)
 OBJS		:= $(SRC:%.c=%.o)
