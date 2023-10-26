@@ -32,46 +32,49 @@ static int character_is_player(char chr)
 	return 0;
 }
 
-static void validate_player_position(t_cub3d *cub3d, int count, int row, int col)
+static void validate_player_position(t_cub3d *cub3d)
 {
-	if (count < 1)
+	t_map *map;
+
+	map = cub3d->config->map;
+	if (map->player_count < 1)
 		print_error(cub3d, "There is no Player on the map. (N,S,W,E)");
-	if (count > 1)
+	if (map->player_count > 1)
 		print_error(cub3d, "There can only be 1 Player on the map. (N,S,W,E)");
-	if (row == 0)
+	if (map->player_row == 0)
 		print_error(cub3d, "Player can't be on the first row. (N,S,W,E)");
-	if (row == cub3d->config->map->row_count - 1)
+	if (map->player_row == map->row_count - 1)
 		print_error(cub3d, "Player can't be on the last row. (N,S,W,E)");
-	if (col == 0)
+	if (map->player_col == 0)
 		print_error(cub3d, "Player can't be on the first column. (N,S,W,E)");
-	if (col == cub3d->config->map->col_count - 1)
+	if (map->player_col == map->col_count - 1)
 		print_error(cub3d, "Player can't be on the last column. (N,S,W,E)");
 }
 
 void validate_map_characters(t_cub3d *cub3d)
 {
-	t_config *config;
-	int player_count;
+	t_map *map;
 	int row;
 	int col;
 
-	config = cub3d->config;
-	player_count = 0;
+	map = cub3d->config->map;
 	row = 0;
-	while (config->map->text[row] != NULL)
+	while (map->text[row] != NULL)
 	{
 		col = 0;
-		while (config->map->text[row][col] != '\0')
+		while (map->text[row][col] != '\0')
 		{
-			if (!character_is_valid(config->map->text[row][col]))
+			if (!character_is_valid(map->text[row][col]))
 				print_error(cub3d, "There can only be 0,1,N,S,W,E or Space on the map.");
-			if (character_is_player(config->map->text[row][col]))
+			if (character_is_player(map->text[row][col]))
 			{
-				player_count++;
-				validate_player_position(cub3d, player_count, row, col);
+				map->player_count++;
+				map->player_row = row;
+				map->player_col = col;
 			}
 			col++;
 		}
 		row++;
 	}
+	validate_player_position(cub3d);
 }

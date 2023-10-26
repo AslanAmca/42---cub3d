@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/05 12:13:07 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/23 20:43:00 by aaslan           ###   ########.fr       */
+/*   Created: 2023/10/11 16:23:10 by aaslan            #+#    #+#             */
+/*   Updated: 2023/10/25 15:16:55 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "common.h"
+#include "utilities.h"
 
-int ft_strcmp(char *s1, char *s2)
+char *ft_strncpy(char *dest, char *src, int n)
 {
 	int i;
 
+	if (dest == src || n <= 0)
+		return (dest);
 	i = 0;
-	while (s1[i] != '\0' && s2[i] != '\0')
+	while (i < n && src[i] != '\0')
 	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
+		dest[i] = src[i];
 		i++;
 	}
-	return (0);
+	while (i < n)
+	{
+		dest[i] = '\0';
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
 }

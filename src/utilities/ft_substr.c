@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/05 11:49:49 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/23 20:43:00 by aaslan           ###   ########.fr       */
+/*   Created: 2023/10/09 18:32:58 by aaslan            #+#    #+#             */
+/*   Updated: 2023/10/25 15:16:55 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "common.h"
+#include "utilities.h"
 
-int ft_strlen(char *string)
+char *ft_substr(char *s, int start, int len)
 {
-	int i;
+	char *string;
+	int size;
 
-	i = 0;
-	while (string[i] != '\0')
-		i++;
-	return (i);
+	if (s == NULL)
+		return (NULL);
+	if (ft_strlen(s) - 1 < start)
+		return (ft_strdup(""));
+	s = s + start;
+	size = ft_strlen(s);
+	if (size < len)
+		len = size;
+	string = malloc(sizeof(char) * (len + 1));
+	ft_strlcpy(string, s, len + 1);
+	return (string);
 }

@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/11 16:23:10 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/23 20:43:00 by aaslan           ###   ########.fr       */
+/*   Created: 2023/10/09 18:32:42 by aaslan            #+#    #+#             */
+/*   Updated: 2023/10/25 15:16:55 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "common.h"
+#include "utilities.h"
 
-char *ft_strncpy(char *dest, char *src, int n)
+char *ft_strdup(char *s)
 {
-	int i;
+	char *copy_string;
+	int s_len;
 
-	if (dest == src || n <= 0)
-		return (dest);
-	i = 0;
-	while (i < n && src[i] != '\0')
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	while (i < n)
-	{
-		dest[i] = '\0';
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
+	if (s == NULL)
+		return (NULL);
+	s_len = ft_strlen(s);
+	copy_string = malloc(s_len + 1);
+	if (copy_string == NULL)
+		return (NULL);
+	ft_strlcpy(copy_string, s, s_len + 1);
+	return (copy_string);
 }

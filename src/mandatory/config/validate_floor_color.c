@@ -114,7 +114,7 @@ void validate_floor_color(t_cub3d *cub3d, char *line)
 	rgb = NULL;
 	if (line[0] == 'F')
 	{
-		cub3d->config->floor_color->string = ft_ft_strtrim_start(line + 1, " \t");
+		cub3d->config->floor_color->string = ft_strtrim_start(line + 1, " \t");
 		if (*cub3d->config->floor_color->string == '\0')
 			print_error(cub3d, "F element cant' be empty.");
 		validate_comma(cub3d);

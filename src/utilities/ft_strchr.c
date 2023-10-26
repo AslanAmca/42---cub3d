@@ -1,37 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/12 09:09:14 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/23 20:43:00 by aaslan           ###   ########.fr       */
+/*   Created: 2023/10/09 18:32:00 by aaslan            #+#    #+#             */
+/*   Updated: 2023/10/25 15:16:55 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "common.h"
+#include "utilities.h"
 
-int ft_atoi(char *nptr)
+char *ft_strchr(char *s, int c)
 {
-	int sign;
-	int result;
-
-	sign = 1;
-	result = 0;
-	while ((*nptr >= 9 && *nptr <= 13) || *nptr == 32)
-		nptr++;
-	if (*nptr == '+')
-		nptr++;
-	else if (*nptr == '-')
+	while (*s != '\0')
 	{
-		sign = sign * -1;
-		nptr++;
+		if (*s == (unsigned char)c)
+			return (s);
+		s++;
 	}
-	while (ft_is_digit(*nptr))
-	{
-		result = result * 10 + (*nptr - '0');
-		nptr++;
-	}
-	return (result * sign);
+	if (c == '\0')
+		return (s);
+	return (NULL);
 }

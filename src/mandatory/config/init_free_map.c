@@ -21,6 +21,9 @@ void init_map(t_cub3d *cub3d)
 	cub3d->config->map->starting_line = 0;
 	cub3d->config->map->row_count = 0;
 	cub3d->config->map->col_count = 0;
+	cub3d->config->map->player_count = 0;
+	cub3d->config->map->player_row = 0;
+	cub3d->config->map->player_col = 0;
 }
 
 void free_map(t_cub3d *cub3d)

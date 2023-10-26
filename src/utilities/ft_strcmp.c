@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_double_pointer.c                          :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/14 14:16:40 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/14 14:16:42 by aaslan           ###   ########.fr       */
+/*   Created: 2023/10/05 12:13:07 by aaslan            #+#    #+#             */
+/*   Updated: 2023/10/25 15:16:55 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "common.h"
+#include "utilities.h"
 
-void free_double_pointer(char **pointer)
+int ft_strcmp(char *s1, char *s2)
 {
 	int i;
 
-	if (pointer == NULL)
-		return;
 	i = 0;
-	while (pointer[i] != NULL)
+	while (s1[i] != '\0' && s2[i] != '\0')
 	{
-		free(pointer[i]);
+		if (s1[i] != s2[i])
+			return (s1[i] - s2[i]);
 		i++;
 	}
-	free(pointer);
+	return (0);
 }

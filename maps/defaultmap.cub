@@ -3,7 +3,7 @@ SO ./textures/cobbelstone.xpm
 WE ./textures/obsidian.xpm
 EA ./textures/bookshelf.xpm
 
-F 220,100,0
+F 220,100,5
 C 225,30,12
 
         111111111111111111111111111

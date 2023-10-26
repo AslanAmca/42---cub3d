@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   free_double_pointer.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/09 18:32:58 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/23 20:43:00 by aaslan           ###   ########.fr       */
+/*   Created: 2023/10/14 14:16:40 by aaslan            #+#    #+#             */
+/*   Updated: 2023/10/14 14:16:42 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "common.h"
+#include "utilities.h"
 
-char *ft_substr(char *s, int start, int len)
+void free_double_pointer(char **pointer)
 {
-	char *string;
-	int size;
+	int i;
 
-	if (s == NULL)
-		return (NULL);
-	if (ft_strlen(s) - 1 < start)
-		return (ft_strdup(""));
-	s = s + start;
-	size = ft_strlen(s);
-	if (size < len)
-		len = size;
-	string = malloc(sizeof(char) * (len + 1));
-	ft_strlcpy(string, s, len + 1);
-	return (string);
+	if (pointer == NULL)
+		return;
+	i = 0;
+	while (pointer[i] != NULL)
+	{
+		free(pointer[i]);
+		i++;
+	}
+	free(pointer);
 }

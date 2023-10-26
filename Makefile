@@ -6,7 +6,7 @@
 #    By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/12 02:37:51 by aaslan            #+#    #+#              #
-#    Updated: 2023/10/24 01:07:53 by aaslan           ###   ########.fr        #
+#    Updated: 2023/10/26 19:22:08 by aaslan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,24 +15,26 @@ B_NAME		:= cub3D_bonus
 CC			:= gcc
 CFLAGS		:= -Wall -Wextra -Werror -g
 
-COMMON		:= src/common/free_double_pointer.c \
-			src/common/ft_atoi.c \
-			src/common/ft_is_digit.c \
-			src/common/ft_split.c \
-			src/common/ft_strchr.c \
-			src/common/ft_strcmp.c \
-			src/common/ft_strdup.c \
-			src/common/ft_strlcpy.c \
-			src/common/ft_strlen.c \
-			src/common/ft_strncmp.c \
-			src/common/ft_strncpy.c \
-			src/common/ft_strtrim_start.c \
-			src/common/ft_strtrim.c \
-			src/common/ft_substr.c
+UTILITIES	:= src/utilities/free_double_pointer.c \
+			src/utilities/ft_atoi.c \
+			src/utilities/ft_is_digit.c \
+			src/utilities/ft_split.c \
+			src/utilities/ft_strchr.c \
+			src/utilities/ft_strcmp.c \
+			src/utilities/ft_strdup.c \
+			src/utilities/ft_strlcpy.c \
+			src/utilities/ft_strlen.c \
+			src/utilities/ft_strncmp.c \
+			src/utilities/ft_strncpy.c \
+			src/utilities/ft_strtrim_start.c \
+			src/utilities/ft_strtrim.c \
+			src/utilities/ft_substr.c
+
 CONFIG		:= src/mandatory/config/check_map_empty_line.c \
 			src/mandatory/config/create_map_same_row_len.c \
 			src/mandatory/config/get_next_line.c \
 			src/mandatory/config/init_free_colors.c \
+			src/mandatory/config/init_free_config.c \
 			src/mandatory/config/init_free_map.c \
 			src/mandatory/config/init_free_xpm_files.c \
 			src/mandatory/config/is_empty_line.c \
@@ -51,12 +53,16 @@ CONFIG		:= src/mandatory/config/check_map_empty_line.c \
 			src/mandatory/config/validate_map.c \
 			src/mandatory/config/validate_xpm_files.c
 
-# GAME		:= src/mandatory/game/
+GAME		:= src/mandatory/game/init_free_game.c \
+			src/mandatory/game/init_free_mlx.c \
+			src/mandatory/game/init_free_mlx_image.c \
+			src/mandatory/game/init_free_player.c
+
 OTHERS		:= src/mandatory/init_free_cub3d.c \
 			src/mandatory/print_error.c \
 			src/mandatory/main.c
 
-OBJS		:= $(COMMON:%.c=%.o) $(CONFIG:%.c=%.o) $(OTHERS:%.c=%.o)
+OBJS		:= $(UTILITIES:%.c=%.o) $(CONFIG:%.c=%.o) $(GAME:%.c=%.o) $(OTHERS:%.c=%.o)
 
 ifeq ($(shell uname), Linux)
 MLX			:= mlx_linux/libmlx.a

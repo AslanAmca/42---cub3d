@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:19:44 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/24 00:37:19 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/26 19:21:39 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@
 #include "../../mlx/mlx.h"
 #endif
 
-#include "../common/common.h"
+#include "../utilities/utilities.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -92,6 +92,10 @@ typedef struct s_map
 	int starting_line;
 	int row_count;
 	int col_count;
+
+	int player_count;
+	int player_row;
+	int player_col;
 } t_map;
 
 typedef struct s_config
@@ -110,18 +114,56 @@ typedef struct s_config
 	t_map *map;
 } t_config;
 
+// game
+
+typedef struct s_vector_double
+{
+	double x;
+	double y;
+} t_vector_double;
+
+typedef struct s_vector_int
+{
+	int x;
+	int y;
+} t_vector_int;
+
 typedef struct s_player
 {
-	// t_vectord pos;
-	// t_vectord dir;
-	// t_vectord plane;
+	// açı
 	double angle;
+
+	// Oyuncunun konumunu temsil eder. Bu, oyuncunun harita üzerindeki nerede başlayacağını belirtir.
+	t_vector_double position; // player_position
+
+	// Oyuncunun bakış yönünü temsil eder. Bu, oyuncunun hangi yönde bakacağını belirtir.
+	// x ve y ekseni 1 veya -1 olur ve yönü temsil eder. 0 ise o eksen ile ilgili bir durum yok demektir.
+	// Örneğin x -1 ise sol tarafa, 1 ise sağ tarafa bakıyor demektir.
+	t_vector_double direction; // player_direction
+
+	// Kamera düzlemini temsil eder.
+	// Kamera düzlemi, ekranın 2D yüzeyini temsil eder ve oyuncunun bakış yönüne dik olmalıdır.
+	// Bu vektörün uzunluğu, görüş açısını (FOV) belirler.
+	t_vector_double camera_plane;
 } t_player;
+
+// mlx için lazım olan image ve özellikleri
+typedef struct s_mlx_image
+{
+	void *img;
+	char *addr;
+	int bits_per_pixel;
+	int size_line;
+	int endian;
+} t_mlx_image;
 
 typedef struct s_game
 {
 	void *mlx;
 	void *mlx_window;
+	t_mlx_image *mlx_image;
+
+	t_player *player;
 } t_game;
 
 typedef struct s_cub3d
@@ -130,6 +172,9 @@ typedef struct s_cub3d
 	t_game *game;
 } t_cub3d;
 
+// config
+void init_config(t_cub3d *cub3d, int argument_count, char *filename);
+void free_config(t_cub3d *cub3d);
 void init_xpm_files(t_cub3d *cub3d);
 void free_xpm_files(t_cub3d *cub3d);
 void init_colors(t_cub3d *cub3d);
@@ -155,7 +200,17 @@ void validate_map(t_cub3d *cub3d);
 char *get_next_line(t_cub3d *cub3d, int fd);
 int is_empty_line(char *line);
 
-// error
+// game
+void init_game(t_cub3d *cub3d);
+void free_game(t_cub3d *cub3d);
+void init_mlx(t_cub3d *cub3d);
+void free_mlx(t_cub3d *cub3d);
+void init_mlx_image(t_cub3d *cub3d);
+void free_mlx_image(t_cub3d *cub3d);
+void init_player(t_cub3d *cub3d);
+void free_player(t_cub3d *cub3d);
+
+// cub3d
 t_cub3d *init_cub3d(int argument_count, char *filename);
 void free_cub3d(t_cub3d *cub3d);
 void print_error(t_cub3d *cub3d, char *message);

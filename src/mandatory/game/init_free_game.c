@@ -1,36 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_free_cub3d.c                                  :+:      :+:    :+:   */
+/*   init_free_game.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 23:24:22 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/26 19:25:21 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/26 19:11:28 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
-t_cub3d *init_cub3d(int argument_count, char *filename)
+void init_game(t_cub3d *cub3d)
 {
-	t_cub3d *cub3d;
+	cub3d->game = malloc(sizeof(t_game));
+	if (cub3d->game == NULL)
+		print_error(cub3d, "game malloc error.");
 
-	cub3d = malloc(sizeof(t_cub3d));
-	if (cub3d == NULL)
-		print_error(cub3d, "cub3d malloc error.");
-	init_config(cub3d, argument_count, filename);
-	init_xpm_files(cub3d);
-	init_colors(cub3d);
-	init_map(cub3d);
-	return (cub3d);
+	cub3d->game->mlx = NULL;
+	cub3d->game->mlx_window = NULL;
+	cub3d->game->mlx_image = NULL;
+	cub3d->game->player = NULL;
+
+	init_mlx(cub3d);
+	init_mlx_image(cub3d);
+	init_player(cub3d);
 }
 
-void free_cub3d(t_cub3d *cub3d)
+void free_game(t_cub3d *cub3d)
 {
-	if (cub3d == NULL)
+	if (cub3d->game == NULL)
 		return;
-	free_config(cub3d);
-	free_game(cub3d);
-	free(cub3d);
+	free_player(cub3d);
+	free_mlx_image(cub3d);
+	free_mlx(cub3d);
+	free(cub3d->game);
 }

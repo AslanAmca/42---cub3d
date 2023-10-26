@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/09 18:32:26 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/23 20:43:00 by aaslan           ###   ########.fr       */
+/*   Created: 2023/10/09 18:33:12 by aaslan            #+#    #+#             */
+/*   Updated: 2023/10/25 15:16:55 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "common.h"
+#include "utilities.h"
 
-int ft_strlcpy(char *dest, char *src, int n)
+char *ft_strtrim(char *s1, char *set)
 {
-	int src_length;
+	int size;
 
-	src_length = ft_strlen(src);
-	while (*src != '\0' && 1 < n)
-	{
-		*dest = *src;
-		dest++;
-		src++;
-		n--;
-	}
-	if (n != 0)
-		*dest = '\0';
-	return (src_length);
+	if (s1 == NULL || set == NULL)
+		return (NULL);
+	while (ft_strchr(set, *s1) && *s1 != '\0')
+		s1++;
+	size = ft_strlen(s1);
+	while (ft_strchr(set, s1[size]) && size != 0)
+		size--;
+	return (ft_substr(s1, 0, size + 1));
 }

@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_is_digit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/09 18:32:42 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/23 20:43:00 by aaslan           ###   ########.fr       */
+/*   Created: 2023/10/12 09:05:12 by aaslan            #+#    #+#             */
+/*   Updated: 2023/10/25 15:16:55 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "common.h"
+#include "utilities.h"
 
-char *ft_strdup(char *s)
+int	ft_is_digit(int c)
 {
-	char *copy_string;
-	int s_len;
-
-	if (s == NULL)
-		return (NULL);
-	s_len = ft_strlen(s);
-	copy_string = malloc(s_len + 1);
-	if (copy_string == NULL)
-		return (NULL);
-	ft_strlcpy(copy_string, s, s_len + 1);
-	return (copy_string);
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
 }
