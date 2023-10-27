@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 10:38:43 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/26 19:28:07 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/26 22:46:29 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@ int main(int argc, char **argv)
 	validate_map(cub3d);
 
 	init_game(cub3d);
+
+	// raycasting hesabı yapılmalı ve ekrana çizilmeli.
+
 	mlx_hook(cub3d->game->mlx_window, ON_DESTROY, 0, on_destroy_handler, cub3d);
 	mlx_hook(cub3d->game->mlx_window, ON_KEYDOWN, 1L << 0, on_keydown_handler, cub3d);
 	mlx_loop(cub3d->game->mlx);

@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 23:24:22 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/26 19:25:21 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/27 18:39:25 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_cub3d *init_cub3d(int argument_count, char *filename)
 	init_xpm_files(cub3d);
 	init_colors(cub3d);
 	init_map(cub3d);
+	cub3d->game = NULL;
 	return (cub3d);
 }
 

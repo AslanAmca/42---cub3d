@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 17:55:30 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/26 19:27:23 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/27 18:44:35 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,11 @@
 
 void init_mlx(t_cub3d *cub3d)
 {
-	t_game *game;
-
-	game = cub3d->game;
-	game->mlx = mlx_init();
-	if (game->mlx == NULL)
+	cub3d->game->mlx = mlx_init();
+	if (cub3d->game->mlx == NULL)
 		print_error(cub3d, "mlx malloc error.");
-	game->mlx_window = mlx_new_window(game->mlx, 1920, 1080, "Cub3D");
-	if (game->mlx_window == NULL)
+	cub3d->game->mlx_window = mlx_new_window(cub3d->game->mlx, 1920, 1080, "Cub3D");
+	if (cub3d->game->mlx_window == NULL)
 		print_error(cub3d, "mlx_window malloc error.");
 }
 
