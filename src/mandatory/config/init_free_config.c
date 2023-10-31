@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 19:20:50 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/26 19:25:12 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/27 19:45:29 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@ void init_config(t_cub3d *cub3d, int argument_count, char *filename)
 	cub3d->config->total_line_count = 0;
 	cub3d->config->full_line_count = 0;
 	cub3d->config->empty_line_count = 0;
+	cub3d->config->xpm_files = NULL;
+	cub3d->config->floor_color = NULL;
+	cub3d->config->ceiling_color = NULL;
+	cub3d->config->map = NULL;
 }
 
 void free_config(t_cub3d *cub3d)

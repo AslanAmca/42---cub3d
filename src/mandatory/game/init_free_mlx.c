@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 17:55:30 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/27 18:44:35 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/28 20:14:12 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void free_mlx(t_cub3d *cub3d)
 		return;
 	if (cub3d->game->mlx_window != NULL)
 		mlx_destroy_window(cub3d->game->mlx, cub3d->game->mlx_window);
-	mlx_destroy_display(cub3d->game->mlx); // sadece linux'ta lazım diye hatırlıyorum, macos'ta gereksiz olabilir.
+
+	// aşağıdakiler linux için lazım, macos'ta şüpheli.
+	mlx_destroy_display(cub3d->game->mlx);
 	free(cub3d->game->mlx);
 }

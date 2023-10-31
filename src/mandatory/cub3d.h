@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:19:44 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/26 19:21:39 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/10/31 06:32:13 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,8 +114,8 @@ typedef struct s_config
 	t_map *map;
 } t_config;
 
-// game
 
+// game
 typedef struct s_vector_double
 {
 	double x;
@@ -134,12 +134,12 @@ typedef struct s_player
 	double angle;
 
 	// Oyuncunun konumunu temsil eder. Bu, oyuncunun harita üzerindeki nerede başlayacağını belirtir.
-	t_vector_double position; // player_position
+	t_vector_double position;
 
 	// Oyuncunun bakış yönünü temsil eder. Bu, oyuncunun hangi yönde bakacağını belirtir.
 	// x ve y ekseni 1 veya -1 olur ve yönü temsil eder. 0 ise o eksen ile ilgili bir durum yok demektir.
 	// Örneğin x -1 ise sol tarafa, 1 ise sağ tarafa bakıyor demektir.
-	t_vector_double direction; // player_direction
+	t_vector_double direction;
 
 	// Kamera düzlemini temsil eder.
 	// Kamera düzlemi, ekranın 2D yüzeyini temsil eder ve oyuncunun bakış yönüne dik olmalıdır.
