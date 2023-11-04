@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 15:24:10 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/26 19:25:53 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/11/03 18:25:45 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void init_mlx_image(t_cub3d *cub3d)
 	if (game->mlx_image == NULL)
 		print_error(cub3d, "game->mlx_image malloc error.");
 
-	game->mlx_image->img = mlx_new_image(game->mlx, 1920, 1080);
+	game->mlx_image->img = mlx_new_image(game->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
 	if (game->mlx_image->img == NULL)
 		print_error(cub3d, "game->mlx_image->img malloc error.");
 

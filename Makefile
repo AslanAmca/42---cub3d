@@ -6,7 +6,7 @@
 #    By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/12 02:37:51 by aaslan            #+#    #+#              #
-#    Updated: 2023/10/26 19:22:08 by aaslan           ###   ########.fr        #
+#    Updated: 2023/11/04 05:31:39 by aaslan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ B_NAME		:= cub3D_bonus
 CC			:= gcc
 CFLAGS		:= -Wall -Wextra -Werror -g
 
-UTILITIES	:= src/utilities/free_double_pointer.c \
+UTILITIES	:= src/utilities/create_rgb.c \
+			src/utilities/free_double_pointer.c \
 			src/utilities/ft_atoi.c \
 			src/utilities/ft_is_digit.c \
 			src/utilities/ft_split.c \
@@ -56,7 +57,9 @@ CONFIG		:= src/mandatory/config/check_map_empty_line.c \
 GAME		:= src/mandatory/game/init_free_game.c \
 			src/mandatory/game/init_free_mlx.c \
 			src/mandatory/game/init_free_mlx_image.c \
-			src/mandatory/game/init_free_player.c
+			src/mandatory/game/init_free_player.c \
+			src/mandatory/game/init_free_xpm_images.c \
+			src/mandatory/game/mlx_helpers.c
 
 OTHERS		:= src/mandatory/init_free_cub3d.c \
 			src/mandatory/print_error.c \

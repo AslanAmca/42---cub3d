@@ -6,12 +6,23 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:19:44 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/31 17:19:08 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/11/04 06:30:05 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 #define CUB3D_H
+
+#define SCREEN_WIDTH 1920
+#define SCREEN_HEIGHT 1080
+
+#define ON_KEYDOWN 2
+#define ON_KEYUP 3
+#define ON_MOUSEDOWN 4
+#define ON_MOUSEUP 5
+#define ON_MOUSEMOVE 6
+#define ON_EXPOSE 12
+#define ON_DESTROY 17
 
 #ifdef __linux__
 #define KEY_ESC 65307
@@ -38,14 +49,6 @@
 #define KEY_DOWN 125
 #define KEY_UP 126
 #endif
-
-#define ON_KEYDOWN 2
-#define ON_KEYUP 3
-#define ON_MOUSEDOWN 4
-#define ON_MOUSEUP 5
-#define ON_MOUSEMOVE 6
-#define ON_EXPOSE 12
-#define ON_DESTROY 17
 
 #ifdef __linux__
 #include "../../mlx_linux/mlx.h"
@@ -115,7 +118,6 @@ typedef struct s_config
 	t_map *map;
 } t_config;
 
-
 // game
 typedef struct s_vector_double
 {
@@ -148,6 +150,16 @@ typedef struct s_player
 	t_vector_double camera_plane;
 } t_player;
 
+typedef struct s_keys
+{
+	int w;
+	int a;
+	int s;
+	int d;
+	int left;
+	int right;
+} t_keys;
+
 // mlx için lazım olan image ve özellikleri
 typedef struct s_mlx_image
 {
@@ -163,7 +175,13 @@ typedef struct s_game
 	void *mlx;
 	void *mlx_window;
 	t_mlx_image *mlx_image;
-
+	t_mlx_image *north_image;
+	t_mlx_image *south_image;
+	t_mlx_image *west_image;
+	t_mlx_image *east_image;
+	int floor_rgb;
+	int ceiling_rgb;
+	t_keys keys;
 	t_player *player;
 } t_game;
 
@@ -208,8 +226,17 @@ void init_mlx(t_cub3d *cub3d);
 void free_mlx(t_cub3d *cub3d);
 void init_mlx_image(t_cub3d *cub3d);
 void free_mlx_image(t_cub3d *cub3d);
+void init_north_mlx_image(t_cub3d *cub3d);
+void init_south_mlx_image(t_cub3d *cub3d);
+void init_west_mlx_image(t_cub3d *cub3d);
+void init_east_mlx_image(t_cub3d *cub3d);
+void free_xpm_images(t_cub3d *cub3d);
 void init_player(t_cub3d *cub3d);
 void free_player(t_cub3d *cub3d);
+
+// mlx helpers
+size_t get_mlx_image_color(t_mlx_image *image, int x, int y);
+void put_pixel_to_mlx_image(t_mlx_image *image, int x, int y, int color);
 
 // cub3d
 t_cub3d *init_cub3d(int argument_count, char *filename);

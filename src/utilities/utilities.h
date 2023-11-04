@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:16:28 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/25 15:16:39 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/11/04 04:30:32 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ char *ft_strtrim_start(char *s1, char *set);
 char *ft_strtrim(char *s1, char *set);
 char *ft_substr(char *s, int start, int len);
 void free_double_pointer(char **pointer);
+int create_rgb(int red, int green, int blue);
 
 #endif
