@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 10:38:43 by aaslan            #+#    #+#             */
-/*   Updated: 2023/11/06 15:59:01 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/11/06 16:55:49 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -284,6 +284,60 @@ static void raycasting(t_cub3d *cub3d)
 		x++;
 	}
 }
+
+static t_mlx_image *get_wall_texture(t_ray *ray, t_player *player, t_game *game)
+{
+	t_mlx_image *wall_texture;
+
+	wall_texture = NULL;
+
+	// Işının çarptığı duvarın düzlemine (x veya y) göre texture belirlenir.
+	// Daha önce ki hesaplarda map_position duvara çarpana kadar ilerletilmişti.
+	// Dolayısıyla burada ki map_position aslında 2D haritada duvarın konumudur.
+	// Oyuncu duvarın hangi yönünü görüyorsa texture ona göre seçilir.
+	if (ray->hit_wall_side == 'x')
+	{
+		// Duvarın x düzleminde ki pozisyonu oyuncunun x düzleminde ki pozisyonundan küçükse, duvar oyuncunun sol tarafında kalıyor demektir.
+		// Sola doğru bakan oyuncu duvarın sağ tarafını görür, yani east olmalıdır.
+		if (ray->map_position.x < player->position.x)
+			wall_texture = game->east_image;
+		else
+			wall_texture = game->west_image;
+	}
+	else if (ray->hit_wall_side == 'y')
+	{
+		// Duvarın y düzleminde ki pozisyonu oyuncunun y düzleminde ki pozisyonundan küçükse, duvar oyuncunun üst tarafında kalıyor demektir.
+		// Yukarıya doğru bakan oyuncu duvarın arkasını görür, yani south olmalıdır.
+		if (ray->map_position.y < player->position.y)
+			wall_texture = game->south_image;
+		else
+			wall_texture = game->north_image;
+	}
+	return (wall_texture);
+}
+
+/*
+if (ray->side == 0)
+	{
+		// ray hit point in wall square
+		// Işının 2d haritada ki duvar olan karenin neresini çarptığını temsil eder.
+		// Burada duvar olan karenin başlangıcı 0, sonu 1'dir. wallX, 0-1 arası değer alarak ışının bu kare içerisinde hangi noktaya çarptığını gösterir.
+		ray->draw.wallx = game->player->pos.y + ray->draw.perpwalldist * ray->raydir.y;
+		if (ray->map.x < game->player->pos.x)
+			ray->draw.wall = 3;
+		else
+			ray->draw.wall = 2;
+	}
+	else
+	{
+		ray->draw.wallx = game->player->pos.x + ray->draw.perpwalldist * ray->raydir.x;
+		if (ray->map.y < game->player->pos.y)
+			ray->draw.wall = 1;
+		else
+			ray->draw.wall = 0;
+	}
+	return (*ray);
+*/
 
 int main(int argc, char **argv)
 {
