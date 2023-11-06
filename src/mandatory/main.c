@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 10:38:43 by aaslan            #+#    #+#             */
-/*   Updated: 2023/11/04 02:42:07 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/11/06 15:59:01 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_screen
 	int wall_height;
 	int wall_start_point;
 	int wall_end_point;
+	int hit_point_in_wall_texture;
 } t_screen;
 
 typedef struct s_ray
@@ -71,6 +72,11 @@ typedef struct s_ray
 
 	// Bundan sonrası ekrana çizdirmek ile ilgili olduğu için screen adında bir struct içerisinde tutmak istedik.
 	t_screen screen;
+
+	// Işının 2D haritada duvar olan bir karenin hangi noktasına çarptığını temsil eder.
+	// Burada duvar olan karenin başlangıcı 0, sonu 1'dir. Dolayısıyla 0-1 arası bir değer alır.
+	// Bu oran ile duvarın ekranda gösterilecek pikseli hesaplanır.
+	double hit_point_in_wall_square;
 } t_ray;
 
 static t_ray init_ray(t_cub3d *cub3d)
@@ -196,9 +202,66 @@ static void ray_draw_until_hit_wall(t_ray *ray, t_map *map)
 
 		// Işının son çarptığı yeri 2D haritada kontrol et.
 		// Eğer duvara veya kapıya çarptıysa işaretle ve döngüyü bitir.
-		else if (map->text[ray->map_position.y][ray->map_position.x] == '1' || map->text[ray->map_position.y][ray->map_position.x] == 'C')
+		else if (map->text[ray->map_position.y][ray->map_position.x] == '1')
 			ray->hit_wall = 1;
 	}
+}
+
+static void ray_wall_height_and_wall_points(t_ray *ray)
+{
+	// Işın duvara çarptığına göre artık mesafeyi bulmalıyız, bu sayede duvarı doğru büyüklükte çizebileceğiz.
+	// initial_hit_distance her adımda next_hit_distance kadar arttığı için son hali oyuncudan duvarın sonuna kadar olan uzaklıktır.
+	// Duvarın sonuna kadardır çünkü duvarı geçtikten sonra çarpışmayı tespit edebiliyoruz.
+	// Bu nedenle 1 adım geriye giderek duvarın başlangıcına dönmeliyiz.
+	// Her adımda ilerlenen mesafe next_hit_distance ile temsil edildiği için toplam mesafeden 1 kere çıkarmak yeterlidir.
+	if (ray->hit_wall_side == 'x')
+		ray->wall_perpendicular_distance = ray->initial_hit_distance.x - ray->next_hit_distance.x;
+	else if (ray->hit_wall_side == 'y')
+		ray->wall_perpendicular_distance = ray->initial_hit_distance.y - ray->next_hit_distance.y;
+
+	// Duvara olan uzaklığı bulduk ancak bu uzaklığın ekranda da ne kadar yüksek olacağını, yani kaç piksel olacağını da bulmalıyız.
+	ray->screen.wall_height = (int)(SCREEN_HEIGHT / ray->wall_perpendicular_distance);
+
+	// Ekranda duvar tam ortada olmalıdır, duvar dışında gökyüzü ve zemin de olacak.
+	// Bu nedenle duvarın ekranda ki başlangıç ve bitiş noktasını bulmamız gerekiyor.
+
+	// Ekranın yarısına inmek aslında duvarın da yarısına inmek demektir çünkü duvar tam ortada duruyor.
+	// Tam ortadan duvarın yüksekliğinin yarısı kadar yukarıya çıkarsak, duvarın başlangıcına gelmiş oluruz.
+	ray->screen.wall_start_point = SCREEN_HEIGHT / 2 - ray->screen.wall_height / 2;
+
+	// Ekrandan taşma durumunu kontrol etmekte fayda var.
+	// Eğer wall_start_point negatifse, duvarın çizimi ekranın üstünden taşıyor demektir, bunu düzeltmeliyiz.
+	if (ray->screen.wall_start_point < 0)
+		ray->screen.wall_start_point = 0;
+
+	// Tam ortadan duvarın yüksekliğinin yarısı kadar aşağıya inersek, duvarın sonuna gelmiş oluruz
+	ray->screen.wall_end_point = SCREEN_HEIGHT / 2 + ray->screen.wall_height / 2;
+
+	// Eğer wall_end_point ekran yükseliğine eşit veya büyükse, duvarın çizimi ekranın altından taşıyor demektir, bunu düzeltmeliyiz.
+	// NOT : Index mantığına göre çalıştığımız için ekran yüksekliğine eşit olsa taşar.
+	if (ray->screen.wall_end_point >= SCREEN_HEIGHT)
+		ray->screen.wall_end_point = SCREEN_HEIGHT - 1;
+}
+
+static void ray_hit_point_in_wall_texture(t_ray *ray, t_player *player)
+{
+	// Işının duvarın neresine çarptığını buluyoruz. (2D Haritada 1x1 boyutunda)
+	if (ray->hit_wall_side == 'x')
+		ray->hit_point_in_wall_square = player->position.y + ray->wall_perpendicular_distance * ray->direction.y;
+	else if (ray->hit_wall_side == 'y')
+		ray->hit_point_in_wall_square = player->position.x + ray->wall_perpendicular_distance * ray->direction.x;
+	ray->hit_point_in_wall_square -= floor(ray->hit_point_in_wall_square);
+
+	// 1*1 boyutunda ışının nereye çarptığını bulmuştuk.
+	// Burada gerçek texture boyutunda nereye çarptığını buluyoruz.
+	ray->screen.hit_point_in_wall_texture = (int)(ray->hit_point_in_wall_square * 64.0);
+
+	// Oyuncunun açısına göre texture'ın yanlış yerini görmemesi için ters çeviriyoruz.
+	if (ray->hit_wall_side == 'x' && ray->direction.x > 0)
+		ray->screen.hit_point_in_wall_texture = 64 - ray->screen.hit_point_in_wall_texture - 1;
+
+	if (ray->hit_wall_side == 'y' && ray->direction.y < 0)
+		ray->screen.hit_point_in_wall_texture = 64 - ray->screen.hit_point_in_wall_texture - 1;
 }
 
 static void raycasting(t_cub3d *cub3d)
@@ -215,39 +278,8 @@ static void raycasting(t_cub3d *cub3d)
 	{
 		ray_direction_and_distances(&ray, cub3d->game->player, x);
 		ray_draw_until_hit_wall(&ray, cub3d->config->map);
-
-		// Işın duvara çarptığına göre artık mesafeyi bulmalıyız, bu sayede duvarı doğru büyüklükte çizebileceğiz.
-		// initial_hit_distance her adımda next_hit_distance kadar arttığı için son hali oyuncudan duvarın sonuna kadar olan uzaklıktır.
-		// Duvarın sonuna kadardır çünkü duvarı geçtikten sonra çarpışmayı tespit edebiliyoruz.
-		// Bu nedenle 1 adım geriye giderek duvarın başlangıcına dönmeliyiz.
-		// Her adımda ilerlenen mesafe next_hit_distance ile temsil edildiği için toplam mesafeden 1 kere çıkarmak yeterlidir.
-		if (ray.hit_wall_side == 'x')
-			ray.wall_perpendicular_distance = ray.initial_hit_distance.x - ray.next_hit_distance.x;
-		else if (ray.hit_wall_side == 'y')
-			ray.wall_perpendicular_distance = ray.initial_hit_distance.y - ray.next_hit_distance.y;
-
-		// Duvara olan uzaklığı bulduk ancak bu uzaklığın ekranda da ne kadar yüksek olacağını, yani kaç piksel olacağını da bulmalıyız.
-		ray.screen.wall_height = (int)(SCREEN_HEIGHT / ray.wall_perpendicular_distance);
-
-		// Ekranda duvar tam ortada olmalıdır, duvar dışında gökyüzü ve zemin de olacak.
-		// Bu nedenle duvarın ekranda ki başlangıç ve bitiş noktasını bulmamız gerekiyor.
-
-		// Ekranın yarısına inmek aslında duvarın da yarısına inmek demektir çünkü duvar tam ortada duruyor.
-		// Tam ortadan duvarın yüksekliğinin yarısı kadar yukarıya çıkarsak, duvarın başlangıcına gelmiş oluruz.
-		ray.screen.wall_start_point = SCREEN_HEIGHT / 2 - ray.screen.wall_height / 2;
-
-		// Ekrandan taşma durumunu kontrol etmekte fayda var.
-		// Eğer wall_start_point negatifse, duvarın çizimi ekranın üstünden taşıyor demektir, bunu düzeltmeliyiz.
-		if (ray.screen.wall_start_point < 0)
-			ray.screen.wall_start_point = 0;
-
-		// Tam ortadan duvarın yüksekliğinin yarısı kadar aşağıya inersek, duvarın sonuna gelmiş oluruz
-		ray.screen.wall_end_point = SCREEN_HEIGHT / 2 + ray.screen.wall_height / 2;
-
-		// Eğer wall_end_point ekran yükseliğine eşit veya büyükse, duvarın çizimi ekranın altından taşıyor demektir, bunu düzeltmeliyiz.
-		// NOT : Index mantığına göre çalıştığımız için ekran yüksekliğine eşit olsa taşar.
-		if (ray.screen.wall_end_point >= SCREEN_HEIGHT)
-			ray.screen.wall_end_point = SCREEN_HEIGHT - 1;
+		ray_wall_height_and_wall_points(&ray);
+		ray_hit_point_in_wall_texture(&ray, cub3d->game->player);
 
 		x++;
 	}
