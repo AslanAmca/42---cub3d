@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:19:44 by aaslan            #+#    #+#             */
-/*   Updated: 2023/11/04 06:30:05 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/11/07 21:38:06 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,12 +230,14 @@ void init_north_mlx_image(t_cub3d *cub3d);
 void init_south_mlx_image(t_cub3d *cub3d);
 void init_west_mlx_image(t_cub3d *cub3d);
 void init_east_mlx_image(t_cub3d *cub3d);
+void init_ceiling_rgb(t_cub3d *cub3d);
+void init_floor_rgb(t_cub3d *cub3d);
 void free_xpm_images(t_cub3d *cub3d);
 void init_player(t_cub3d *cub3d);
 void free_player(t_cub3d *cub3d);
 
 // mlx helpers
-size_t get_mlx_image_color(t_mlx_image *image, int x, int y);
+size_t get_pixel_color_from_texture(t_mlx_image *image, int x, int y);
 void put_pixel_to_mlx_image(t_mlx_image *image, int x, int y, int color);
 
 // cub3d

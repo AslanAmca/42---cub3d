@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 23:24:22 by aaslan            #+#    #+#             */
-/*   Updated: 2023/11/04 02:45:33 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/11/07 21:37:29 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,16 @@ void init_game(t_cub3d *cub3d)
 	cub3d->game->mlx_window = NULL;
 	cub3d->game->mlx_image = NULL;
 	cub3d->game->player = NULL;
+	cub3d->game->ceiling_rgb = 0;
+	cub3d->game->floor_rgb = 0;
 	init_mlx(cub3d);
 	init_mlx_image(cub3d);
 	init_north_mlx_image(cub3d);
 	init_south_mlx_image(cub3d);
 	init_west_mlx_image(cub3d);
 	init_east_mlx_image(cub3d);
+	init_ceiling_rgb(cub3d);
+	init_floor_rgb(cub3d);
 	init_player(cub3d);
 }
 
