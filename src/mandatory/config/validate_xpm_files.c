@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 01:00:30 by aaslan            #+#    #+#             */
-/*   Updated: 2023/11/08 10:47:15 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/11/08 23:40:41 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ static void	validate_north_xpm(t_cub3d *cub3d, char *line)
 		config->xpm_files->north = ft_strtrim_start(line + 2, " \t");
 		if (config->xpm_files->north[0] == '\0')
 			print_error(cub3d, "NO element can't be null.");
-		if (ft_strcmp(config->xpm_files->north + ft_strlen(config->xpm_files->north) - 4, ".xpm") != 0)
+		if (ft_strcmp(config->xpm_files->north
+				+ ft_strlen(config->xpm_files->north) - 4, ".xpm") != 0)
 			print_error(cub3d, "NO element must end with the .xpm extension.");
 		fd = open(config->xpm_files->north, O_RDONLY);
 		if (fd == -1)
@@ -45,7 +46,8 @@ static void	validate_south_xpm(t_cub3d *cub3d, char *line)
 		config->xpm_files->south = ft_strtrim_start(line + 2, " \t");
 		if (config->xpm_files->south[0] == '\0')
 			print_error(cub3d, "SO element cant' be empty.");
-		if (ft_strcmp(config->xpm_files->south + ft_strlen(config->xpm_files->south) - 4, ".xpm") != 0)
+		if (ft_strcmp(config->xpm_files->south
+				+ ft_strlen(config->xpm_files->south) - 4, ".xpm") != 0)
 			print_error(cub3d, "SO element must end with the .xpm extension.");
 		fd = open(config->xpm_files->south, O_RDONLY);
 		if (fd == -1)
@@ -66,7 +68,8 @@ static void	validate_west_xpm(t_cub3d *cub3d, char *line)
 		config->xpm_files->west = ft_strtrim_start(line + 2, " \t");
 		if (config->xpm_files->west[0] == '\0')
 			print_error(cub3d, "WE element cant' be empty.");
-		if (ft_strcmp(config->xpm_files->west + ft_strlen(config->xpm_files->west) - 4, ".xpm") != 0)
+		if (ft_strcmp(config->xpm_files->west
+				+ ft_strlen(config->xpm_files->west) - 4, ".xpm") != 0)
 			print_error(cub3d, "WE element must end with the .xpm extension.");
 		fd = open(config->xpm_files->west, O_RDONLY);
 		if (fd == -1)
@@ -87,7 +90,8 @@ static void	validate_east_xpm(t_cub3d *cub3d, char *line)
 		config->xpm_files->east = ft_strtrim_start(line + 2, " \t");
 		if (config->xpm_files->east[0] == '\0')
 			print_error(cub3d, "EA element cant' be empty.");
-		if (ft_strcmp(config->xpm_files->east + ft_strlen(config->xpm_files->east) - 4, ".xpm") != 0)
+		if (ft_strcmp(config->xpm_files->east
+				+ ft_strlen(config->xpm_files->east) - 4, ".xpm") != 0)
 			print_error(cub3d, "EA element must end with the .xpm extension.");
 		fd = open(config->xpm_files->east, O_RDONLY);
 		if (fd == -1)

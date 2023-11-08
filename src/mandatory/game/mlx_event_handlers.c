@@ -6,20 +6,20 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:48:03 by aaslan            #+#    #+#             */
-/*   Updated: 2023/11/08 15:06:18 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/11/08 23:32:53 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int destroy_handler(t_cub3d *cub3d)
+int	destroy_handler(t_cub3d *cub3d)
 {
 	free_cub3d(cub3d);
 	exit(EXIT_SUCCESS);
 	return (0);
 }
 
-int keydown_handler(int key, t_cub3d *cub3d)
+int	keydown_handler(int key, t_cub3d *cub3d)
 {
 	if (key == KEY_ESC)
 		destroy_handler(cub3d);
@@ -38,7 +38,7 @@ int keydown_handler(int key, t_cub3d *cub3d)
 	return (0);
 }
 
-int keyup_handler(int key, t_cub3d *cub3d)
+int	keyup_handler(int key, t_cub3d *cub3d)
 {
 	if (key == KEY_W)
 		cub3d->game->keys.w = 0;

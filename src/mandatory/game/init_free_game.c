@@ -6,13 +6,13 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 23:24:22 by aaslan            #+#    #+#             */
-/*   Updated: 2023/11/08 12:46:13 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/11/08 23:42:21 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void init_keys(t_cub3d *cub3d)
+void	init_keys(t_cub3d *cub3d)
 {
 	cub3d->game->keys.w = 0;
 	cub3d->game->keys.s = 0;
