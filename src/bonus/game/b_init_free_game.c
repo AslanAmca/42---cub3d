@@ -1,0 +1,59 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   b_init_free_game.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/23 23:24:22 by aaslan            #+#    #+#             */
+/*   Updated: 2023/11/09 02:17:11 by aaslan           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../b_cub3d.h"
+
+void	b_init_keys(t_cub3d *cub3d)
+{
+	cub3d->game->keys.w = 0;
+	cub3d->game->keys.s = 0;
+	cub3d->game->keys.a = 0;
+	cub3d->game->keys.d = 0;
+	cub3d->game->keys.left = 0;
+	cub3d->game->keys.right = 0;
+}
+
+void	b_init_game(t_cub3d *cub3d)
+{
+	cub3d->game = malloc(sizeof(t_game));
+	if (cub3d->game == NULL)
+		b_print_error(cub3d, "game malloc error.");
+	cub3d->game->mlx = NULL;
+	cub3d->game->window = NULL;
+	cub3d->game->screen = NULL;
+	cub3d->game->player = NULL;
+	cub3d->game->ceiling_rgb = 0;
+	cub3d->game->floor_rgb = 0;
+	b_init_mlx(cub3d);
+	b_init_screen(cub3d);
+	b_init_north_mlx_image(cub3d);
+	b_init_south_mlx_image(cub3d);
+	b_init_west_mlx_image(cub3d);
+	b_init_east_mlx_image(cub3d);
+	b_init_ceiling_rgb(cub3d);
+	b_init_floor_rgb(cub3d);
+	b_init_player(cub3d);
+	b_init_keys(cub3d);
+	cub3d->game->cursor_x = SCREEN_WIDTH / 2;
+	cub3d->game->is_cursor_move = 0;
+}
+
+void	b_free_game(t_cub3d *cub3d)
+{
+	if (cub3d->game == NULL)
+		return ;
+	b_free_player(cub3d);
+	b_free_xpm_images(cub3d);
+	b_free_screen(cub3d);
+	b_free_mlx(cub3d);
+	free(cub3d->game);
+}

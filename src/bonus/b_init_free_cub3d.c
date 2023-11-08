@@ -1,0 +1,37 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   b_init_free_cub3d.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/23 23:24:22 by aaslan            #+#    #+#             */
+/*   Updated: 2023/11/09 01:33:17 by aaslan           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "b_cub3d.h"
+
+t_cub3d	*b_init_cub3d(int argument_count, char *filename)
+{
+	t_cub3d	*cub3d;
+
+	cub3d = malloc(sizeof(t_cub3d));
+	if (cub3d == NULL)
+		b_print_error(cub3d, "cub3d malloc error.");
+	b_init_config(cub3d, argument_count, filename);
+	b_init_xpm_files(cub3d);
+	b_init_colors(cub3d);
+	b_init_map(cub3d);
+	cub3d->game = NULL;
+	return (cub3d);
+}
+
+void	b_free_cub3d(t_cub3d *cub3d)
+{
+	if (cub3d == NULL)
+		return ;
+	b_free_config(cub3d);
+	b_free_game(cub3d);
+	free(cub3d);
+}
