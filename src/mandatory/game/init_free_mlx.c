@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 17:55:30 by aaslan            #+#    #+#             */
-/*   Updated: 2023/11/08 10:55:09 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/11/08 12:32:27 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ void	free_mlx(t_cub3d *cub3d)
 		return ;
 	if (cub3d->game->window != NULL)
 		mlx_destroy_window(cub3d->game->mlx, cub3d->game->window);
-
-	// aşağıdakiler linux için lazım, macos'ta şüpheli.
 	mlx_destroy_display(cub3d->game->mlx);
 	free(cub3d->game->mlx);
 }

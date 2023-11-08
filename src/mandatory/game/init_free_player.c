@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 14:50:39 by aaslan            #+#    #+#             */
-/*   Updated: 2023/11/08 10:56:47 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/11/08 12:03:51 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ void	init_player(t_cub3d *cub3d)
 	cub3d->game->player = malloc(sizeof(t_player));
 	if (cub3d->game->player == NULL)
 		print_error(cub3d, "player malloc error.");
-	cub3d->game->player->angle = 0;
 	cub3d->game->player->position.x = 0;
 	cub3d->game->player->position.y = 0;
 	cub3d->game->player->direction.x = 0;

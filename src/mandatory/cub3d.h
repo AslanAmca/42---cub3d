@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:19:44 by aaslan            #+#    #+#             */
-/*   Updated: 2023/11/08 10:09:02 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/11/08 12:16:56 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,20 +133,8 @@ typedef struct s_vector_int
 
 typedef struct s_player
 {
-	// açı
-	double angle;
-
-	// Oyuncunun konumunu temsil eder. Bu, oyuncunun harita üzerindeki nerede başlayacağını belirtir.
 	t_vector_double position;
-
-	// Oyuncunun bakış yönünü temsil eder. Bu, oyuncunun hangi yönde bakacağını belirtir.
-	// x ve y ekseni 1 veya -1 olur ve yönü temsil eder. 0 ise o eksen ile ilgili bir durum yok demektir.
-	// Örneğin x -1 ise sol tarafa, 1 ise sağ tarafa bakıyor demektir.
 	t_vector_double direction;
-
-	// Kamera düzlemini temsil eder.
-	// Kamera düzlemi, ekranın 2D yüzeyini temsil eder ve oyuncunun bakış yönüne dik olmalıdır.
-	// Bu vektörün uzunluğu, görüş açısını (FOV) belirler.
 	t_vector_double camera_plane;
 } t_player;
 
@@ -196,55 +184,24 @@ typedef struct s_screen
 	long wall_height;
 	int wall_start_point;
 	int wall_end_point;
-	int hit_point_in_wall_texture;
-	double texture_start_point_y;
+	int hit_point_wall_texture;
+	double texture_offset_y;
+	double texture_pixel_ratio;
 } t_screen;
 
 typedef struct s_ray
 {
-	// Işının 2d haritada ki hangi hücrede olduğunu temsil eden konumudur.
-	// Gerçek konumu bu değildir çünkü ışık kutunun içerisinde herhangi bir bölgede olabilir, bu nedenle double bir sayı olacaktır.
 	t_vector_int map_position;
-
-	// Gerçek konumunu temsil eder, yani içinde bulunduğu hücrenin de neresinde olduğunu belirtir.
 	t_vector_double real_position;
-
-	// Ekran genişliğinde ki her bir dikey şerit için ışının yönünü temsil eder.
-	// Bu yön, oyuncunun bakış yönü ve kameranın düzlemi kullanılarak hesaplanır.
 	t_vector_double direction;
-
-	// Işının gerçek konumundan en yakın x veya y tarafına çarpana kadar kat etmesi gereken mesafedir.
-	t_vector_double initial_hit_distance;
-
-	// Işın initial_hit_distance ile yakın ilk düzleme çarpar. Bu ilk çarpışmadan sonra gerçekleşecek her çapışmayı next_hit_distance temsil eder.
-	// initial_hit_distance sadece bir kere gerçekleşen çarpmadır, geriye kalan her her çarpma sabit boyutludur ve next_hit_distance ile temsil edilir.
-	// Yani bir sonra ki çarpma noktasına gitmek için kaç birim ilerlemesi gerektiğininin hesabıdır.
-	t_vector_double next_hit_distance;
-
-	// Işının 2D harita üzerinde atacağı bir sonra ki adımı temsil eder.
-	// Işının yönüne bağlı olarak +1 veya -1 değerini alır.
+	t_vector_double initial_hit_dist;
+	t_vector_double next_hit_dist;
 	t_vector_int map_step;
-
-	// Işın duvara çarptı mı? 0 (false) veya 1 (true) değerini alır.
 	int hit_wall;
-
-	// Işının bir duvarın x kenarına mı yoksa y kenarına mı çarptığını belirler. x veya y değerini alır.
 	char hit_wall_side;
-
-	// Oyuncunun bulunduğu düzlemden duvara olan dik mesafedir.
-	// Oyuncunun bulunduğu pozisyona göre hesap yapılmaz çünkü öklid uzaklığı nedeniyle balık gözü efekti oluşur.
-	double wall_perpendicular_distance;
-
-	// Bundan sonrası ekrana çizdirmek ile ilgili olduğu için screen adında bir struct içerisinde tutmak istedik.
+	double wall_perp_dist;
+	double hit_point_wall;
 	t_screen screen;
-
-	// Işının 2D haritada duvar olan bir karenin hangi noktasına çarptığını temsil eder.
-	// Burada duvar olan karenin başlangıcı 0, sonu 1'dir. Dolayısıyla 0-1 arası bir değer alır.
-	// Bu oran ile duvarın ekranda gösterilecek pikseli hesaplanır.
-	double hit_point_in_wall_square;
-
-	// texture tarafı
-	double texture_pixel_for_one_pixel;
 } t_ray;
 
 // config
@@ -301,7 +258,7 @@ void ray_fill_screen(t_ray *ray, t_game *game, int x);
 void raycasting(t_cub3d *cub3d);
 
 // mlx helpers
-size_t get_pixel_color_from_texture(t_mlx_image *image, int x, int y);
+size_t get_image_color(t_mlx_image *image, int x, int y);
 void put_pixel_to_mlx_image(t_mlx_image *image, int x, int y, int color);
 
 // cub3d

@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 10:07:10 by aaslan            #+#    #+#             */
-/*   Updated: 2023/11/08 11:33:02 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/11/08 12:16:56 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@ static t_mlx_image	*get_wall_texture(t_ray *ray, t_game *game)
 void	ray_fill_screen(t_ray *ray, t_game *game, int x)
 {
 	t_mlx_image	*wall_texture;
+	double		texture_offset_y;
+	double		texture_offset_x;
+	int			texture_color;
 	int			y;
 
 	wall_texture = get_wall_texture(ray, game);
@@ -51,11 +54,12 @@ void	ray_fill_screen(t_ray *ray, t_game *game, int x)
 			put_pixel_to_mlx_image(game->screen, x, y, game->floor_rgb);
 		else
 		{
-			double overflow_control_texture_start_point_y = (int)ray->screen.texture_start_point_y & (64 - 1);
-			double texture_start_point_x = ray->screen.hit_point_in_wall_texture;
-			int texture_pixel_color = get_pixel_color_from_texture(wall_texture, texture_start_point_x, overflow_control_texture_start_point_y);
-			put_pixel_to_mlx_image(game->screen, x, y, texture_pixel_color);
-			ray->screen.texture_start_point_y += ray->texture_pixel_for_one_pixel;
+			texture_offset_y = (int)ray->screen.texture_offset_y & (64 - 1);
+			texture_offset_x = ray->screen.hit_point_wall_texture;
+			texture_color = get_image_color(wall_texture,
+					texture_offset_x, texture_offset_y);
+			put_pixel_to_mlx_image(game->screen, x, y, texture_color);
+			ray->screen.texture_offset_y += ray->screen.texture_pixel_ratio;
 		}
 		y++;
 	}
