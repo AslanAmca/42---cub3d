@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:19:44 by aaslan            #+#    #+#             */
-/*   Updated: 2023/11/07 21:38:06 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/11/08 10:09:02 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,8 +173,8 @@ typedef struct s_mlx_image
 typedef struct s_game
 {
 	void *mlx;
-	void *mlx_window;
-	t_mlx_image *mlx_image;
+	void *window;
+	t_mlx_image *screen;
 	t_mlx_image *north_image;
 	t_mlx_image *south_image;
 	t_mlx_image *west_image;
@@ -190,6 +190,62 @@ typedef struct s_cub3d
 	t_config *config;
 	t_game *game;
 } t_cub3d;
+
+typedef struct s_screen
+{
+	long wall_height;
+	int wall_start_point;
+	int wall_end_point;
+	int hit_point_in_wall_texture;
+	double texture_start_point_y;
+} t_screen;
+
+typedef struct s_ray
+{
+	// Işının 2d haritada ki hangi hücrede olduğunu temsil eden konumudur.
+	// Gerçek konumu bu değildir çünkü ışık kutunun içerisinde herhangi bir bölgede olabilir, bu nedenle double bir sayı olacaktır.
+	t_vector_int map_position;
+
+	// Gerçek konumunu temsil eder, yani içinde bulunduğu hücrenin de neresinde olduğunu belirtir.
+	t_vector_double real_position;
+
+	// Ekran genişliğinde ki her bir dikey şerit için ışının yönünü temsil eder.
+	// Bu yön, oyuncunun bakış yönü ve kameranın düzlemi kullanılarak hesaplanır.
+	t_vector_double direction;
+
+	// Işının gerçek konumundan en yakın x veya y tarafına çarpana kadar kat etmesi gereken mesafedir.
+	t_vector_double initial_hit_distance;
+
+	// Işın initial_hit_distance ile yakın ilk düzleme çarpar. Bu ilk çarpışmadan sonra gerçekleşecek her çapışmayı next_hit_distance temsil eder.
+	// initial_hit_distance sadece bir kere gerçekleşen çarpmadır, geriye kalan her her çarpma sabit boyutludur ve next_hit_distance ile temsil edilir.
+	// Yani bir sonra ki çarpma noktasına gitmek için kaç birim ilerlemesi gerektiğininin hesabıdır.
+	t_vector_double next_hit_distance;
+
+	// Işının 2D harita üzerinde atacağı bir sonra ki adımı temsil eder.
+	// Işının yönüne bağlı olarak +1 veya -1 değerini alır.
+	t_vector_int map_step;
+
+	// Işın duvara çarptı mı? 0 (false) veya 1 (true) değerini alır.
+	int hit_wall;
+
+	// Işının bir duvarın x kenarına mı yoksa y kenarına mı çarptığını belirler. x veya y değerini alır.
+	char hit_wall_side;
+
+	// Oyuncunun bulunduğu düzlemden duvara olan dik mesafedir.
+	// Oyuncunun bulunduğu pozisyona göre hesap yapılmaz çünkü öklid uzaklığı nedeniyle balık gözü efekti oluşur.
+	double wall_perpendicular_distance;
+
+	// Bundan sonrası ekrana çizdirmek ile ilgili olduğu için screen adında bir struct içerisinde tutmak istedik.
+	t_screen screen;
+
+	// Işının 2D haritada duvar olan bir karenin hangi noktasına çarptığını temsil eder.
+	// Burada duvar olan karenin başlangıcı 0, sonu 1'dir. Dolayısıyla 0-1 arası bir değer alır.
+	// Bu oran ile duvarın ekranda gösterilecek pikseli hesaplanır.
+	double hit_point_in_wall_square;
+
+	// texture tarafı
+	double texture_pixel_for_one_pixel;
+} t_ray;
 
 // config
 void init_config(t_cub3d *cub3d, int argument_count, char *filename);
@@ -224,8 +280,8 @@ void init_game(t_cub3d *cub3d);
 void free_game(t_cub3d *cub3d);
 void init_mlx(t_cub3d *cub3d);
 void free_mlx(t_cub3d *cub3d);
-void init_mlx_image(t_cub3d *cub3d);
-void free_mlx_image(t_cub3d *cub3d);
+void init_screen(t_cub3d *cub3d);
+void free_screen(t_cub3d *cub3d);
 void init_north_mlx_image(t_cub3d *cub3d);
 void init_south_mlx_image(t_cub3d *cub3d);
 void init_west_mlx_image(t_cub3d *cub3d);
@@ -235,6 +291,14 @@ void init_floor_rgb(t_cub3d *cub3d);
 void free_xpm_images(t_cub3d *cub3d);
 void init_player(t_cub3d *cub3d);
 void free_player(t_cub3d *cub3d);
+
+// ray
+void ray_properties(t_ray *ray, t_player *player, int x);
+void ray_draw_until_hit_wall(t_ray *ray, t_map *map);
+void ray_wall_properties(t_ray *ray, t_player *player);
+void ray_texture_properties(t_ray *ray);
+void ray_fill_screen(t_ray *ray, t_game *game, int x);
+void raycasting(t_cub3d *cub3d);
 
 // mlx helpers
 size_t get_pixel_color_from_texture(t_mlx_image *image, int x, int y);

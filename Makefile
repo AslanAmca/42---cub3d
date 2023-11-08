@@ -6,7 +6,7 @@
 #    By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/12 02:37:51 by aaslan            #+#    #+#              #
-#    Updated: 2023/11/07 21:39:00 by aaslan           ###   ########.fr        #
+#    Updated: 2023/11/08 10:09:14 by aaslan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,11 +55,17 @@ CONFIG		:= src/mandatory/config/check_map_empty_line.c \
 
 GAME		:= src/mandatory/game/init_free_game.c \
 			src/mandatory/game/init_free_mlx.c \
-			src/mandatory/game/init_free_mlx_image.c \
 			src/mandatory/game/init_free_player.c \
+			src/mandatory/game/init_free_screen.c \
 			src/mandatory/game/init_free_xpm_images.c \
 			src/mandatory/game/init_rgb_colors.c \
-			src/mandatory/game/mlx_helpers.c
+			src/mandatory/game/mlx_helpers.c \
+			src/mandatory/game/ray_draw_until_hit_wall.c \
+			src/mandatory/game/ray_fill_screen.c \
+			src/mandatory/game/ray_properties.c \
+			src/mandatory/game/ray_texture_properties.c \
+			src/mandatory/game/ray_wall_properties.c \
+			src/mandatory/game/raycasting.c
 
 OTHERS		:= src/mandatory/init_free_cub3d.c \
 			src/mandatory/print_error.c \
