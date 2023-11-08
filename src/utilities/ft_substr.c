@@ -6,16 +6,16 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 18:32:58 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/25 15:16:55 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/11/08 10:50:26 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utilities.h"
 
-char *ft_substr(char *s, int start, int len)
+char	*ft_substr(char *s, int start, int len)
 {
-	char *string;
-	int size;
+	char	*string;
+	int		size;
 
 	if (s == NULL)
 		return (NULL);

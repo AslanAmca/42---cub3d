@@ -12,10 +12,10 @@
 
 #include "../cub3d.h"
 
-void set_elements_count(t_cub3d *cub3d)
+void	set_elements_count(t_cub3d *cub3d)
 {
-	char *line;
-	int i;
+	char	*line;
+	int		i;
 
 	line = NULL;
 	i = 0;

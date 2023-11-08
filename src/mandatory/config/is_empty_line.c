@@ -12,9 +12,9 @@
 
 #include "../cub3d.h"
 
-int is_empty_line(char *line)
+int	is_empty_line(char *line)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (line[i] != '\0')

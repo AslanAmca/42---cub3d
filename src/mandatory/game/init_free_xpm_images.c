@@ -6,13 +6,13 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 02:26:23 by aaslan            #+#    #+#             */
-/*   Updated: 2023/11/04 02:46:17 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/11/08 10:58:47 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void init_north_mlx_image(t_cub3d *cub3d)
+void	init_north_mlx_image(t_cub3d *cub3d)
 {
 	int	size;
 
@@ -33,9 +33,9 @@ void init_north_mlx_image(t_cub3d *cub3d)
 		print_error(cub3d, "north_image->addr malloc error.");
 }
 
-void init_south_mlx_image(t_cub3d *cub3d)
+void	init_south_mlx_image(t_cub3d *cub3d)
 {
-	int size;
+	int	size;
 
 	size = 64;
 	cub3d->game->south_image = malloc(sizeof(t_mlx_image));
@@ -46,17 +46,17 @@ void init_south_mlx_image(t_cub3d *cub3d)
 	if (cub3d->game->south_image->img == NULL)
 		print_error(cub3d, "south_image->img malloc error.");
 	cub3d->game->south_image->addr = mlx_get_data_addr(
-		cub3d->game->south_image->img,
-		&cub3d->game->south_image->bits_per_pixel,
-		&cub3d->game->south_image->size_line,
-		&cub3d->game->south_image->endian);
+			cub3d->game->south_image->img,
+			&cub3d->game->south_image->bits_per_pixel,
+			&cub3d->game->south_image->size_line,
+			&cub3d->game->south_image->endian);
 	if (cub3d->game->south_image->addr == NULL)
 		print_error(cub3d, "south_image->addr malloc error.");
 }
 
-void init_west_mlx_image(t_cub3d *cub3d)
+void	init_west_mlx_image(t_cub3d *cub3d)
 {
-	int size;
+	int	size;
 
 	size = 64;
 	cub3d->game->west_image = malloc(sizeof(t_mlx_image));
@@ -67,17 +67,17 @@ void init_west_mlx_image(t_cub3d *cub3d)
 	if (cub3d->game->west_image->img == NULL)
 		print_error(cub3d, "west_image->img malloc error.");
 	cub3d->game->west_image->addr = mlx_get_data_addr(
-		cub3d->game->west_image->img,
-		&cub3d->game->west_image->bits_per_pixel,
-		&cub3d->game->west_image->size_line,
-		&cub3d->game->west_image->endian);
+			cub3d->game->west_image->img,
+			&cub3d->game->west_image->bits_per_pixel,
+			&cub3d->game->west_image->size_line,
+			&cub3d->game->west_image->endian);
 	if (cub3d->game->west_image->addr == NULL)
 		print_error(cub3d, "west_image->addr malloc error.");
 }
 
-void init_east_mlx_image(t_cub3d *cub3d)
+void	init_east_mlx_image(t_cub3d *cub3d)
 {
-	int size;
+	int	size;
 
 	size = 64;
 	cub3d->game->east_image = malloc(sizeof(t_mlx_image));
@@ -88,10 +88,10 @@ void init_east_mlx_image(t_cub3d *cub3d)
 	if (cub3d->game->east_image->img == NULL)
 		print_error(cub3d, "east_image->img malloc error.");
 	cub3d->game->east_image->addr = mlx_get_data_addr(
-		cub3d->game->east_image->img,
-		&cub3d->game->east_image->bits_per_pixel,
-		&cub3d->game->east_image->size_line,
-		&cub3d->game->east_image->endian);
+			cub3d->game->east_image->img,
+			&cub3d->game->east_image->bits_per_pixel,
+			&cub3d->game->east_image->size_line,
+			&cub3d->game->east_image->endian);
 	if (cub3d->game->east_image->addr == NULL)
 		print_error(cub3d, "east_image->addr malloc error.");
 }

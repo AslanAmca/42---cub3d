@@ -12,7 +12,7 @@
 
 #include "../cub3d.h"
 
-void validate_map(t_cub3d *cub3d)
+void	validate_map(t_cub3d *cub3d)
 {
 	set_map_text(cub3d);
 	check_map_empty_line(cub3d);

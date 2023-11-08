@@ -6,13 +6,13 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 19:20:50 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/27 19:45:29 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/11/08 10:26:09 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void init_config(t_cub3d *cub3d, int argument_count, char *filename)
+void	init_config(t_cub3d *cub3d, int argument_count, char *filename)
 {
 	cub3d->config = malloc(sizeof(t_config));
 	if (cub3d->config == NULL)
@@ -29,10 +29,10 @@ void init_config(t_cub3d *cub3d, int argument_count, char *filename)
 	cub3d->config->map = NULL;
 }
 
-void free_config(t_cub3d *cub3d)
+void	free_config(t_cub3d *cub3d)
 {
 	if (cub3d->config == NULL)
-		return;
+		return ;
 	free_map(cub3d);
 	free_colors(cub3d);
 	free_xpm_files(cub3d);

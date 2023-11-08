@@ -12,10 +12,10 @@
 
 #include "../cub3d.h"
 
-static void validate_comma(t_cub3d *cub3d)
+static void	validate_comma(t_cub3d *cub3d)
 {
-	int count;
-	int i;
+	int	count;
+	int	i;
 
 	count = 0;
 	i = 0;
@@ -26,27 +26,30 @@ static void validate_comma(t_cub3d *cub3d)
 		i++;
 	}
 	if (count != 2)
-		print_error(cub3d, "F take a value in RGB format. The RGB value consists of 3 parts separated by 2 commas.");
+		print_error(cub3d, "F take a value in RGB format. \
+		The RGB value consists of 3 parts separated by 2 commas.");
 }
 
-static void validate_red_color(t_cub3d *cub3d)
+static void	validate_red_color(t_cub3d *cub3d)
 {
-	char *red_string;
-	int red;
-	int red_len;
-	int i;
+	char	*red_string;
+	int		red;
+	int		red_len;
+	int		i;
 
 	red_string = cub3d->config->floor_color->red_string;
 	red_len = ft_strlen(red_string);
 	if (red_len == 0)
 		print_error(cub3d, "Red color of F can't be empty.");
 	if (red_len > 3)
-		print_error(cub3d, "Red color of F must be between 1-3 characters. (1 - 10 - 100).");
+		print_error(cub3d, "Red color of F must be between \
+		1-3 characters. (1 - 10 - 100).");
 	i = 0;
 	while (i < red_len)
 	{
 		if (!ft_is_digit(red_string[i]))
-			print_error(cub3d, "Red color of F must consist of digit only. (0 - 9)");
+			print_error(cub3d, "Red color of F must \
+			consist of digit only. (0 - 9)");
 		i++;
 	}
 	red = ft_atoi(red_string);
@@ -55,24 +58,26 @@ static void validate_red_color(t_cub3d *cub3d)
 	cub3d->config->floor_color->red = red;
 }
 
-static void validate_green_color(t_cub3d *cub3d)
+static void	validate_green_color(t_cub3d *cub3d)
 {
-	char *green_string;
-	int green;
-	int green_len;
-	int i;
+	char	*green_string;
+	int		green;
+	int		green_len;
+	int		i;
 
 	green_string = cub3d->config->floor_color->green_string;
 	green_len = ft_strlen(green_string);
 	if (green_len == 0)
 		print_error(cub3d, "Green color of F can't be empty.");
 	if (green_len > 3)
-		print_error(cub3d, "Green color of F must be between 1-3 characters. (1 - 10 - 100).");
+		print_error(cub3d, "Green color of F must be between \
+		1-3 characters. (1 - 10 - 100).");
 	i = 0;
 	while (i < green_len)
 	{
 		if (!ft_is_digit(green_string[i]))
-			print_error(cub3d, "Green color of F must consist of digit only. (0 - 9)");
+			print_error(cub3d, "Green color of F must \
+			consist of digit only. (0 - 9)");
 		i++;
 	}
 	green = ft_atoi(green_string);
@@ -81,24 +86,26 @@ static void validate_green_color(t_cub3d *cub3d)
 	cub3d->config->floor_color->green = green;
 }
 
-static void validate_blue_color(t_cub3d *cub3d)
+static void	validate_blue_color(t_cub3d *cub3d)
 {
-	char *blue_string;
-	int blue;
-	int blue_len;
-	int i;
+	char	*blue_string;
+	int		blue;
+	int		blue_len;
+	int		i;
 
 	blue_string = cub3d->config->floor_color->blue_string;
 	blue_len = ft_strlen(blue_string);
 	if (blue_len == 0)
 		print_error(cub3d, "Blue color of F can't be empty.");
 	if (blue_len > 3)
-		print_error(cub3d, "Blue color of F must be between 1-3 characters. (1 - 10 - 100).");
+		print_error(cub3d, "Blue color of F must be between \
+		1-3 characters. (1 - 10 - 100).");
 	i = 0;
 	while (i < blue_len)
 	{
 		if (!ft_is_digit(blue_string[i]))
-			print_error(cub3d, "Blue color of F must consist of digit only. (0 - 9)");
+			print_error(cub3d, "Blue color of F must \
+			consist of digit only. (0 - 9)");
 		i++;
 	}
 	blue = ft_atoi(blue_string);
@@ -107,9 +114,9 @@ static void validate_blue_color(t_cub3d *cub3d)
 	cub3d->config->floor_color->blue = blue;
 }
 
-void validate_floor_color(t_cub3d *cub3d, char *line)
+void	validate_floor_color(t_cub3d *cub3d, char *line)
 {
-	char **rgb;
+	char	**rgb;
 
 	rgb = NULL;
 	if (line[0] == 'F')

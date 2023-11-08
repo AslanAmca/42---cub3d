@@ -12,12 +12,12 @@
 
 #include "../cub3d.h"
 
-void set_map_text(t_cub3d *cub3d)
+void	set_map_text(t_cub3d *cub3d)
 {
-	t_config *config;
-	int map_index;
-	int col_count;
-	int i;
+	t_config	*config;
+	int			map_index;
+	int			col_count;
+	int			i;
 
 	config = cub3d->config;
 	map_index = 6;

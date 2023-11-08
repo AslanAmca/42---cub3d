@@ -12,7 +12,7 @@
 
 #include "../cub3d.h"
 
-void init_map(t_cub3d *cub3d)
+void	init_map(t_cub3d *cub3d)
 {
 	cub3d->config->map = malloc(sizeof(t_map));
 	if (cub3d->config->map == NULL)
@@ -26,10 +26,10 @@ void init_map(t_cub3d *cub3d)
 	cub3d->config->map->player_col = 0;
 }
 
-void free_map(t_cub3d *cub3d)
+void	free_map(t_cub3d *cub3d)
 {
 	if (cub3d->config->map == NULL)
-		return;
+		return ;
 	free_double_pointer(cub3d->config->map->text);
 	free(cub3d->config->map);
 }

@@ -12,7 +12,7 @@
 
 #include "../cub3d.h"
 
-void init_xpm_files(t_cub3d *cub3d)
+void	init_xpm_files(t_cub3d *cub3d)
 {
 	cub3d->config->xpm_files = malloc(sizeof(t_xpm_files));
 	if (cub3d->config->xpm_files == NULL)
@@ -27,10 +27,10 @@ void init_xpm_files(t_cub3d *cub3d)
 	cub3d->config->xpm_files->east_count = 0;
 }
 
-void free_xpm_files(t_cub3d *cub3d)
+void	free_xpm_files(t_cub3d *cub3d)
 {
 	if (cub3d->config->xpm_files == NULL)
-		return;
+		return ;
 	if (cub3d->config->xpm_files->north != NULL)
 		free(cub3d->config->xpm_files->north);
 	if (cub3d->config->xpm_files->south != NULL)

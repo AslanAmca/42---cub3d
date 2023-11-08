@@ -12,7 +12,7 @@
 
 #include "../cub3d.h"
 
-void init_colors(t_cub3d *cub3d)
+void	init_colors(t_cub3d *cub3d)
 {
 	cub3d->config->floor_color = malloc(sizeof(t_color));
 	if (cub3d->config->floor_color == NULL)
@@ -38,7 +38,7 @@ void init_colors(t_cub3d *cub3d)
 	cub3d->config->ceiling_color->blue_string = NULL;
 }
 
-void free_colors(t_cub3d *cub3d)
+void	free_colors(t_cub3d *cub3d)
 {
 	if (cub3d->config->floor_color != NULL)
 	{

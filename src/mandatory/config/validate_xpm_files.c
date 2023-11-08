@@ -6,16 +6,16 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 01:00:30 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/25 14:52:23 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/11/08 10:47:15 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-static void validate_north_xpm(t_cub3d *cub3d, char *line)
+static void	validate_north_xpm(t_cub3d *cub3d, char *line)
 {
-	t_config *config;
-	int fd;
+	t_config	*config;
+	int			fd;
 
 	config = cub3d->config;
 	fd = -1;
@@ -33,10 +33,10 @@ static void validate_north_xpm(t_cub3d *cub3d, char *line)
 	}
 }
 
-static void validate_south_xpm(t_cub3d *cub3d, char *line)
+static void	validate_south_xpm(t_cub3d *cub3d, char *line)
 {
-	t_config *config;
-	int fd;
+	t_config	*config;
+	int			fd;
 
 	config = cub3d->config;
 	fd = -1;
@@ -54,10 +54,10 @@ static void validate_south_xpm(t_cub3d *cub3d, char *line)
 	}
 }
 
-static void validate_west_xpm(t_cub3d *cub3d, char *line)
+static void	validate_west_xpm(t_cub3d *cub3d, char *line)
 {
-	t_config *config;
-	int fd;
+	t_config	*config;
+	int			fd;
 
 	config = cub3d->config;
 	fd = -1;
@@ -75,10 +75,10 @@ static void validate_west_xpm(t_cub3d *cub3d, char *line)
 	}
 }
 
-static void validate_east_xpm(t_cub3d *cub3d, char *line)
+static void	validate_east_xpm(t_cub3d *cub3d, char *line)
 {
-	t_config *config;
-	int fd;
+	t_config	*config;
+	int			fd;
 
 	config = cub3d->config;
 	fd = -1;
@@ -96,7 +96,7 @@ static void validate_east_xpm(t_cub3d *cub3d, char *line)
 	}
 }
 
-void validate_xpm_files(t_cub3d *cub3d, char *line)
+void	validate_xpm_files(t_cub3d *cub3d, char *line)
 {
 	validate_north_xpm(cub3d, line);
 	validate_south_xpm(cub3d, line);

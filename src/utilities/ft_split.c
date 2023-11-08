@@ -6,18 +6,18 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 16:21:46 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/25 15:16:55 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/11/08 10:52:09 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utilities.h"
 
-static void ft_split_clear(char **result)
+static void	ft_split_clear(char **result)
 {
-	int i;
+	int	i;
 
 	if (result == NULL)
-		return;
+		return ;
 	i = 0;
 	while (result[i] != NULL)
 	{
@@ -29,10 +29,10 @@ static void ft_split_clear(char **result)
 	result = NULL;
 }
 
-static int ft_split_word_count(char *string, char delimiter)
+static int	ft_split_word_count(char *string, char delimiter)
 {
-	int count;
-	int i;
+	int	count;
+	int	i;
 
 	count = 0;
 	i = 0;
@@ -44,14 +44,15 @@ static int ft_split_word_count(char *string, char delimiter)
 	}
 	if (count > 0)
 		count++;
-	return count;
+	return (count);
 }
 
-static int ft_split_fill(char **result, char *string, char delimiter, int word_count)
+static int	ft_split_fill(char **result, char *string,
+		char delimiter, int word_count)
 {
-	char *word_start;
-	int word_len;
-	int i;
+	char	*word_start;
+	int		word_len;
+	int		i;
 
 	word_start = string;
 	i = 0;
@@ -62,35 +63,35 @@ static int ft_split_fill(char **result, char *string, char delimiter, int word_c
 		word_len = string - word_start;
 		result[i] = malloc(word_len + 1);
 		if (result[i] == NULL)
-			return 0;
+			return (0);
 		ft_strncpy(result[i], word_start, word_len);
 		result[i][word_len] = '\0';
 		word_start = ++string;
 		i++;
 	}
-	return 1;
+	return (1);
 }
 
-char **ft_split(char *string, char delimiter)
+char	**ft_split(char *string, char delimiter)
 {
-	char **result;
-	int word_count;
-	int success_ft_split;
+	char	**result;
+	int		word_count;
+	int		success_ft_split;
 
 	if (string == NULL)
-		return NULL;
+		return (NULL);
 	word_count = ft_split_word_count(string, delimiter);
 	if (word_count == 0)
-		return NULL;
+		return (NULL);
 	result = malloc(sizeof(char *) * (word_count + 1));
 	if (result == NULL)
-		return NULL;
+		return (NULL);
 	result[word_count] = NULL;
 	success_ft_split = ft_split_fill(result, string, delimiter, word_count);
 	if (success_ft_split == 0)
 	{
 		ft_split_clear(result);
-		return NULL;
+		return (NULL);
 	}
-	return result;
+	return (result);
 }

@@ -12,17 +12,17 @@
 
 #include "../cub3d.h"
 
-void set_config_text(t_cub3d *cub3d)
+void	set_config_text(t_cub3d *cub3d)
 {
-	char *line;
-	int fd;
-	int i;
+	char	*line;
+	int		fd;
+	int		i;
 
 	fd = open(cub3d->config->filename, O_RDONLY);
 	if (fd == -1)
 		print_error(cub3d, "An error occurred while opening the map file.");
 	cub3d->config->text = malloc(
-		sizeof(char *) * (cub3d->config->full_line_count + 1));
+			sizeof(char *) * (cub3d->config->full_line_count + 1));
 	if (cub3d->config->text == NULL)
 		print_error(cub3d, "config->text malloc error.");
 	cub3d->config->text[cub3d->config->full_line_count] = NULL;

@@ -6,16 +6,16 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 18:32:42 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/25 15:16:55 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/11/08 10:49:30 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utilities.h"
 
-char *ft_strdup(char *s)
+char	*ft_strdup(char *s)
 {
-	char *copy_string;
-	int s_len;
+	char	*copy_string;
+	int		s_len;
 
 	if (s == NULL)
 		return (NULL);

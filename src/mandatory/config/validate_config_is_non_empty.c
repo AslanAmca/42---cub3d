@@ -12,11 +12,11 @@
 
 #include "../cub3d.h"
 
-void validate_config_is_non_empty(t_cub3d *cub3d)
+void	validate_config_is_non_empty(t_cub3d *cub3d)
 {
-	char character;
-	int readed_byte;
-	int fd;
+	char	character;
+	int		readed_byte;
+	int		fd;
 
 	character = '\0';
 	readed_byte = 0;
@@ -28,6 +28,5 @@ void validate_config_is_non_empty(t_cub3d *cub3d)
 		print_error(cub3d, "An error occurred while reading the map file.");
 	if (readed_byte == 0)
 		print_error(cub3d, "Map file must not be empty.");
-
 	close(fd);
 }

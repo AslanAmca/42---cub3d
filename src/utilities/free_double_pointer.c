@@ -12,12 +12,12 @@
 
 #include "utilities.h"
 
-void free_double_pointer(char **pointer)
+void	free_double_pointer(char **pointer)
 {
-	int i;
+	int	i;
 
 	if (pointer == NULL)
-		return;
+		return ;
 	i = 0;
 	while (pointer[i] != NULL)
 	{

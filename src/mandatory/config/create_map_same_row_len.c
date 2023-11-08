@@ -12,11 +12,11 @@
 
 #include "../cub3d.h"
 
-char **create_map_same_row_len(t_cub3d *cub3d)
+char	**create_map_same_row_len(t_cub3d *cub3d)
 {
-	t_config *config;
-	char **map;
-	int i;
+	t_config	*config;
+	char		**map;
+	int			i;
 
 	config = cub3d->config;
 	map = malloc(sizeof(char *) * (config->map->row_count + 1));

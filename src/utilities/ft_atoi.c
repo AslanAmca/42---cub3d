@@ -6,16 +6,16 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 09:09:14 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/25 15:16:55 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/11/08 10:47:50 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utilities.h"
 
-int ft_atoi(char *nptr)
+int	ft_atoi(char *nptr)
 {
-	int sign;
-	int result;
+	int	sign;
+	int	result;
 
 	sign = 1;
 	result = 0;

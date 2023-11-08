@@ -12,12 +12,12 @@
 
 #include "../cub3d.h"
 
-void check_map_empty_line(t_cub3d *cub3d)
+void	check_map_empty_line(t_cub3d *cub3d)
 {
-	t_config *config;
-	char *line;
-	int i;
-	int fd;
+	t_config	*config;
+	char		*line;
+	int			i;
+	int			fd;
 
 	config = cub3d->config;
 	fd = open(config->filename, O_RDONLY);
@@ -31,7 +31,8 @@ void check_map_empty_line(t_cub3d *cub3d)
 		if (is_empty_line(line) && i > config->map->starting_line)
 		{
 			free(line);
-			print_error(cub3d, "There can't be empty line within or after the map.");
+			print_error(cub3d,
+				"There can't be empty line within or after the map.");
 		}
 		free(line);
 		i++;

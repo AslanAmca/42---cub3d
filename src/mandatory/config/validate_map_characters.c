@@ -12,29 +12,29 @@
 
 #include "../cub3d.h"
 
-static int character_is_valid(char chr)
+static int	character_is_valid(char chr)
 {
-	if (chr != '0' && chr != '1' &&
-		chr != 'N' && chr != 'S' && chr != 'W' && chr != 'E' &&
-		chr != ' ')
+	if (chr != '0' && chr != '1'
+		&& chr != 'N' && chr != 'S' && chr != 'W' && chr != 'E'
+		&& chr != ' ')
 	{
-		return 0;
+		return (0);
 	}
-	return 1;
+	return (1);
 }
 
-static int character_is_player(char chr)
+static int	character_is_player(char chr)
 {
 	if (chr == 'N' || chr == 'S' || chr == 'W' || chr == 'E')
 	{
-		return 1;
+		return (1);
 	}
-	return 0;
+	return (0);
 }
 
-static void validate_player_position(t_cub3d *cub3d)
+static void	validate_player_position(t_cub3d *cub3d)
 {
-	t_map *map;
+	t_map	*map;
 
 	map = cub3d->config->map;
 	if (map->player_count < 1)
@@ -51,11 +51,11 @@ static void validate_player_position(t_cub3d *cub3d)
 		print_error(cub3d, "Player can't be on the last column. (N,S,W,E)");
 }
 
-void validate_map_characters(t_cub3d *cub3d)
+void	validate_map_characters(t_cub3d *cub3d)
 {
-	t_map *map;
-	int row;
-	int col;
+	t_map	*map;
+	int		row;
+	int		col;
 
 	map = cub3d->config->map;
 	row = 0;
@@ -65,7 +65,8 @@ void validate_map_characters(t_cub3d *cub3d)
 		while (map->text[row][col] != '\0')
 		{
 			if (!character_is_valid(map->text[row][col]))
-				print_error(cub3d, "There can only be 0,1,N,S,W,E or Space on the map.");
+				print_error(cub3d, "There can only be \
+				0, 1, N, S, W, E or Space on the map.");
 			if (character_is_player(map->text[row][col]))
 			{
 				map->player_count++;

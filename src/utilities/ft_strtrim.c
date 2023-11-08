@@ -6,15 +6,15 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 18:33:12 by aaslan            #+#    #+#             */
-/*   Updated: 2023/10/25 15:16:55 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/11/08 10:50:14 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utilities.h"
 
-char *ft_strtrim(char *s1, char *set)
+char	*ft_strtrim(char *s1, char *set)
 {
-	int size;
+	int	size;
 
 	if (s1 == NULL || set == NULL)
 		return (NULL);
