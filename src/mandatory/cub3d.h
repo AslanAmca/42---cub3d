@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:19:44 by aaslan            #+#    #+#             */
-/*   Updated: 2023/11/08 12:16:56 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/11/08 15:03:32 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 #define SCREEN_WIDTH 1920
 #define SCREEN_HEIGHT 1080
+#define MOVE_SPEED 0.075
+#define TURN_SPEED 0.05
 
 #define ON_KEYDOWN 2
 #define ON_KEYUP 3
@@ -27,8 +29,8 @@
 #ifdef __linux__
 #define KEY_ESC 65307
 #define KEY_W 119
-#define KEY_A 97
 #define KEY_S 115
+#define KEY_A 97
 #define KEY_D 100
 #define KEY_E 101
 #define KEY_LEFT 65361
@@ -257,9 +259,21 @@ void ray_texture_properties(t_ray *ray);
 void ray_fill_screen(t_ray *ray, t_game *game, int x);
 void raycasting(t_cub3d *cub3d);
 
-// mlx helpers
+// move and turn
+void player_move_up(t_map *map, t_player *player);
+void player_move_down(t_map *map, t_player *player);
+void player_move_left(t_map *map, t_player *player);
+void player_move_right(t_map *map, t_player *player);
+void player_turn_left(t_player *player);
+void player_turn_right(t_player *player);
+
+// mlx
 size_t get_image_color(t_mlx_image *image, int x, int y);
 void put_pixel_to_mlx_image(t_mlx_image *image, int x, int y, int color);
+int destroy_handler(t_cub3d *cub3d);
+int keydown_handler(int key, t_cub3d *cub3d);
+int keyup_handler(int key, t_cub3d *cub3d);
+int loop_handler(t_cub3d *cub3d);
 
 // cub3d
 t_cub3d *init_cub3d(int argument_count, char *filename);

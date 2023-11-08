@@ -6,7 +6,7 @@
 #    By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/12 02:37:51 by aaslan            #+#    #+#              #
-#    Updated: 2023/11/08 10:09:14 by aaslan           ###   ########.fr        #
+#    Updated: 2023/11/08 14:56:06 by aaslan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,10 @@ GAME		:= src/mandatory/game/init_free_game.c \
 			src/mandatory/game/init_free_screen.c \
 			src/mandatory/game/init_free_xpm_images.c \
 			src/mandatory/game/init_rgb_colors.c \
+			src/mandatory/game/mlx_event_handlers.c \
+			src/mandatory/game/mlx_loop_handler.c \
+			src/mandatory/game/player_move.c \
+			src/mandatory/game/player_turn.c \
 			src/mandatory/game/mlx_helpers.c \
 			src/mandatory/game/ray_draw_until_hit_wall.c \
 			src/mandatory/game/ray_fill_screen.c \
