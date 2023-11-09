@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 10:08:32 by aaslan            #+#    #+#             */
-/*   Updated: 2023/11/09 03:53:59 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/11/10 00:45:04 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,6 @@ void	b_raycasting(t_cub3d *cub3d)
 		b_ray_fill_screen(&ray, cub3d->game, cub3d->config->map, x);
 		x++;
 	}
+	mlx_put_image_to_window(cub3d->game->mlx, cub3d->game->window,
+		cub3d->game->screen->img, 0, 0);
 }

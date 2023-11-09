@@ -6,7 +6,7 @@
 #    By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/12 02:37:51 by aaslan            #+#    #+#              #
-#    Updated: 2023/11/09 08:59:20 by aaslan           ###   ########.fr        #
+#    Updated: 2023/11/10 00:51:51 by aaslan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -170,6 +170,9 @@ endif
 	@clear
 
 re: fclean all
+
+norm:
+	@norminette src/
 
 norm_mandatory:
 	@norminette src/mandatory
