@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 23:24:22 by aaslan            #+#    #+#             */
-/*   Updated: 2023/11/09 09:06:42 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/11/09 10:53:18 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,13 @@ static void	b_init_keys(t_cub3d *cub3d)
 
 static void	b_init_bonus_props(t_cub3d *cub3d)
 {
-	cub3d->game->cursor_x = SCREEN_WIDTH / 2;
-	cub3d->game->is_cursor_move = 0;
 	b_init_door0_image(cub3d);
 	b_init_door1_image(cub3d);
 	b_init_door2_image(cub3d);
 	b_init_door3_image(cub3d);
+	cub3d->game->door_image = cub3d->game->door0_image;
+	cub3d->game->counter = -1;
+	cub3d->game->cursor_x = SCREEN_WIDTH / 2;
 }
 
 void	b_init_game(t_cub3d *cub3d)

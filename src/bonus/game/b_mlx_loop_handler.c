@@ -6,22 +6,11 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 14:52:29 by aaslan            #+#    #+#             */
-/*   Updated: 2023/11/09 02:49:57 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/11/09 10:58:01 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../b_cub3d.h"
-
-static int	is_keys_pressed(t_keys keys)
-{
-	if (keys.w == 1 || keys.s == 1
-		|| keys.a == 1 || keys.d == 1
-		|| keys.left == 1 || keys.right == 1)
-	{
-		return (1);
-	}
-	return (0);
-}
 
 static void	player_move(t_cub3d *cub3d)
 {
@@ -44,19 +33,23 @@ int	b_loop_handler(t_cub3d *cub3d)
 	t_game	*game;
 
 	game = cub3d->game;
-	if (is_keys_pressed(game->keys))
+	game->counter++;
+	if (game->counter % 50 == 0)
 	{
+		if (game->counter == 0)
+			game->door_image = game->door0_image;
+		else if (game->counter == 1500)
+			game->door_image = game->door1_image;
+		else if (game->counter == 3000)
+			game->door_image = game->door2_image;
+		else if (game->counter == 4500)
+			game->door_image = game->door3_image;
+		else if (game->counter == 6000)
+			game->counter = -1;
 		player_move(cub3d);
 		b_raycasting(cub3d);
-		mlx_put_image_to_window(game->mlx,
-			game->window, game->screen->img, 0, 0);
-	}
-	if (game->is_cursor_move == 1)
-	{
-		b_raycasting(cub3d);
-		mlx_put_image_to_window(game->mlx,
-			game->window, game->screen->img, 0, 0);
-		game->is_cursor_move = 0;
+		mlx_put_image_to_window(game->mlx, game->window,
+			game->screen->img, 0, 0);
 	}
 	return (0);
 }

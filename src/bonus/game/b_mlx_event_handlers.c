@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:48:03 by aaslan            #+#    #+#             */
-/*   Updated: 2023/11/09 08:59:56 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/11/09 10:53:50 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,15 +63,9 @@ int	b_mouse_handler(int x, int y, t_cub3d *cub3d)
 
 	game = cub3d->game;
 	if (x < game->cursor_x)
-	{
 		b_cursor_left(game->player);
-		game->is_cursor_move = 1;
-	}
 	else if (x > game->cursor_x)
-	{
 		b_cursor_right(game->player);
-		game->is_cursor_move = 1;
-	}
 	game->cursor_x = x;
 	y = 1;
 	(void)y;

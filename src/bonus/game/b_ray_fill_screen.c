@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 10:07:10 by aaslan            #+#    #+#             */
-/*   Updated: 2023/11/09 03:55:56 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/11/09 10:26:33 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static t_mlx_image	*get_wall_texture(t_ray *ray, t_game *game, t_map *map)
 	player = game->player;
 	wall_texture = NULL;
 	if (map->text[ray->map_position.y][ray->map_position.x] == 'D')
-		return (game->door0_image);
+		return (game->door_image);
 	if (ray->hit_wall_side == 'x')
 	{
 		if (ray->map_position.x < player->position.x)

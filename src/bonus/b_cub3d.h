@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:19:44 by aaslan            #+#    #+#             */
-/*   Updated: 2023/11/09 08:57:38 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/11/09 10:55:55 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # define SCREEN_HEIGHT 1080
 # define MOVE_SPEED 0.075
 # define TURN_SPEED 0.05
-# define CURSOR_SPEED 0.02
+# define CURSOR_SPEED 0.025
 
 # define ON_KEYDOWN 2
 # define ON_KEYUP 3
@@ -170,11 +170,12 @@ typedef struct s_game
 	t_player	*player;
 
 	int			cursor_x;
-	int			is_cursor_move;
 	t_mlx_image	*door0_image;
 	t_mlx_image	*door1_image;
 	t_mlx_image	*door2_image;
 	t_mlx_image	*door3_image;
+	t_mlx_image	*door_image;
+	int			counter;
 }				t_game;
 
 typedef struct s_cub3d
