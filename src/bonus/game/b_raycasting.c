@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 10:08:32 by aaslan            #+#    #+#             */
-/*   Updated: 2023/11/09 01:02:26 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/11/09 03:53:59 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	b_raycasting(t_cub3d *cub3d)
 		b_ray_draw_until_hit_wall(&ray, cub3d->config->map);
 		b_ray_wall_properties(&ray, cub3d->game->player);
 		b_ray_texture_properties(&ray);
-		b_ray_fill_screen(&ray, cub3d->game, x);
+		b_ray_fill_screen(&ray, cub3d->game, cub3d->config->map, x);
 		x++;
 	}
 }

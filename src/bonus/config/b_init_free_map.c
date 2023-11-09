@@ -24,6 +24,7 @@ void	b_init_map(t_cub3d *cub3d)
 	cub3d->config->map->player_count = 0;
 	cub3d->config->map->player_row = 0;
 	cub3d->config->map->player_col = 0;
+	cub3d->config->map->door_count = 0;
 }
 
 void	b_free_map(t_cub3d *cub3d)

@@ -16,7 +16,8 @@ static int	character_is_valid(char chr)
 {
 	if (chr != '0' && chr != '1'
 		&& chr != 'N' && chr != 'S' && chr != 'W' && chr != 'E'
-		&& chr != ' ')
+		&& chr != ' '
+		&& chr != 'D')
 	{
 		return (0);
 	}
@@ -32,7 +33,7 @@ static int	character_is_player(char chr)
 	return (0);
 }
 
-static void	validate_player_position(t_cub3d *cub3d)
+static void	validate_player_and_door(t_cub3d *cub3d)
 {
 	t_map	*map;
 
@@ -50,6 +51,15 @@ static void	validate_player_position(t_cub3d *cub3d)
 		b_print_error(cub3d, "Player can't be on the first column. (N,S,W,E)");
 	if (map->player_col == map->col_count - 1)
 		b_print_error(cub3d, "Player can't be on the last column. (N,S,W,E)");
+	if (map->door_count < 1)
+		b_print_error(cub3d, "There is no Door on the map. (D)");
+}
+
+static void	player_found_handler(t_map *map, int row, int col)
+{
+	map->player_count++;
+	map->player_row = row;
+	map->player_col = col;
 }
 
 void	b_validate_map_characters(t_cub3d *cub3d)
@@ -67,16 +77,14 @@ void	b_validate_map_characters(t_cub3d *cub3d)
 		{
 			if (!character_is_valid(map->text[row][col]))
 				b_print_error(cub3d, "There can only be \
-				0, 1, N, S, W, E or Space on the map.");
+				0, 1, N, S, W, E, D or Space on the map.");
 			if (character_is_player(map->text[row][col]))
-			{
-				map->player_count++;
-				map->player_row = row;
-				map->player_col = col;
-			}
+				player_found_handler(map, row, col);
+			if (map->text[row][col] == 'D')
+				map->door_count++;
 			col++;
 		}
 		row++;
 	}
-	validate_player_position(cub3d);
+	validate_player_and_door(cub3d);
 }

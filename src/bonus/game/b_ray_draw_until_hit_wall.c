@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 09:59:55 by aaslan            #+#    #+#             */
-/*   Updated: 2023/11/09 02:50:09 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/11/09 03:49:10 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void	b_ray_draw_until_hit_wall(t_ray *ray, t_map *map)
 		}
 		if (map->text[ray->map_position.y] == NULL)
 			break ;
-		if (map->text[ray->map_position.y][ray->map_position.x] == '1')
+		if (map->text[ray->map_position.y][ray->map_position.x] == '1'
+			|| map->text[ray->map_position.y][ray->map_position.x] == 'D')
 			ray->hit_wall = 1;
 	}
 }

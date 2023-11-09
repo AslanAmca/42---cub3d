@@ -6,13 +6,13 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 23:24:22 by aaslan            #+#    #+#             */
-/*   Updated: 2023/11/09 02:17:11 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/11/09 04:05:08 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../b_cub3d.h"
 
-void	b_init_keys(t_cub3d *cub3d)
+static void	b_init_keys(t_cub3d *cub3d)
 {
 	cub3d->game->keys.w = 0;
 	cub3d->game->keys.s = 0;
@@ -20,6 +20,16 @@ void	b_init_keys(t_cub3d *cub3d)
 	cub3d->game->keys.d = 0;
 	cub3d->game->keys.left = 0;
 	cub3d->game->keys.right = 0;
+}
+
+static void	b_init_bonus_props(t_cub3d *cub3d)
+{
+	cub3d->game->cursor_x = SCREEN_WIDTH / 2;
+	cub3d->game->is_cursor_move = 0;
+	b_init_door0_image(cub3d);
+	b_init_door1_image(cub3d);
+	b_init_door2_image(cub3d);
+	b_init_door3_image(cub3d);
 }
 
 void	b_init_game(t_cub3d *cub3d)
@@ -43,8 +53,7 @@ void	b_init_game(t_cub3d *cub3d)
 	b_init_floor_rgb(cub3d);
 	b_init_player(cub3d);
 	b_init_keys(cub3d);
-	cub3d->game->cursor_x = SCREEN_WIDTH / 2;
-	cub3d->game->is_cursor_move = 0;
+	b_init_bonus_props(cub3d);
 }
 
 void	b_free_game(t_cub3d *cub3d)
@@ -53,6 +62,7 @@ void	b_free_game(t_cub3d *cub3d)
 		return ;
 	b_free_player(cub3d);
 	b_free_xpm_images(cub3d);
+	b_free_door_images(cub3d);
 	b_free_screen(cub3d);
 	b_free_mlx(cub3d);
 	free(cub3d->game);

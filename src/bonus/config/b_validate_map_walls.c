@@ -35,9 +35,9 @@ static void	validate_map_border(t_cub3d *cub3d)
 		col = 0;
 		while (line[col] != '\0')
 		{
-			if ((row == 0 || row == last_row_index) && line[col] == '0')
+			if ((row == 0 || row == last_row_index) && b_not_wall(line[col]))
 				error_and_free(cub3d, line);
-			else if (line[0] == '0' || line[last_col_index] == '0')
+			else if (b_not_wall(line[0]) || b_not_wall(line[last_col_index]))
 				error_and_free(cub3d, line);
 			col++;
 		}
@@ -63,32 +63,6 @@ static void	dfs_algorithm(t_cub3d *cub3d, char **map, int row, int col)
 	dfs_algorithm(cub3d, map, row - 1, col);
 }
 
-static void	get_player_position(t_cub3d *cub3d, int *row, int *col)
-{
-	char	chr;
-	int		r;
-	int		c;
-
-	chr = '\0';
-	r = 0;
-	while (cub3d->config->map->text[r] != NULL)
-	{
-		c = 0;
-		while (cub3d->config->map->text[r][c] != '\0')
-		{
-			chr = cub3d->config->map->text[r][c];
-			if (chr == 'N' || chr == 'S' || chr == 'W' || chr == 'E')
-			{
-				*row = r;
-				*col = c;
-				return ;
-			}
-			c++;
-		}
-		r++;
-	}
-}
-
 void	b_validate_map_walls(t_cub3d *cub3d)
 {
 	char	**map;
@@ -96,7 +70,7 @@ void	b_validate_map_walls(t_cub3d *cub3d)
 	int		player_col;
 
 	map = b_create_map_same_row_len(cub3d);
-	get_player_position(cub3d, &player_row, &player_col);
+	b_get_player_position(cub3d, &player_row, &player_col);
 	dfs_algorithm(cub3d, map, player_row, player_col);
 	free_double_pointer(map);
 	validate_map_border(cub3d);

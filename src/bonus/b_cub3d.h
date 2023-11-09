@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:19:44 by aaslan            #+#    #+#             */
-/*   Updated: 2023/11/09 02:16:56 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/11/09 04:07:29 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # define SCREEN_HEIGHT 1080
 # define MOVE_SPEED 0.075
 # define TURN_SPEED 0.05
+# define CURSOR_SPEED 0.02
 
 # define ON_KEYDOWN 2
 # define ON_KEYUP 3
@@ -96,6 +97,8 @@ typedef struct s_map
 	int		player_count;
 	int		player_row;
 	int		player_col;
+
+	int		door_count;
 }			t_map;
 
 typedef struct s_config
@@ -165,8 +168,13 @@ typedef struct s_game
 	int			ceiling_rgb;
 	t_keys		keys;
 	t_player	*player;
+
 	int			cursor_x;
 	int			is_cursor_move;
+	t_mlx_image	*door0_image;
+	t_mlx_image	*door1_image;
+	t_mlx_image	*door2_image;
+	t_mlx_image	*door3_image;
 }				t_game;
 
 typedef struct s_cub3d
@@ -200,6 +208,8 @@ typedef struct s_ray
 	t_screen		screen;
 }					t_ray;
 
+int		b_not_wall(char character);
+void	b_get_player_position(t_cub3d *cub3d, int *row, int *col);
 void	b_init_config(t_cub3d *cub3d, int argument_count, char *filename);
 void	b_free_config(t_cub3d *cub3d);
 void	b_init_xpm_files(t_cub3d *cub3d);
@@ -247,7 +257,7 @@ void	b_ray_properties(t_ray *ray, t_player *player, int x);
 void	b_ray_draw_until_hit_wall(t_ray *ray, t_map *map);
 void	b_ray_wall_properties(t_ray *ray, t_player *player);
 void	b_ray_texture_properties(t_ray *ray);
-void	b_ray_fill_screen(t_ray *ray, t_game *game, int x);
+void	b_ray_fill_screen(t_ray *ray, t_game *game, t_map *map, int x);
 void	b_raycasting(t_cub3d *cub3d);
 
 void	b_player_move_up(t_map *map, t_player *player);
@@ -270,5 +280,11 @@ int		b_mouse_handler(int x, int y, t_cub3d *cub3d);
 t_cub3d	*b_init_cub3d(int argument_count, char *filename);
 void	b_free_cub3d(t_cub3d *cub3d);
 void	b_print_error(t_cub3d *cub3d, char *message);
+
+void	b_init_door0_image(t_cub3d *cub3d);
+void	b_init_door1_image(t_cub3d *cub3d);
+void	b_init_door2_image(t_cub3d *cub3d);
+void	b_init_door3_image(t_cub3d *cub3d);
+void	b_free_door_images(t_cub3d *cub3d);
 
 #endif

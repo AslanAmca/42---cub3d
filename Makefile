@@ -6,7 +6,7 @@
 #    By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/12 02:37:51 by aaslan            #+#    #+#              #
-#    Updated: 2023/11/09 02:31:27 by aaslan           ###   ########.fr        #
+#    Updated: 2023/11/09 03:40:20 by aaslan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,6 +78,7 @@ OTHERS		:= src/mandatory/init_free_cub3d.c \
 B_CONFIG	:= src/bonus/config/b_check_map_empty_line.c \
 			src/bonus/config/b_create_map_same_row_len.c \
 			src/bonus/config/b_get_next_line.c \
+			src/bonus/config/b_helpers.c \
 			src/bonus/config/b_init_free_colors.c \
 			src/bonus/config/b_init_free_config.c \
 			src/bonus/config/b_init_free_map.c \
@@ -98,7 +99,8 @@ B_CONFIG	:= src/bonus/config/b_check_map_empty_line.c \
 			src/bonus/config/b_validate_map.c \
 			src/bonus/config/b_validate_xpm_files.c
 
-B_GAME		:= src/bonus/game/b_init_free_game.c \
+B_GAME		:= src/bonus/game/b_init_free_door_images.c \
+			src/bonus/game/b_init_free_game.c \
 			src/bonus/game/b_init_free_mlx.c \
 			src/bonus/game/b_init_free_player.c \
 			src/bonus/game/b_init_free_screen.c \

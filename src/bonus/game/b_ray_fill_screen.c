@@ -6,19 +6,21 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 10:07:10 by aaslan            #+#    #+#             */
-/*   Updated: 2023/11/09 01:33:05 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/11/09 03:55:56 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../b_cub3d.h"
 
-static t_mlx_image	*get_wall_texture(t_ray *ray, t_game *game)
+static t_mlx_image	*get_wall_texture(t_ray *ray, t_game *game, t_map *map)
 {
 	t_mlx_image	*wall_texture;
 	t_player	*player;
 
 	player = game->player;
 	wall_texture = NULL;
+	if (map->text[ray->map_position.y][ray->map_position.x] == 'D')
+		return (game->door0_image);
 	if (ray->hit_wall_side == 'x')
 	{
 		if (ray->map_position.x < player->position.x)
@@ -36,7 +38,7 @@ static t_mlx_image	*get_wall_texture(t_ray *ray, t_game *game)
 	return (wall_texture);
 }
 
-void	b_ray_fill_screen(t_ray *ray, t_game *game, int x)
+void	b_ray_fill_screen(t_ray *ray, t_game *game, t_map *map, int x)
 {
 	t_mlx_image	*wall_texture;
 	double		texture_offset_y;
@@ -44,7 +46,7 @@ void	b_ray_fill_screen(t_ray *ray, t_game *game, int x)
 	int			texture_color;
 	int			y;
 
-	wall_texture = get_wall_texture(ray, game);
+	wall_texture = get_wall_texture(ray, game, map);
 	y = 0;
 	while (y < SCREEN_HEIGHT)
 	{
