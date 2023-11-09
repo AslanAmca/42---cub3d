@@ -6,7 +6,7 @@
 #    By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/12 02:37:51 by aaslan            #+#    #+#              #
-#    Updated: 2023/11/09 03:40:20 by aaslan           ###   ########.fr        #
+#    Updated: 2023/11/09 08:59:20 by aaslan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -107,10 +107,11 @@ B_GAME		:= src/bonus/game/b_init_free_door_images.c \
 			src/bonus/game/b_init_free_xpm_images.c \
 			src/bonus/game/b_init_rgb_colors.c \
 			src/bonus/game/b_mlx_event_handlers.c \
+			src/bonus/game/b_mlx_helpers.c \
 			src/bonus/game/b_mlx_loop_handler.c \
+			src/bonus/game/b_open_close_door.c \
 			src/bonus/game/b_player_move.c \
 			src/bonus/game/b_player_turn.c \
-			src/bonus/game/b_mlx_helpers.c \
 			src/bonus/game/b_ray_draw_until_hit_wall.c \
 			src/bonus/game/b_ray_fill_screen.c \
 			src/bonus/game/b_ray_properties.c \

@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:19:44 by aaslan            #+#    #+#             */
-/*   Updated: 2023/11/09 04:07:29 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/11/09 08:57:38 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -286,5 +286,6 @@ void	b_init_door1_image(t_cub3d *cub3d);
 void	b_init_door2_image(t_cub3d *cub3d);
 void	b_init_door3_image(t_cub3d *cub3d);
 void	b_free_door_images(t_cub3d *cub3d);
+void	b_open_close_door(t_cub3d *cub3d);
 
 #endif

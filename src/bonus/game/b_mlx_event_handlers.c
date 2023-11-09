@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:48:03 by aaslan            #+#    #+#             */
-/*   Updated: 2023/11/09 02:50:28 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/11/09 08:59:56 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	b_keydown_handler(int key, t_cub3d *cub3d)
 {
 	if (key == KEY_ESC)
 		b_destroy_handler(cub3d);
+	else if (key == KEY_E)
+		b_open_close_door(cub3d);
 	else if (key == KEY_W)
 		cub3d->game->keys.w = 1;
 	else if (key == KEY_S)
