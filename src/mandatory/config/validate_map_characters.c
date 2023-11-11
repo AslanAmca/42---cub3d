@@ -66,7 +66,7 @@ void	validate_map_characters(t_cub3d *cub3d)
 		{
 			if (!character_is_valid(map->text[row][col]))
 				print_error(cub3d, "There can only be \
-				0, 1, N, S, W, E or Space on the map.");
+0, 1, N, S, W, E or Space on the map.");
 			if (character_is_player(map->text[row][col]))
 			{
 				map->player_count++;

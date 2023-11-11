@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 01:00:30 by aaslan            #+#    #+#             */
-/*   Updated: 2023/11/09 01:35:57 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/11/11 21:39:31 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	validate_north_xpm(t_cub3d *cub3d, char *line)
 		if (ft_strcmp(config->xpm_files->north
 				+ ft_strlen(config->xpm_files->north) - 4, ".xpm") != 0)
 			b_print_error(cub3d, "NO element must end \
-			with the .xpm extension.");
+with the .xpm extension.");
 		fd = open(config->xpm_files->north, O_RDONLY);
 		if (fd == -1)
 			b_print_error(cub3d, "NO xpm file not found or can't be opened.");
@@ -50,7 +50,7 @@ static void	validate_south_xpm(t_cub3d *cub3d, char *line)
 		if (ft_strcmp(config->xpm_files->south
 				+ ft_strlen(config->xpm_files->south) - 4, ".xpm") != 0)
 			b_print_error(cub3d, "SO element must end \
-			with the .xpm extension.");
+with the .xpm extension.");
 		fd = open(config->xpm_files->south, O_RDONLY);
 		if (fd == -1)
 			b_print_error(cub3d, "SO xpm file not found or can't be opened.");
@@ -73,7 +73,7 @@ static void	validate_west_xpm(t_cub3d *cub3d, char *line)
 		if (ft_strcmp(config->xpm_files->west
 				+ ft_strlen(config->xpm_files->west) - 4, ".xpm") != 0)
 			b_print_error(cub3d, "WE element must end \
-			with the .xpm extension.");
+with the .xpm extension.");
 		fd = open(config->xpm_files->west, O_RDONLY);
 		if (fd == -1)
 			b_print_error(cub3d, "WE xpm file not found or can't be opened.");
@@ -96,7 +96,7 @@ static void	validate_east_xpm(t_cub3d *cub3d, char *line)
 		if (ft_strcmp(config->xpm_files->east
 				+ ft_strlen(config->xpm_files->east) - 4, ".xpm") != 0)
 			b_print_error(cub3d, "EA element must end \
-			with the .xpm extension.");
+with the .xpm extension.");
 		fd = open(config->xpm_files->east, O_RDONLY);
 		if (fd == -1)
 			b_print_error(cub3d, "EA xpm file not found or can't be opened.");

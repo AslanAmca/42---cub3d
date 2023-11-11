@@ -6,7 +6,7 @@
 #    By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/12 02:37:51 by aaslan            #+#    #+#              #
-#    Updated: 2023/11/10 00:51:51 by aaslan           ###   ########.fr        #
+#    Updated: 2023/11/11 22:35:15 by aaslan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,11 +101,13 @@ B_CONFIG	:= src/bonus/config/b_check_map_empty_line.c \
 
 B_GAME		:= src/bonus/game/b_init_free_door_images.c \
 			src/bonus/game/b_init_free_game.c \
+			src/bonus/game/b_init_free_minimap_image.c \
 			src/bonus/game/b_init_free_mlx.c \
 			src/bonus/game/b_init_free_player.c \
 			src/bonus/game/b_init_free_screen.c \
 			src/bonus/game/b_init_free_xpm_images.c \
 			src/bonus/game/b_init_rgb_colors.c \
+			src/bonus/game/b_minimap.c \
 			src/bonus/game/b_mlx_event_handlers.c \
 			src/bonus/game/b_mlx_helpers.c \
 			src/bonus/game/b_mlx_loop_handler.c \

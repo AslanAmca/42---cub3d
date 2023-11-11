@@ -27,7 +27,7 @@ static void	validate_comma(t_cub3d *cub3d)
 	}
 	if (count != 2)
 		b_print_error(cub3d, "F take a value in RGB format. \
-		The RGB value consists of 3 parts separated by 2 commas.");
+The RGB value consists of 3 parts separated by 2 commas.");
 }
 
 static void	validate_red_color(t_cub3d *cub3d)
@@ -43,13 +43,13 @@ static void	validate_red_color(t_cub3d *cub3d)
 		b_print_error(cub3d, "Red color of F can't be empty.");
 	if (red_len > 3)
 		b_print_error(cub3d, "Red color of F must be between \
-		1-3 characters. (1 - 10 - 100).");
+1-3 characters. (1 - 10 - 100).");
 	i = 0;
 	while (i < red_len)
 	{
 		if (!ft_is_digit(red_string[i]))
 			b_print_error(cub3d, "Red color of F must \
-			consist of digit only. (0 - 9)");
+consist of digit only. (0 - 9)");
 		i++;
 	}
 	red = ft_atoi(red_string);
@@ -71,13 +71,13 @@ static void	validate_green_color(t_cub3d *cub3d)
 		b_print_error(cub3d, "Green color of F can't be empty.");
 	if (green_len > 3)
 		b_print_error(cub3d, "Green color of F must be between \
-		1-3 characters. (1 - 10 - 100).");
+1-3 characters. (1 - 10 - 100).");
 	i = 0;
 	while (i < green_len)
 	{
 		if (!ft_is_digit(green_string[i]))
 			b_print_error(cub3d, "Green color of F must \
-			consist of digit only. (0 - 9)");
+consist of digit only. (0 - 9)");
 		i++;
 	}
 	green = ft_atoi(green_string);
@@ -99,13 +99,13 @@ static void	validate_blue_color(t_cub3d *cub3d)
 		b_print_error(cub3d, "Blue color of F can't be empty.");
 	if (blue_len > 3)
 		b_print_error(cub3d, "Blue color of F must be between \
-		1-3 characters. (1 - 10 - 100).");
+1-3 characters. (1 - 10 - 100).");
 	i = 0;
 	while (i < blue_len)
 	{
 		if (!ft_is_digit(blue_string[i]))
 			b_print_error(cub3d, "Blue color of F must \
-			consist of digit only. (0 - 9)");
+consist of digit only. (0 - 9)");
 		i++;
 	}
 	blue = ft_atoi(blue_string);

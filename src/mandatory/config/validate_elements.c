@@ -27,7 +27,7 @@ static void	check_unknown_element_type(t_cub3d *cub3d)
 			&& ft_strncmp("F", line, 1) != 0 && ft_strncmp("C", line, 1) != 0)
 		{
 			print_error(cub3d, "Only NO, SO, WE, EA, F and C element types \
-			can be in the first 6 filled text.");
+can be in the first 6 filled text.");
 		}
 		i++;
 	}

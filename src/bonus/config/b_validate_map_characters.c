@@ -42,7 +42,7 @@ static void	validate_player_and_door(t_cub3d *cub3d)
 		b_print_error(cub3d, "There is no Player on the map. (N,S,W,E)");
 	if (map->player_count > 1)
 		b_print_error(cub3d, "There can only be 1 Player on \
-		the map. (N,S,W,E)");
+the map. (N,S,W,E)");
 	if (map->player_row == 0)
 		b_print_error(cub3d, "Player can't be on the first row. (N,S,W,E)");
 	if (map->player_row == map->row_count - 1)
@@ -77,7 +77,7 @@ void	b_validate_map_characters(t_cub3d *cub3d)
 		{
 			if (!character_is_valid(map->text[row][col]))
 				b_print_error(cub3d, "There can only be \
-				0, 1, N, S, W, E, D or Space on the map.");
+0, 1, N, S, W, E, D or Space on the map.");
 			if (character_is_player(map->text[row][col]))
 				player_found_handler(map, row, col);
 			if (map->text[row][col] == 'D')

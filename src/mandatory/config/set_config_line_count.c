@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 10:28:30 by aaslan            #+#    #+#             */
-/*   Updated: 2023/11/08 10:29:37 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/11/11 21:39:05 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,5 @@ void	set_config_line_count(t_cub3d *cub3d)
 	close(fd);
 	if (cub3d->config->full_line_count < 9)
 		print_error(cub3d, "There must be at least 9 text \
-		in the configuration file. (4 texture, 2 color, min 3 for map)");
+in the configuration file. (4 texture, 2 color, min 3 for map)");
 }

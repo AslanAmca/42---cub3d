@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 23:24:22 by aaslan            #+#    #+#             */
-/*   Updated: 2023/11/11 12:14:56 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/11/11 22:40:39 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static void	b_init_game_null(t_cub3d *cub3d)
 	cub3d->game->door1_image = NULL;
 	cub3d->game->door2_image = NULL;
 	cub3d->game->door3_image = NULL;
+	cub3d->game->minimap_image = NULL;
 }
 
 static void	b_init_keys(t_cub3d *cub3d)
@@ -43,6 +44,7 @@ static void	b_init_keys(t_cub3d *cub3d)
 
 static void	b_init_bonus_props(t_cub3d *cub3d)
 {
+	b_init_minimap_image(cub3d);
 	b_init_door0_image(cub3d);
 	b_init_door1_image(cub3d);
 	b_init_door2_image(cub3d);
@@ -78,6 +80,7 @@ void	b_free_game(t_cub3d *cub3d)
 	b_free_player(cub3d);
 	b_free_xpm_images(cub3d);
 	b_free_door_images(cub3d);
+	b_free_minimap_image(cub3d);
 	b_free_screen(cub3d);
 	b_free_mlx(cub3d);
 	free(cub3d->game);

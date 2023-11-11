@@ -6,13 +6,13 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 14:52:29 by aaslan            #+#    #+#             */
-/*   Updated: 2023/11/10 00:44:21 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/11/11 20:27:06 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../b_cub3d.h"
 
-static void	player_move(t_cub3d *cub3d)
+static void	b_player_move(t_cub3d *cub3d)
 {
 	if (cub3d->game->keys.w == 1)
 		b_player_move_up(cub3d->config->map, cub3d->game->player);
@@ -46,8 +46,9 @@ int	b_loop_handler(t_cub3d *cub3d)
 			game->door_image = game->door3_image;
 		else if (game->counter == 6000)
 			game->counter = -1;
-		player_move(cub3d);
+		b_player_move(cub3d);
 		b_raycasting(cub3d);
+		b_minimap(cub3d);
 	}
 	return (0);
 }

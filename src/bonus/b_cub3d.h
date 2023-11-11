@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:19:44 by aaslan            #+#    #+#             */
-/*   Updated: 2023/11/09 10:55:55 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/11/11 22:40:51 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # define MOVE_SPEED 0.075
 # define TURN_SPEED 0.05
 # define CURSOR_SPEED 0.025
+# define MINIMAP_WIDTH 180
+# define MINIMAP_HEIGHT 180
 
 # define ON_KEYDOWN 2
 # define ON_KEYUP 3
@@ -176,6 +178,8 @@ typedef struct s_game
 	t_mlx_image	*door3_image;
 	t_mlx_image	*door_image;
 	int			counter;
+
+	t_mlx_image	*minimap_image;
 }				t_game;
 
 typedef struct s_cub3d
@@ -288,5 +292,9 @@ void	b_init_door2_image(t_cub3d *cub3d);
 void	b_init_door3_image(t_cub3d *cub3d);
 void	b_free_door_images(t_cub3d *cub3d);
 void	b_open_close_door(t_cub3d *cub3d);
+
+void	b_init_minimap_image(t_cub3d *cub3d);
+void	b_free_minimap_image(t_cub3d *cub3d);
+void	b_minimap(t_cub3d *cub3d);
 
 #endif

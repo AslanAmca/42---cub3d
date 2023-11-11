@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 21:04:21 by aaslan            #+#    #+#             */
-/*   Updated: 2023/11/08 10:32:15 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/11/11 21:38:55 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	validate_argument(t_cub3d *cub3d)
 	filename = cub3d->config->filename;
 	if (cub3d->config->argument_count == 1)
 		print_error(cub3d, "Map name not entered. \
-		You must enter the map name for the program to work.");
+You must enter the map name for the program to work.");
 	if (cub3d->config->argument_count > 2)
 		print_error(cub3d,
 			"Only the map name should be entered as an argument.");
